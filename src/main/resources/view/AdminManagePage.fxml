@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1209.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lankaice.project.controller.AdminManagePageController">
+   <children>
+      <Pane layoutX="20.0" layoutY="20.0" prefHeight="700.0" prefWidth="1209.0" style="-fx-background-color: E9F1F6; -fx-background-radius: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button layoutX="550.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnAddAdminOnAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #2980b9;" text="ADD ADMIN" textFill="WHITE" />
+            <Button layoutX="950.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnDeleteAdminOnAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #c0392b;" text="DELETE ADMIN" textFill="WHITE" />
+            <Label layoutX="100.0" layoutY="132.0" prefHeight="28.0" prefWidth="120.0" text="Employee Id">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="textEmployeeId" layoutX="220.0" layoutY="130.0" prefWidth="240.0" style="-fx-background-color: E9F1F6; -fx-border-width: 0 0 2 0; -fx-border-color: #2196f3;" />
+            <Label layoutX="100.0" layoutY="173.0" prefHeight="28.0" prefWidth="120.0" text="Frist Name">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="textFristName" layoutX="220.0" layoutY="171.0" prefWidth="240.0" style="-fx-background-color: E9F1F6; -fx-border-width: 0 0 2 0; -fx-border-color: #2196f3;" />
+            <Label layoutX="100.0" layoutY="217.0" prefHeight="28.0" prefWidth="120.0" text="Second Name">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="textSecondName" layoutX="220.0" layoutY="215.0" prefWidth="240.0" style="-fx-background-color: E9F1F6; -fx-border-width: 0 0 2 0; -fx-border-color: #2196f3;" />
+            <Label layoutX="100.0" layoutY="261.0" prefHeight="28.0" prefWidth="120.0" text="Email">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="textEmail" layoutX="220.0" layoutY="259.0" prefWidth="240.0" style="-fx-background-color: E9F1F6; -fx-border-width: 0 0 2 0; -fx-border-color: #2196f3;" />
+            <Button layoutX="509.0" layoutY="130.0" mnemonicParsing="false" onAction="#btnSearchOnAction" prefHeight="26.0" prefWidth="80.0" style="-fx-background-color: #8e44ad;" text="Search" textFill="WHITE" />
+            <Label layoutX="100.0" layoutY="309.0" prefHeight="28.0" prefWidth="120.0" text="Role">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="txtRole" layoutX="220.0" layoutY="307.0" prefHeight="26.0" prefWidth="240.0" style="-fx-background-color: W E9F1F6hite; -fx-border-width: 0 0 2 0; -fx-border-color: #2196f3;" />
+            <Label fx:id="textDetails" layoutX="684.0" layoutY="100.0" prefHeight="270.0" prefWidth="395.0" style="-fx-border-color: #2196f3; -fx-border-radius: 10;" />
+            <TextField fx:id="textUsername" layoutX="487.0" layoutY="211.0" prefHeight="28.0" prefWidth="180.0" style="-fx-background-color: E9F1F6; -fx-border-color: #2196f3; -fx-border-radius: 5;" />
+            <Label layoutX="537.0" layoutY="241.0" prefHeight="28.0" prefWidth="80.0" text="Username">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="textPassword" layoutX="487.0" layoutY="283.0" prefHeight="28.0" prefWidth="180.0" style="-fx-background-color: E9F1F6; -fx-border-color: #2196f3; -fx-border-radius: 5;" />
+            <Label layoutX="538.0" layoutY="313.0" prefHeight="28.0" prefWidth="80.0" text="Password">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Button layoutX="350.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #e67e22;" text="CLEAR" textFill="WHITE" />
+            <Hyperlink fx:id="textError" focusTraversable="false" layoutX="100.0" layoutY="108.0" prefHeight="26.0" prefWidth="320.0" textFill="RED">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Hyperlink>
+            <Button layoutX="509.0" layoutY="172.0" mnemonicParsing="false" onAction="#btnSearchOnAction1" prefHeight="26.0" prefWidth="80.0" style="-fx-background-color: #8e44ad;" text="Search" textFill="WHITE" />
+         </children></Pane>
+      <TableView fx:id="tableView" layoutX="74.0" layoutY="380.0" onMouseClicked="#SetData" prefHeight="191.0" prefWidth="959.0" stylesheets="@../style/tableViewStyle.css">
+         <columns>
+            <TableColumn fx:id="colUsername" prefWidth="143.0" style="-fx-alignment: CENTER;" text="Username" />
+            <TableColumn fx:id="colPassword" prefWidth="152.0" style="-fx-alignment: CENTER;" text="Password" />
+            <TableColumn fx:id="colName" prefWidth="212.0" style="-fx-alignment: CENTER;" text="Name" />
+            <TableColumn fx:id="colEmail" prefWidth="269.0" style="-fx-alignment: CENTER;" text="Email" />
+            <TableColumn fx:id="colRole" prefWidth="170.0" style="-fx-alignment: CENTER;" text="Role" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Button layoutX="750.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnUpdateAdminOnAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #27ae60;" text="UPDATE ADMIN" textFill="WHITE" />
+      <Label layoutX="74.0" layoutY="56.0" text="ADMIN MANAGE" textFill="#023c73">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

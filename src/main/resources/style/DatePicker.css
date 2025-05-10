@@ -1,0 +1,9 @@
+.date-picker {
+    -fx-background-color: transparent;
+    -fx-border-color: #2196f3;
+    -fx-border-width: 0 0 2 0;
+}
+
+.date-picker > .text-field {
+    -fx-background-color: #E9F1F6;
+}
