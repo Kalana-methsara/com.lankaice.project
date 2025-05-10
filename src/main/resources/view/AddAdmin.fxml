@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNode" prefHeight="400.0" prefWidth="321.0" style="-fx-background-color: WHITE; -fx-border-color: #023c73; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lankaice.project.controller.AddAdminController">
+    <children>
+        <Button fx:id="btnAdminFormBtn" layoutX="61.0" layoutY="309.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="25.0" prefWidth="199.0" style="-fx-background-color: #023c73;" text="SAVE" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="11.0" />
+            </font>
+        </Button>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="97.0" layoutY="36.0" prefHeight="28.0" prefWidth="128.0" text="ADD ADMIN" textFill="#023c73">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="269.0" layoutY="20.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/close.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="10.0" layoutY="64.0" prefHeight="223.0" prefWidth="275.0" spacing="15.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0">
+         <children>
+              <TextField fx:id="txtUsername" prefHeight="25.0" prefWidth="199.0" promptText="UserName" style="-fx-background-color: white; -fx-border-color: blue; -fx-border-radius: 5;" />
+              <TextField fx:id="txtPassword" prefHeight="25.0" prefWidth="199.0" promptText="Password" style="-fx-background-color: white; -fx-border-color: blue; -fx-border-radius: 5;" />
+            <TextField fx:id="txtName" prefHeight="10.0" prefWidth="311.0" promptText="Name" style="-fx-background-color: white; -fx-border-color: blue; -fx-border-radius: 5;" />
+              <TextField fx:id="txtEmail" prefHeight="25.0" prefWidth="199.0" promptText="Email" style="-fx-background-color: white; -fx-border-color: blue; -fx-border-radius: 5;" />
+            <ChoiceBox fx:id="txtRole" prefHeight="26.0" prefWidth="285.0" style="-fx-background-color: White; -fx-border-color: blue; -fx-border-radius: 5;" />
+         </children>
+      </VBox>
+    </children>
+</AnchorPane>
