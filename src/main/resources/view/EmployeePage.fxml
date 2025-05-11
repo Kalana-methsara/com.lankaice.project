@@ -18,8 +18,8 @@
    <children>
       <Pane layoutX="20.0" layoutY="20.0" prefHeight="700.0" prefWidth="1209.0" style="-fx-background-color: E9F1F6; -fx-background-radius: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField fx:id="textSearchEmployee" layoutX="307.0" layoutY="25.0" onKeyReleased="#onKeySearch" prefWidth="400.0" style="-fx-background-color: E9F1F6; -fx-border-color: #2196f3; -fx-background-radius: 10; -fx-border-radius: 10;" />
-            <Button layoutX="670.0" layoutY="26.0" mnemonicParsing="false" onAction="#btnSearchOnAction" prefHeight="25.0" prefWidth="40.0" style="-fx-background-color: #2196f3; -fx-background-radius: 0 10 10 0;" textFill="WHITE">
+            <TextField fx:id="textSearchEmployee" layoutX="307.0" layoutY="25.0" onKeyReleased="#onKeySearch" prefHeight="31.0" prefWidth="400.0" style="-fx-background-color: E9F1F6; -fx-border-color: #2196f3; -fx-background-radius: 10; -fx-border-radius: 10;" />
+            <Button layoutX="670.0" layoutY="26.0" mnemonicParsing="false" onAction="#btnSearchOnAction" prefHeight="25.0" prefWidth="40.0" style="-fx-background-color: #2196f3; -fx-background-radius: 0 8 8 0;" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="26.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                      <image>
