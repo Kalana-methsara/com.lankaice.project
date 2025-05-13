@@ -18,7 +18,7 @@
 
 /* Set the column header text color */
 .table-view .column-header {
-    -fx-background-color:#5758BB;
+    -fx-background-color: #1e40af;
     -fx-border-style: none;
 }
 

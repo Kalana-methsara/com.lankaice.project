@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
@@ -11,6 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -31,63 +34,20 @@
             <ChoiceBox fx:id="choiceBox" layoutX="200.0" layoutY="82.0" prefHeight="32.0" prefWidth="300.0" style="-fx-border-radius: 10; -fx-border-color: Blue; -fx-background-radius: 10;" />
             <Button layoutX="550.0" layoutY="82.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: #0707a4;" text="MODE" textFill="WHITE" />
             <Button layoutX="685.0" layoutY="82.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: Blue;" text="EXTRA" textFill="WHITE" />
-            <VBox alignment="CENTER" layoutX="30.0" layoutY="140.0" prefHeight="195.0" prefWidth="180.0" spacing="10" style="-fx-background-color: #27ae60; -fx-border-radius: 10px; -fx-padding: 15px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5); -fx-background-radius: 10;">
+            <VBox layoutX="834.0" layoutY="40.0" prefHeight="520.0" prefWidth="289.0" spacing="2.0">
                <children>
-                  <ImageView fitHeight="100.0" fitWidth="140.0">
-                     <image>
-                        <Image url="@../images/block_ice.png" />
-                     </image>
-                  </ImageView>
-                  <Label style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Block Ice" />
-                  <Button style="-fx-background-color: #004080; -fx-text-fill: white;" text="ADD" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" layoutX="230.0" layoutY="140.0" prefHeight="195.0" prefWidth="180.0" spacing="10" style="-fx-background-color: #27ae60; -fx-border-radius: 10px; -fx-padding: 15px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5); -fx-background-radius: 10;">
-               <children>
-                  <ImageView fitHeight="100.0" fitWidth="140.0">
-                     <image>
-                        <Image url="@../images/crushed_ice.png" />
-                     </image>
-                  </ImageView>
-                  <Label style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Crushed Ice" />
-                  <Button style="-fx-background-color: #004080; -fx-text-fill: white;" text="ADD" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" layoutX="430.0" layoutY="140.0" prefHeight="195.0" prefWidth="180.0" spacing="10" style="-fx-background-color: #27ae60; -fx-border-radius: 10px; -fx-padding: 15px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5); -fx-background-radius: 10;">
-               <children>
-                  <ImageView fitHeight="100.0" fitWidth="140.0">
-                     <image>
-                        <Image url="@../images/flake_ice.png" />
-                     </image>
-                  </ImageView>
-                  <Label style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Flake Ice" />
-                  <Button style="-fx-background-color: #004080; -fx-text-fill: white;" text="ADD" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" layoutX="630.0" layoutY="140.0" prefHeight="195.0" prefWidth="180.0" spacing="10" style="-fx-background-color: #27ae60; -fx-border-radius: 10px; -fx-padding: 15px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5); -fx-background-radius: 10;">
-               <children>
-                  <ImageView fitHeight="100.0" fitWidth="140.0">
-                     <image>
-                        <Image url="@../images/crystal_ice.png" />
-                     </image>
-                  </ImageView>
-                  <Label style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Crystal Tube Ice" />
-                  <Button style="-fx-background-color: #004080; -fx-text-fill: white;" text="ADD" />
-               </children>
-            </VBox>
-            <VBox layoutX="834.0" layoutY="40.0" prefHeight="520.0" prefWidth="289.0" spacing="2.0" style="-fx-border-radius: 2; -fx-border-color: #5758BB;">
-               <children>
-                  <HBox prefHeight="15.0" prefWidth="287.0" spacing="60.0">
+                  <HBox alignment="CENTER_LEFT" spacing="2.0" style="-fx-background-color: #1e40af; -fx-background-radius: 10 10 0 0; -fx-padding: 12;">
                      <children>
-                        <Label prefWidth="112.0" text="  Place Order" textFill="#06098a">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <DatePicker fx:id="textJoinDate" prefHeight="28.0" prefWidth="104.0" stylesheets="@../style/DatePicker.css" />
+                        <Label prefHeight="22.0" prefWidth="170.0" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="ORDER SUMMARY" />
+                        <DatePicker fx:id="textJoinDate" prefHeight="28.0" prefWidth="88.0">
+                           <stylesheets>
+                              <URL value="@../style/DatePicker.css" />
+                              <URL value="@../style/DatePicker.css" />
+                           </stylesheets>
+                        </DatePicker>
                      </children>
                   </HBox>
-                  <TableView fx:id="tableProduct" prefHeight="320.0" prefWidth="289.0" stylesheets="@../style/tableViewStyle.css">
+                  <TableView fx:id="tableProduct" prefHeight="320.0" prefWidth="289.0" style="-fx-border-color: #1e40af; -fx-border-width: 0 1 0 1;" stylesheets="@../style/tableViewStyle.css">
                      <columns>
                         <TableColumn fx:id="colProduct" prefWidth="113.0" text="PRODUCT" />
                         <TableColumn fx:id="colQty" prefWidth="136.0" text="QTY" />
@@ -97,65 +57,110 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <HBox prefHeight="42.0" prefWidth="289.0" spacing="30.0" style="-fx-background-color: #5758BB;">
+                  <VBox spacing="10" style="-fx-background-color: #dbeafe; -fx-border-color: #1e40af; -fx-border-width: 1; -fx-border-radius: 0 0 10 10; -fx-padding: 15 15 10 15;">
                      <children>
-                        <Label prefHeight="25.0" prefWidth="146.0" text="  No Of Item                  :" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="txtNoOfItem" alignment="TOP_RIGHT" prefHeight="25.0" prefWidth="86.0" text="0" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
+                        <HBox alignment="CENTER_RIGHT">
+                           <children>
+                              <Label style="-fx-text-fill: #64748b; -fx-font-size: 14;" text="Items:" />
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Label fx:id="itemsCountLabel" style="-fx-text-fill: #1e3a8a; -fx-font-weight: bold; -fx-font-size: 14;" text="0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT">
+                           <children>
+                              <Label style="-fx-text-fill: #64748b; -fx-font-size: 14;" text="Subtotal:" />
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Label fx:id="subtotalLabel" style="-fx-text-fill: #1e3a8a; -fx-font-weight: bold; -fx-font-size: 14;" text="Rs. 0.00" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT">
+                           <children>
+                              <Label style="-fx-text-fill: #64748b; -fx-font-size: 14;" text="Discount:" />
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Label fx:id="discountLabel" style="-fx-text-fill: #3b82f6; -fx-font-weight: bold; -fx-font-size: 14;" text="Rs. 0.00" />
+                           </children>
+                        </HBox>
+                        <Separator style="-fx-background-color: #dbeafe;" />
+                        <HBox alignment="CENTER_RIGHT">
+                           <children>
+                              <Label style="-fx-text-fill: #1e3a8a; -fx-font-weight: bold; -fx-font-size: 16;" text="TOTAL:" />
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Label fx:id="totalLabel" style="-fx-text-fill: #1e40af; -fx-font-weight: bold; -fx-font-size: 16;" text="Rs. 0.00" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+      <HBox layoutX="20.0" layoutY="130.0" spacing="10.0">
+         <children>
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 15; -fx-effect: dropshadow(gaussian, rgba(30,58,138,0.1), 10, 0, 0, 5); -fx-border-color: #bfdbfe; -fx-border-radius: 10; -fx-border-width: 1;">
+               <children>
+                  <ImageView fitHeight="120.0" fitWidth="160.0" style="-fx-effect: dropshadow(gaussian, rgba(30,58,138,0.2), 5, 0, 0, 3);">
+                     <image>
+                        <Image url="@../images/block_ice.png" />
+                     </image>
+                  </ImageView>
+                  <Label style="-fx-text-fill: #1e3a8a; -fx-font-weight: bold; -fx-font-size: 16;" text="Block Ice" />
+                  <HBox alignment="CENTER" spacing="10">
+                     <children>
+                        <Label style="-fx-text-fill: #3b82f6; -fx-font-weight: bold;" text="Rs. 120/kg" />
+                        <Button style="-fx-background-color: #1d4ed8; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 5 15; -fx-font-weight: bold;" text="ADD" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="42.0" prefWidth="289.0" spacing="30.0" style="-fx-background-color: #5758BB;">
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 15; -fx-effect: dropshadow(gaussian, rgba(30,58,138,0.1), 10, 0, 0, 5); -fx-border-color: #bfdbfe; -fx-border-radius: 10; -fx-border-width: 1;">
+               <children>
+                  <ImageView fitHeight="120.0" fitWidth="160.0" style="-fx-effect: dropshadow(gaussian, rgba(30,58,138,0.2), 5, 0, 0, 3);">
+                     <image>
+                        <Image url="@../images/crushed_ice.png" />
+                     </image>
+                  </ImageView>
+                  <Label style="-fx-text-fill: #1e3a8a; -fx-font-weight: bold; -fx-font-size: 16;" text="Crushed Ice" />
+                  <HBox alignment="CENTER" spacing="10">
                      <children>
-                        <Label prefHeight="25.0" prefWidth="146.0" text="  Net Total                     :" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="txtNetTotal" alignment="TOP_RIGHT" prefHeight="25.0" prefWidth="86.0" text="0" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
+                        <Label style="-fx-text-fill: #3b82f6; -fx-font-weight: bold;" text="Rs. 150/kg" />
+                        <Button style="-fx-background-color: #1d4ed8; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 5 15; -fx-font-weight: bold;" text="ADD" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="42.0" prefWidth="289.0" spacing="30.0" style="-fx-background-color: #5758BB;">
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 15; -fx-effect: dropshadow(gaussian, rgba(30,58,138,0.1), 10, 0, 0, 5); -fx-border-color: #bfdbfe; -fx-border-radius: 10; -fx-border-width: 1;">
+               <children>
+                  <ImageView fitHeight="120.0" fitWidth="160.0" style="-fx-effect: dropshadow(gaussian, rgba(30,58,138,0.2), 5, 0, 0, 3);">
+                     <image>
+                        <Image url="@../images/flake_ice.png" />
+                     </image>
+                  </ImageView>
+                  <Label style="-fx-text-fill: #1e3a8a; -fx-font-weight: bold; -fx-font-size: 16;" text="Flake Ice" />
+                  <HBox alignment="CENTER" spacing="10">
                      <children>
-                        <Label prefHeight="25.0" prefWidth="146.0" text="  Discount                      :" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="txtDiscount" alignment="TOP_RIGHT" prefHeight="25.0" prefWidth="86.0" text="0" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
+                        <Label style="-fx-text-fill: #3b82f6; -fx-font-weight: bold;" text="Rs. 180/kg" />
+                        <Button style="-fx-background-color: #1d4ed8; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 5 15; -fx-font-weight: bold;" text="ADD" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="42.0" prefWidth="289.0" spacing="30.0" style="-fx-background-color: #5758BB;">
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 15; -fx-effect: dropshadow(gaussian, rgba(30,58,138,0.1), 10, 0, 0, 5); -fx-border-color: #bfdbfe; -fx-border-radius: 10; -fx-border-width: 1;">
+               <children>
+                  <ImageView fitHeight="120.0" fitWidth="160.0" style="-fx-effect: dropshadow(gaussian, rgba(30,58,138,0.2), 5, 0, 0, 3);">
+                     <image>
+                        <Image url="@../images/crystal_ice.png" />
+                     </image>
+                  </ImageView>
+                  <Label style="-fx-text-fill: #1e3a8a; -fx-font-weight: bold; -fx-font-size: 16;" text="Crystal Tube Ice" />
+                  <HBox alignment="CENTER" spacing="10">
                      <children>
-                        <Label prefHeight="25.0" prefWidth="146.0" text="  Grand Total                :" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="txtGrandTotal" alignment="TOP_RIGHT" prefHeight="25.0" prefWidth="86.0" text="0" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
+                        <Label style="-fx-text-fill: #3b82f6; -fx-font-weight: bold;" text="Rs. 200/kg" />
+                        <Button style="-fx-background-color: #1d4ed8; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 5 15; -fx-font-weight: bold;" text="ADD" />
                      </children>
                   </HBox>
                </children>
             </VBox>
          </children>
-      </Pane>
+      </HBox>
    </children>
 </AnchorPane>
