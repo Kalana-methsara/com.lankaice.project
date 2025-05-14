@@ -30,7 +30,7 @@
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtPaid" alignment="CENTER" prefHeight="32.0" prefWidth="113.0" style="-fx-border-color: Blue; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: E9F1F6;" />
+                        <TextField fx:id="txtPaid" alignment="CENTER" onKeyReleased="#onKeyBalance" prefHeight="32.0" prefWidth="113.0" style="-fx-border-color: Blue; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: E9F1F6;" />
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="64.0" style="-fx-background-color: #023c73;" text="BALANCE" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="13.0" />
@@ -71,7 +71,7 @@
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Button>
-            <VBox layoutX="834.0" layoutY="40.0" prefHeight="520.0" prefWidth="289.0" spacing="2.0">
+            <VBox layoutX="834.0" layoutY="40.0" prefHeight="520.0" prefWidth="300.0" spacing="2.0">
                <children>
                   <HBox alignment="CENTER_LEFT" spacing="2.0" style="-fx-background-color: #1e40af; -fx-background-radius: 10 10 0 0; -fx-padding: 12;">
                      <children>
@@ -80,9 +80,10 @@
                   </HBox>
                   <TableView fx:id="tableProduct" prefHeight="320.0" prefWidth="289.0" style="-fx-border-color: #1e40af; -fx-border-width: 0 1 0 1;" stylesheets="@../style/tableViewStyle.css">
                      <columns>
-                        <TableColumn fx:id="colProduct" prefWidth="113.0" text="PRODUCT" />
-                        <TableColumn fx:id="colQty" prefWidth="136.0" text="QTY" />
-                        <TableColumn fx:id="colPrice" prefWidth="96.0" style="-fx-alignment: CENTER;" text="PRICE" />
+                        <TableColumn fx:id="colProduct" prefWidth="95.0" text="PRODUCT" />
+                        <TableColumn fx:id="colQty" prefWidth="39.0" text="QTY" />
+                        <TableColumn fx:id="colPrice" prefWidth="83.0" style="-fx-alignment: CENTER;" text="PRICE" />
+                        <TableColumn fx:id="colDiscount" prefWidth="76.0" style="-fx-alignment: CENTER;" text="DISCOUNT" />
                      </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
