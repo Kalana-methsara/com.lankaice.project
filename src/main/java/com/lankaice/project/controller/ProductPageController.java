@@ -51,7 +51,7 @@ public class ProductPageController implements Initializable {
     private Button btnComfirm;
 
     @FXML
-    private ComboBox<String> choiceBox1;
+    private ChoiceBox<String> choiceBox1;
 
     @FXML
     private ChoiceBox<String> choiceBoxPay;
@@ -175,7 +175,8 @@ return;
         choiceBoxPay.getSelectionModel().select("Cash");
         txtPaid.clear();
         lblBalance.setText("");
-        choiceBox1.setValue(null);
+        choiceBox1.setItems(FXCollections.observableArrayList("%002  Kalana methsara", "%003  Savindu Navanjana", "%004 Akila Abesekara"));
+        choiceBox1.getSelectionModel().select("%001  New Customer");
         tableProduct.getItems().clear();
         itemsCountLabel.setText("0");
         subtotalLabel.setText("0.00");
@@ -260,7 +261,8 @@ public void clearField(){
         choiceBoxPay.setItems(FXCollections.observableArrayList("Cash", "Card", "Check"));
         choiceBoxPay.getSelectionModel().select("Cash");
 
-        choiceBox1.setItems(FXCollections.observableArrayList("Cash", "Card", "Check"));
+        choiceBox1.setItems(FXCollections.observableArrayList("%002  Kalana methsara", "%003  Savindu Navanjana", "%004 Akila Abesekara"));
+        choiceBox1.getSelectionModel().select("%001  New Customer");
 
     }
 

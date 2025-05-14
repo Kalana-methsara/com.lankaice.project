@@ -17,7 +17,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -25,8 +24,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-
 public class UserViewController implements Initializable {
+
     @FXML
     private AnchorPane ancMainContainer;
 
@@ -52,7 +51,7 @@ public class UserViewController implements Initializable {
     private Button btnProduct;
 
     @FXML
-    private Button btnRejister;
+    private Button btnRegister;
 
     @FXML
     private Button btnReport;
@@ -82,7 +81,7 @@ public class UserViewController implements Initializable {
     private ImageView pngProduct;
 
     @FXML
-    private ImageView pngRejister;
+    private ImageView pngRegister;
 
     @FXML
     private ImageView pngReport;
@@ -116,21 +115,20 @@ public class UserViewController implements Initializable {
             case "Supervisor":
                 btnAdminManage.setDisable(true);
                 btnSalary.setDisable(true);
-                btnRejister.setDisable(true);
+                btnRegister.setDisable(true);
                 break;
 
             case "Cashier":
                 btnAdminManage.setDisable(true);
                 btnSalary.setDisable(true);
                 break;
-
         }
+
         // Set current date
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
         lblDate.setText(currentDate.format(formatter));
     }
-
 
     @FXML
     void Transport(ActionEvent event) {
@@ -141,7 +139,7 @@ public class UserViewController implements Initializable {
         changePage(btnBooking, "/images/booking.png", pngBooking);
         changePage(btnPayment, "/images/payment.png", pngPayment);
         changePage(btnSalary, "/images/salary.png", pngSalary);
-        changePage(btnRejister, "/images/key.png", pngRejister);
+        changePage(btnRegister, "/images/key.png", pngRegister);
         changePage(btnAdminManage, "/images/admin.png", pngAdminManage);
         changePage(btnReport, "/images/report.png", pngReport);
 
@@ -157,7 +155,7 @@ public class UserViewController implements Initializable {
         changePage(btnBooking, "/images/booking.png", pngBooking);
         changePage(btnPayment, "/images/payment.png", pngPayment);
         changePage(btnSalary, "/images/salary.png", pngSalary);
-        changePage(btnRejister, "/images/key.png", pngRejister);
+        changePage(btnRegister, "/images/key.png", pngRegister);
         changePage1(btnAdminManage, "/images/admin(1).png", pngAdminManage);
         changePage(btnReport, "/images/report.png", pngReport);
 
@@ -173,7 +171,7 @@ public class UserViewController implements Initializable {
         changePage1(btnBooking, "/images/booking(1).png", pngBooking);
         changePage(btnPayment, "/images/payment.png", pngPayment);
         changePage(btnSalary, "/images/salary.png", pngSalary);
-        changePage(btnRejister, "/images/key.png", pngRejister);
+        changePage(btnRegister, "/images/key.png", pngRegister);
         changePage(btnAdminManage, "/images/admin.png", pngAdminManage);
         changePage(btnReport, "/images/report.png", pngReport);
 
@@ -189,7 +187,7 @@ public class UserViewController implements Initializable {
         changePage(btnBooking, "/images/booking.png", pngBooking);
         changePage(btnPayment, "/images/payment.png", pngPayment);
         changePage(btnSalary, "/images/salary.png", pngSalary);
-        changePage(btnRejister, "/images/key.png", pngRejister);
+        changePage(btnRegister, "/images/key.png", pngRegister);
         changePage(btnAdminManage, "/images/admin.png", pngAdminManage);
         changePage(btnReport, "/images/report.png", pngReport);
 
@@ -206,7 +204,7 @@ public class UserViewController implements Initializable {
         changePage(btnBooking, "/images/booking.png", pngBooking);
         changePage(btnPayment, "/images/payment.png", pngPayment);
         changePage(btnSalary, "/images/salary.png", pngSalary);
-        changePage(btnRejister, "/images/key.png", pngRejister);
+        changePage(btnRegister, "/images/key.png", pngRegister);
         changePage(btnAdminManage, "/images/admin.png", pngAdminManage);
         changePage(btnReport, "/images/report.png", pngReport);
 
@@ -222,7 +220,7 @@ public class UserViewController implements Initializable {
         changePage(btnBooking, "/images/booking.png", pngBooking);
         changePage1(btnPayment, "/images/payment(1).png", pngPayment);
         changePage(btnSalary, "/images/salary.png", pngSalary);
-        changePage(btnRejister, "/images/key.png", pngRejister);
+        changePage(btnRegister, "/images/key.png", pngRegister);
         changePage(btnAdminManage, "/images/admin.png", pngAdminManage);
         changePage(btnReport, "/images/report.png", pngReport);
 
@@ -238,7 +236,7 @@ public class UserViewController implements Initializable {
         changePage(btnBooking, "/images/booking.png", pngBooking);
         changePage(btnPayment, "/images/payment.png", pngPayment);
         changePage(btnSalary, "/images/salary.png", pngSalary);
-        changePage(btnRejister, "/images/key.png", pngRejister);
+        changePage(btnRegister, "/images/key.png", pngRegister);
         changePage(btnAdminManage, "/images/admin.png", pngAdminManage);
         changePage(btnReport, "/images/report.png", pngReport);
 
@@ -246,7 +244,7 @@ public class UserViewController implements Initializable {
     }
 
     @FXML
-    void onRejister(ActionEvent event) {
+    void onRegister(ActionEvent event) {
         changePage(btnDashboard, "/images/dashboard.png", pnsDashbord);
         changePage(btnProduct, "/images/product.png", pngProduct);
         changePage(btnEmployee, "/images/employee.png", pngEmployee);
@@ -254,11 +252,11 @@ public class UserViewController implements Initializable {
         changePage(btnBooking, "/images/booking.png", pngBooking);
         changePage(btnPayment, "/images/payment.png", pngPayment);
         changePage(btnSalary, "/images/salary.png", pngSalary);
-        changePage1(btnRejister, "/images/key(1).png", pngRejister);
+        changePage1(btnRegister, "/images/key(1).png", pngRegister);
         changePage(btnAdminManage, "/images/admin.png", pngAdminManage);
         changePage(btnReport, "/images/report.png", pngReport);
 
-        navigateTo("/view/RejisterPage.fxml");
+        navigateTo("/view/RegisterPage.fxml");
     }
 
     @FXML
@@ -270,7 +268,7 @@ public class UserViewController implements Initializable {
         changePage(btnBooking, "/images/booking.png", pngBooking);
         changePage(btnPayment, "/images/payment.png", pngPayment);
         changePage(btnSalary, "/images/salary.png", pngSalary);
-        changePage(btnRejister, "/images/key.png", pngRejister);
+        changePage(btnRegister, "/images/key.png", pngRegister);
         changePage(btnAdminManage, "/images/admin.png", pngAdminManage);
         changePage1(btnReport, "/images/report(1).png", pngReport);
 
@@ -286,7 +284,7 @@ public class UserViewController implements Initializable {
         changePage(btnBooking, "/images/booking.png", pngBooking);
         changePage(btnPayment, "/images/payment.png", pngPayment);
         changePage1(btnSalary, "/images/salary(1).png", pngSalary);
-        changePage(btnRejister, "/images/key.png", pngRejister);
+        changePage(btnRegister, "/images/key.png", pngRegister);
         changePage(btnAdminManage, "/images/admin.png", pngAdminManage);
         changePage(btnReport, "/images/report.png", pngReport);
 

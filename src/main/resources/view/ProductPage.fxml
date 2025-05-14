@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
@@ -168,7 +167,7 @@
             <Label layoutX="312.0" layoutY="436.0" text="VEHICLE NO" />
             <Label layoutX="24.0" layoutY="436.0" text="DESCRIPTION" />
             <Label layoutX="532.0" layoutY="436.0" text="PAY" />
-            <ComboBox fx:id="choiceBox1" layoutX="200.0" layoutY="82.0" prefHeight="32.0" prefWidth="300.0" promptText="SELECT CREDITOR" style="-fx-border-color: #0707a4; -fx-border-radius: 5; -fx-background-radius: 5;" />
+            <ChoiceBox fx:id="choiceBox1" layoutX="200.0" layoutY="82.0" prefHeight="32.0" prefWidth="300.0" style="-fx-border-radius: 5; -fx-border-color: Blue; -fx-background-radius: 5; -fx-background-color: E9F1F6;" />
          </children>
       </Pane>
       <HBox layoutX="20.0" layoutY="130.0" spacing="10.0">
