@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,17 +22,12 @@
    <children>
       <Pane layoutX="10.0" layoutY="10.0" prefHeight="700.0" prefWidth="1209.0" style="-fx-background-color: E9F1F6; -fx-background-radius: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="44.0" layoutY="29.0" prefHeight="22.0" prefWidth="89.0" text="PRODUCT" textFill="#023c73">
-               <font>
-                  <Font name="Corbel Bold" size="16.0" />
-               </font>
-            </Label>
             <Label alignment="CENTER" layoutX="37.0" layoutY="82.0" prefHeight="32.0" prefWidth="122.0" style="-fx-border-color: Blue; -fx-border-radius: 10;" text="Product">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="choiceBox" layoutX="200.0" layoutY="82.0" prefHeight="32.0" prefWidth="300.0" style="-fx-border-radius: 10; -fx-border-color: Blue; -fx-background-radius: 10;" />
+            <ChoiceBox fx:id="choiceBox" layoutX="200.0" layoutY="82.0" prefHeight="32.0" prefWidth="300.0" style="-fx-border-radius: 5; -fx-border-color: Blue; -fx-background-radius: 5;" />
             <Button layoutX="550.0" layoutY="82.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: #0707a4;" text="MODE" textFill="WHITE" />
             <Button layoutX="685.0" layoutY="82.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: Blue;" text="EXTRA" textFill="WHITE" />
             <VBox layoutX="834.0" layoutY="40.0" prefHeight="520.0" prefWidth="289.0" spacing="2.0">
@@ -92,6 +88,71 @@
                   </VBox>
                </children>
             </VBox>
+            <HBox layoutX="23.0" layoutY="390.0" prefHeight="32.0" prefWidth="790.0" spacing="30.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="32.0" prefWidth="97.0" style="-fx-border-color: Blue; -fx-border-radius: 5;">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="32.0" prefWidth="180.0" style="-fx-border-color: Blue; -fx-border-radius: 5;">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="32.0" prefWidth="120.0" style="-fx-border-color: Blue; -fx-border-radius: 5;">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField alignment="CENTER" prefHeight="32.0" prefWidth="122.0" promptText="1" style="-fx-border-color: Blue; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: E9F1F6;" />
+                  <TextField alignment="CENTER" prefHeight="32.0" prefWidth="137.0" promptText="30.00" style="-fx-border-color: Blue; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: E9F1F6;" />
+               </children>
+            </HBox>
+            <HBox layoutX="23.0" layoutY="454.0" prefHeight="32.0" prefWidth="790.0" spacing="30.0">
+               <children>
+                  <TextField alignment="CENTER" prefHeight="32.0" prefWidth="256.0" style="-fx-border-color: Blue; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: E9F1F6;" />
+                  <TextField alignment="CENTER" prefHeight="32.0" prefWidth="192.0" style="-fx-border-color: Blue; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: E9F1F6;" />
+                  <ChoiceBox fx:id="choiceBox12" prefHeight="32.0" prefWidth="120.0" style="-fx-border-radius: 5; -fx-border-color: Blue; -fx-background-radius: 5; -fx-background-color: E9F1F6;" />
+                  <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: Blue;" text="+" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox layoutX="23.0" layoutY="528.0" prefHeight="32.0" prefWidth="790.0" spacing="10.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="53.0" style="-fx-background-color: E9F1F6;" text="A/PAID">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField alignment="CENTER" prefHeight="32.0" prefWidth="113.0" style="-fx-border-color: Blue; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: E9F1F6;" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="57.0" style="-fx-background-color: E9F1F6;" text="BLANCE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField alignment="CENTER" prefHeight="32.0" prefWidth="130.0" style="-fx-border-color: Blue; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: E9F1F6;" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="29.0" style="-fx-background-color: E9F1F6;">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="180.0" style="-fx-background-color: #2ecc71;" text="COMFIRM" textFill="WHITE" />
+                  <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="180.0" style="-fx-background-color: #d63031;" text="CLEAR" textFill="WHITE" />
+               </children>
+            </HBox>
+            <Label layoutX="24.0" layoutY="367.0" text="code" />
+            <Label layoutX="48.0" layoutY="36.0" text="PRODUCT" textFill="#023c73">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="150.0" layoutY="367.0" text="product" />
+            <Label layoutX="361.0" layoutY="367.0" text="price" />
+            <Label layoutX="510.0" layoutY="367.0" text="quantity" />
+            <Label layoutX="660.0" layoutY="367.0" text="discount" />
+            <Label layoutX="312.0" layoutY="436.0" text="VEHICLE NO" />
+            <Label layoutX="24.0" layoutY="436.0" text="DESCRIPTION" />
+            <Label layoutX="532.0" layoutY="436.0" text="PAY" />
          </children>
       </Pane>
       <HBox layoutX="20.0" layoutY="130.0" spacing="10.0">
