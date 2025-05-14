@@ -66,7 +66,7 @@ public class AdminManagePageController implements Initializable {
 
     @FXML
     private TableColumn<UserDto, String> colRole;
-   // private final UserModel customerModel = new UserModel();
+    private final UserModel userModel = new UserModel();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -182,7 +182,10 @@ public class AdminManagePageController implements Initializable {
         }
     }
 
-    public void btnDeleteAdminOnAction(ActionEvent actionEvent) {
+    public void btnDeleteAdminOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        if (userModel.isOnlyOneUserExists()) {
+            System.out.println("Only one user exists in the system.");
+        }
         String userName = textUsername.getText().trim();
         if (userName.isEmpty()) {
             showErrorMessage("Please select a user to delete.");

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
@@ -22,25 +21,61 @@
    <children>
       <Pane layoutX="10.0" layoutY="10.0" prefHeight="700.0" prefWidth="1209.0" style="-fx-background-color: E9F1F6; -fx-background-radius: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
+            <Pane layoutX="10.0" layoutY="500.0" prefHeight="60.0" prefWidth="811.0" style="-fx-background-color: #023c73;">
+               <children>
+                  <HBox layoutX="14.0" layoutY="14.0" prefHeight="32.0" prefWidth="790.0" spacing="10.0" style="-fx-background-color: #023c73;">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="53.0" style="-fx-background-color: #023c73;" text="A/PAID" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtPaid" alignment="CENTER" prefHeight="32.0" prefWidth="113.0" style="-fx-border-color: Blue; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: E9F1F6;" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="64.0" style="-fx-background-color: #023c73;" text="BALANCE" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblBalance" alignment="CENTER" prefHeight="32.0" prefWidth="130.0" style="-fx-border-color: Blue; -fx-border-radius: 5; -fx-background-color: E9F1F6; -fx-background-radius: 5;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="29.0" style="-fx-background-color: #023c73;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnComfirm" mnemonicParsing="false" onAction="#onActionComfirm" prefHeight="32.0" prefWidth="180.0" style="-fx-background-color: #009432;" text="COMFIRM" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font></Button>
+                        <Button fx:id="btnClear" mnemonicParsing="false" onAction="#onActionClear" prefHeight="32.0" prefWidth="180.0" style="-fx-background-color: #d63031;" text="CLEAR" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font></Button>
+                     </children>
+                  </HBox>
+               </children>
+            </Pane>
             <Label alignment="CENTER" layoutX="37.0" layoutY="82.0" prefHeight="32.0" prefWidth="122.0" style="-fx-border-color: Blue; -fx-border-radius: 10;" text="Product">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="choiceBox" layoutX="200.0" layoutY="82.0" prefHeight="32.0" prefWidth="300.0" style="-fx-border-radius: 5; -fx-border-color: Blue; -fx-background-radius: 5;" />
-            <Button layoutX="550.0" layoutY="82.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: #0707a4;" text="MODE" textFill="WHITE" />
-            <Button layoutX="685.0" layoutY="82.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: Blue;" text="EXTRA" textFill="WHITE" />
+            <Button layoutX="550.0" layoutY="82.0" mnemonicParsing="false" onAction="#onActionMode" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: #0707a4;" text="MODE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button layoutX="685.0" layoutY="82.0" mnemonicParsing="false" onAction="#onActionExtra" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: Blue;" text="EXTRA" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
             <VBox layoutX="834.0" layoutY="40.0" prefHeight="520.0" prefWidth="289.0" spacing="2.0">
                <children>
                   <HBox alignment="CENTER_LEFT" spacing="2.0" style="-fx-background-color: #1e40af; -fx-background-radius: 10 10 0 0; -fx-padding: 12;">
                      <children>
                         <Label prefHeight="22.0" prefWidth="170.0" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="ORDER SUMMARY" />
-                        <DatePicker fx:id="textJoinDate" prefHeight="28.0" prefWidth="88.0">
-                           <stylesheets>
-                              <URL value="@../style/DatePicker.css" />
-                              <URL value="@../style/DatePicker.css" />
-                           </stylesheets>
-                        </DatePicker>
                      </children>
                   </HBox>
                   <TableView fx:id="tableProduct" prefHeight="320.0" prefWidth="289.0" style="-fx-border-color: #1e40af; -fx-border-width: 0 1 0 1;" stylesheets="@../style/tableViewStyle.css">
@@ -88,56 +123,36 @@
                   </VBox>
                </children>
             </VBox>
-            <HBox layoutX="23.0" layoutY="390.0" prefHeight="32.0" prefWidth="790.0" spacing="30.0">
+            <HBox layoutX="23.0" layoutY="390.0" prefHeight="25.0" prefWidth="790.0" spacing="30.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="32.0" prefWidth="97.0" style="-fx-border-color: Blue; -fx-border-radius: 5;">
+                  <Label fx:id="lblCode" alignment="CENTER" prefHeight="32.0" prefWidth="97.0" style="-fx-border-color: Blue; -fx-border-radius: 5;" text="Code">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="32.0" prefWidth="180.0" style="-fx-border-color: Blue; -fx-border-radius: 5;">
+                  <Label fx:id="lblProduct" alignment="CENTER" prefHeight="32.0" prefWidth="180.0" style="-fx-border-color: Blue; -fx-border-radius: 5;" text="Product">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="32.0" prefWidth="120.0" style="-fx-border-color: Blue; -fx-border-radius: 5;">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </Label>
-                  <TextField alignment="CENTER" prefHeight="32.0" prefWidth="122.0" promptText="1" style="-fx-border-color: Blue; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: E9F1F6;" />
-                  <TextField alignment="CENTER" prefHeight="32.0" prefWidth="137.0" promptText="30.00" style="-fx-border-color: Blue; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: E9F1F6;" />
+                  <Label fx:id="lblPrice" alignment="CENTER" prefHeight="32.0" prefWidth="120.0" style="-fx-border-color: Blue; -fx-border-radius: 5;" text="560.00" />
+                  <TextField fx:id="txtQty" alignment="CENTER" prefHeight="32.0" prefWidth="122.0" promptText="1" style="-fx-border-color: Blue; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: E9F1F6;" />
+                  <TextField fx:id="txtDiscount" alignment="CENTER" prefHeight="32.0" prefWidth="137.0" promptText="30.00" style="-fx-border-color: Blue; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: E9F1F6;" />
                </children>
             </HBox>
-            <HBox layoutX="23.0" layoutY="454.0" prefHeight="32.0" prefWidth="790.0" spacing="30.0">
+            <HBox layoutX="23.0" layoutY="454.0" prefHeight="25.0" prefWidth="790.0" spacing="30.0">
                <children>
-                  <TextField alignment="CENTER" prefHeight="32.0" prefWidth="256.0" style="-fx-border-color: Blue; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: E9F1F6;" />
-                  <TextField alignment="CENTER" prefHeight="32.0" prefWidth="192.0" style="-fx-border-color: Blue; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: E9F1F6;" />
-                  <ChoiceBox fx:id="choiceBox12" prefHeight="32.0" prefWidth="120.0" style="-fx-border-radius: 5; -fx-border-color: Blue; -fx-background-radius: 5; -fx-background-color: E9F1F6;" />
-                  <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: Blue;" text="+" textFill="WHITE" />
-               </children>
-            </HBox>
-            <HBox layoutX="23.0" layoutY="528.0" prefHeight="32.0" prefWidth="790.0" spacing="10.0">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="53.0" style="-fx-background-color: E9F1F6;" text="A/PAID">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </Label>
-                  <TextField alignment="CENTER" prefHeight="32.0" prefWidth="113.0" style="-fx-border-color: Blue; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: E9F1F6;" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="57.0" style="-fx-background-color: E9F1F6;" text="BLANCE">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </Label>
-                  <TextField alignment="CENTER" prefHeight="32.0" prefWidth="130.0" style="-fx-border-color: Blue; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: E9F1F6;" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="29.0" style="-fx-background-color: E9F1F6;">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </Label>
-                  <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="180.0" style="-fx-background-color: #2ecc71;" text="COMFIRM" textFill="WHITE" />
-                  <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="180.0" style="-fx-background-color: #d63031;" text="CLEAR" textFill="WHITE" />
+                  <TextField fx:id="txtDiscription" alignment="CENTER" prefHeight="22.0" prefWidth="256.0" style="-fx-border-color: Blue; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: E9F1F6;" />
+                  <TextField fx:id="txtVehicleNo" alignment="CENTER" prefHeight="25.0" prefWidth="192.0" style="-fx-border-color: Blue; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: E9F1F6;" />
+                  <ChoiceBox fx:id="choiceBoxPay" prefHeight="25.0" prefWidth="120.0" style="-fx-border-radius: 5; -fx-border-color: Blue; -fx-background-radius: 5; -fx-background-color: E9F1F6;" />
+                  <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#onActionAdd" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: Blue;" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/plus.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
                </children>
             </HBox>
             <Label layoutX="24.0" layoutY="367.0" text="code" />
@@ -153,6 +168,7 @@
             <Label layoutX="312.0" layoutY="436.0" text="VEHICLE NO" />
             <Label layoutX="24.0" layoutY="436.0" text="DESCRIPTION" />
             <Label layoutX="532.0" layoutY="436.0" text="PAY" />
+            <ComboBox fx:id="choiceBox1" layoutX="200.0" layoutY="82.0" prefHeight="32.0" prefWidth="300.0" promptText="SELECT CREDITOR" style="-fx-border-color: #0707a4; -fx-border-radius: 5; -fx-background-radius: 5;" />
          </children>
       </Pane>
       <HBox layoutX="20.0" layoutY="130.0" spacing="10.0">
@@ -164,11 +180,11 @@
                         <Image url="@../images/block_ice.png" />
                      </image>
                   </ImageView>
-                  <Label style="-fx-text-fill: #1e3a8a; -fx-font-weight: bold; -fx-font-size: 16;" text="Block Ice" />
+                  <Label fx:id="Name1" style="-fx-text-fill: #1e3a8a; -fx-font-weight: bold; -fx-font-size: 16;" text="Block Ice" />
                   <HBox alignment="CENTER" spacing="10">
                      <children>
-                        <Label style="-fx-text-fill: #3b82f6; -fx-font-weight: bold;" text="Rs. 120/kg" />
-                        <Button style="-fx-background-color: #1d4ed8; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 5 15; -fx-font-weight: bold;" text="ADD" />
+                        <Label fx:id="Price1" style="-fx-text-fill: #3b82f6; -fx-font-weight: bold;" text="Rs. 120/kg" />
+                        <Button onAction="#onAddItem1" style="-fx-background-color: #1d4ed8; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 5 15; -fx-font-weight: bold;" text="ADD" />
                      </children>
                   </HBox>
                </children>
@@ -180,11 +196,11 @@
                         <Image url="@../images/crushed_ice.png" />
                      </image>
                   </ImageView>
-                  <Label style="-fx-text-fill: #1e3a8a; -fx-font-weight: bold; -fx-font-size: 16;" text="Crushed Ice" />
+                  <Label fx:id="Name2" style="-fx-text-fill: #1e3a8a; -fx-font-weight: bold; -fx-font-size: 16;" text="Crushed Ice" />
                   <HBox alignment="CENTER" spacing="10">
                      <children>
-                        <Label style="-fx-text-fill: #3b82f6; -fx-font-weight: bold;" text="Rs. 150/kg" />
-                        <Button style="-fx-background-color: #1d4ed8; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 5 15; -fx-font-weight: bold;" text="ADD" />
+                        <Label fx:id="Price2" style="-fx-text-fill: #3b82f6; -fx-font-weight: bold;" text="Rs. 150/kg" />
+                        <Button onAction="#onAddItem2" style="-fx-background-color: #1d4ed8; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 5 15; -fx-font-weight: bold;" text="ADD" />
                      </children>
                   </HBox>
                </children>
@@ -196,11 +212,11 @@
                         <Image url="@../images/flake_ice.png" />
                      </image>
                   </ImageView>
-                  <Label style="-fx-text-fill: #1e3a8a; -fx-font-weight: bold; -fx-font-size: 16;" text="Flake Ice" />
+                  <Label fx:id="Name3" style="-fx-text-fill: #1e3a8a; -fx-font-weight: bold; -fx-font-size: 16;" text="Flake Ice" />
                   <HBox alignment="CENTER" spacing="10">
                      <children>
-                        <Label style="-fx-text-fill: #3b82f6; -fx-font-weight: bold;" text="Rs. 180/kg" />
-                        <Button style="-fx-background-color: #1d4ed8; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 5 15; -fx-font-weight: bold;" text="ADD" />
+                        <Label fx:id="Price3" style="-fx-text-fill: #3b82f6; -fx-font-weight: bold;" text="Rs. 180/kg" />
+                        <Button onAction="#onAddItem3" style="-fx-background-color: #1d4ed8; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 5 15; -fx-font-weight: bold;" text="ADD" />
                      </children>
                   </HBox>
                </children>
@@ -212,11 +228,11 @@
                         <Image url="@../images/crystal_ice.png" />
                      </image>
                   </ImageView>
-                  <Label style="-fx-text-fill: #1e3a8a; -fx-font-weight: bold; -fx-font-size: 16;" text="Crystal Tube Ice" />
+                  <Label fx:id="Name4" style="-fx-text-fill: #1e3a8a; -fx-font-weight: bold; -fx-font-size: 16;" text="Crystal Tube Ice" />
                   <HBox alignment="CENTER" spacing="10">
                      <children>
-                        <Label style="-fx-text-fill: #3b82f6; -fx-font-weight: bold;" text="Rs. 200/kg" />
-                        <Button style="-fx-background-color: #1d4ed8; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 5 15; -fx-font-weight: bold;" text="ADD" />
+                        <Label fx:id="Price4" style="-fx-text-fill: #3b82f6; -fx-font-weight: bold;" text="Rs. 200/kg" />
+                        <Button onAction="#onAddItem4" style="-fx-background-color: #1d4ed8; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 5 15; -fx-font-weight: bold;" text="ADD" />
                      </children>
                   </HBox>
                </children>
