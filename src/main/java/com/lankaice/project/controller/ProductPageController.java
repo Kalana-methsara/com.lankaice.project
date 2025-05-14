@@ -108,6 +108,24 @@ public class ProductPageController implements Initializable {
 
     @FXML
     void onActionClear(ActionEvent event) {
+        lblCode.setText("Code");
+        lblProduct.setText("Product");
+        lblPrice.setText("560.00");
+        txtQty.clear();
+        txtDiscount.clear();
+        txtDiscription.clear();
+        txtVehicleNo.clear();
+        choiceBoxPay.setItems(FXCollections.observableArrayList("Cash", "Card", "Check"));
+        choiceBoxPay.getSelectionModel().select("Cash");
+        txtPaid.clear();
+        lblBalance.setText("");
+        choiceBox1.setPromptText("SELECT CREDITOR");
+        tableProduct.getItems().clear();
+        itemsCountLabel.setText("0");
+        subtotalLabel.setText("0.00");
+        totalLabel.setText("0.00");
+        discountLabel.setText("0.00");
+
 
     }
 
@@ -128,22 +146,51 @@ public class ProductPageController implements Initializable {
 
     @FXML
     void onAddItem1(ActionEvent event) {
+        lblCode.setText("I001");
+        lblProduct.setText(Name1.getText());
+        String priceText = Price1.getText();
 
+        String numberOnly = priceText.replaceAll("[^0-9.]", "");
+      double  price = Double.parseDouble(numberOnly)*1000;
+
+        lblPrice.setText(String.format("%.2f", price));
     }
+
 
     @FXML
     void onAddItem2(ActionEvent event) {
+        lblCode.setText("I002");
+        lblProduct.setText(Name2.getText());
+        String priceText = Price2.getText();
 
+        String numberOnly = priceText.replaceAll("[^0-9.]", "");
+        double  price = Double.parseDouble(numberOnly)*1000;
+
+        lblPrice.setText(String.format("%.2f", price));
     }
 
     @FXML
     void onAddItem3(ActionEvent event) {
+        lblCode.setText("I001");
+        lblProduct.setText(Name3.getText());
+        String priceText = Price3.getText();
 
+        String numberOnly = priceText.replaceAll("[^0-9.]", "");
+        double  price = Double.parseDouble(numberOnly)*1000;
+
+        lblPrice.setText(String.format("%.2f", price));
     }
 
     @FXML
     void onAddItem4(ActionEvent event) {
+        lblCode.setText("I001");
+        lblProduct.setText(Name4.getText());
+        String priceText = Price4.getText();
 
+        String numberOnly = priceText.replaceAll("[^0-9.]", "");
+        double  price = Double.parseDouble(numberOnly)*1000;
+
+        lblPrice.setText(String.format("%.2f", price));
     }
 
     @Override

@@ -101,14 +101,16 @@
                            <children>
                               <Label style="-fx-text-fill: #64748b; -fx-font-size: 14;" text="Subtotal:" />
                               <Region HBox.hgrow="ALWAYS" />
-                              <Label fx:id="subtotalLabel" style="-fx-text-fill: #1e3a8a; -fx-font-weight: bold; -fx-font-size: 14;" text="Rs. 0.00" />
+                              <Label style="-fx-text-fill: #1e3a8a; -fx-font-weight: bold; -fx-font-size: 14;" text="Rs. " />
+                              <Label fx:id="subtotalLabel" style="-fx-text-fill: #1e3a8a; -fx-font-weight: bold; -fx-font-size: 14;" text="0.00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT">
                            <children>
                               <Label style="-fx-text-fill: #64748b; -fx-font-size: 14;" text="Discount:" />
                               <Region HBox.hgrow="ALWAYS" />
-                              <Label fx:id="discountLabel" style="-fx-text-fill: #3b82f6; -fx-font-weight: bold; -fx-font-size: 14;" text="Rs. 0.00" />
+                              <Label style="-fx-text-fill: #3b82f6; -fx-font-weight: bold; -fx-font-size: 14;" text="Rs. " />
+                              <Label fx:id="discountLabel" style="-fx-text-fill: #3b82f6; -fx-font-weight: bold; -fx-font-size: 14;" text="0.00" />
                            </children>
                         </HBox>
                         <Separator style="-fx-background-color: #dbeafe;" />
@@ -116,7 +118,8 @@
                            <children>
                               <Label style="-fx-text-fill: #1e3a8a; -fx-font-weight: bold; -fx-font-size: 16;" text="TOTAL:" />
                               <Region HBox.hgrow="ALWAYS" />
-                              <Label fx:id="totalLabel" style="-fx-text-fill: #1e40af; -fx-font-weight: bold; -fx-font-size: 16;" text="Rs. 0.00" />
+                              <Label style="-fx-text-fill: #1e40af; -fx-font-weight: bold; -fx-font-size: 16;" text="Rs.  " />
+                              <Label fx:id="totalLabel" style="-fx-text-fill: #1e40af; -fx-font-weight: bold; -fx-font-size: 16;" text="0.00" />
                            </children>
                         </HBox>
                      </children>
@@ -145,14 +148,10 @@
                   <TextField fx:id="txtDiscription" alignment="CENTER" prefHeight="22.0" prefWidth="256.0" style="-fx-border-color: Blue; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: E9F1F6;" />
                   <TextField fx:id="txtVehicleNo" alignment="CENTER" prefHeight="25.0" prefWidth="192.0" style="-fx-border-color: Blue; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: E9F1F6;" />
                   <ChoiceBox fx:id="choiceBoxPay" prefHeight="25.0" prefWidth="120.0" style="-fx-border-radius: 5; -fx-border-color: Blue; -fx-background-radius: 5; -fx-background-color: E9F1F6;" />
-                  <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#onActionAdd" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: Blue;" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/plus.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
+                  <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#onActionAdd" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: Blue;" text="ADD" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Button>
                </children>
             </HBox>
             <Label layoutX="24.0" layoutY="367.0" text="code" />
