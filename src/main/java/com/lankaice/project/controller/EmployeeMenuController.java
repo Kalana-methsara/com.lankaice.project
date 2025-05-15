@@ -47,7 +47,7 @@ public class EmployeeMenuController implements Initializable {
     private AnchorPane ancEmployeeMenu;
 
     @FXML
-    private Button btnEdit;
+    private Button btnStartServer;
 
     @FXML
     private Button btnMark;
@@ -64,8 +64,13 @@ public class EmployeeMenuController implements Initializable {
     @FXML
     private Label attendanceToday;
 
+    @FXML
+    private ProgressBar progressBar;
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
         serverStatusLabel.setText("Please Start Server Process");
+        serverStatusLabel.setStyle("-fx-text-fill: #009432FF;");
+        progressBar.setVisible(false);
         loadTodayAttendance();
     }
 
@@ -97,9 +102,10 @@ public class EmployeeMenuController implements Initializable {
     }
 
 
-    public void onMarkAttendance(ActionEvent actionEvent) throws IOException {
-        btnMark.setDisable(true);
+    public void onStartServer(ActionEvent actionEvent) throws IOException {
+        btnStartServer.setDisable(true);
         btnStopServer.setDisable(false);
+        progressBar.setVisible(true);
         QRHttpServer.setResponseListener(response -> {
             javafx.application.Platform.runLater(() -> {
                 showServerResponse(response);
@@ -131,15 +137,18 @@ public class EmployeeMenuController implements Initializable {
     @FXML
     void onStopServer(ActionEvent event) throws IOException {
         btnStopServer.setDisable(true);
-        btnMark.setDisable(false);
+        btnStartServer.setDisable(false);
         QRHttpServer.stopServer();
         updateServerStatusLabel();
+        progressBar.setVisible(false);
     }
     private void updateServerStatusLabel() {
         if (QRHttpServer.isServerRunning()) {
             serverStatusLabel.setText("🟢 Server is Running");
+            serverStatusLabel.setStyle("-fx-text-fill: #009432FF;");
         } else {
             serverStatusLabel.setText("🟢 Server is Stopped");
+            serverStatusLabel.setStyle("-fx-text-fill: #D63031FF;");
         }
     }
 
