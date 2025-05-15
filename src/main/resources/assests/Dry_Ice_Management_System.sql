@@ -180,8 +180,11 @@ CREATE TABLE Attendance (
                             date DATE NOT NULL,
                             shift ENUM('Morning', 'Night') NOT NULL,
                             status ENUM('Present', 'Absent', 'Leave') NOT NULL,
+<<<<<<< HEAD
                             in_time TIME DEFAULT NULL,
                             out_time TIME DEFAULT NULL,
+=======
+>>>>>>> 0374aef23ba0afa5e5cdf12288b3cbd0ed0f4805
                             UNIQUE (employee_id, date, shift),
                             FOREIGN KEY (employee_id) REFERENCES Employee(employee_id) ON DELETE CASCADE
 );
@@ -330,6 +333,9 @@ INSERT INTO Employee (
       ('E010', 'Ruwan Tharanga', '199412345678', '0783456789', 'ruwan@example.com', 'Manager',
        '321/J, Old Town, Puttalam', '2020-12-01', '1994-07-14', 'Male',
        '889900112233', 'People’s Bank - Puttalam', 'M5678901');
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 0374aef23ba0afa5e5cdf12288b3cbd0ed0f4805

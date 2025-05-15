@@ -3,38 +3,61 @@ package com.lankaice.project.model;
 import com.lankaice.project.dto.AttendanceDto;
 import com.lankaice.project.util.CrudUtil;
 
+<<<<<<< HEAD
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+=======
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+>>>>>>> 0374aef23ba0afa5e5cdf12288b3cbd0ed0f4805
 
 public class AttendanceModel {
 
     public boolean markAttendance(AttendanceDto dto) throws SQLException, ClassNotFoundException {
+<<<<<<< HEAD
         String sql = "INSERT INTO Attendance (employee_id, date, shift, status, in_time, out_time) " +
                 "VALUES (?, ?, ?, ?, ?, ?) " +
                 "ON DUPLICATE KEY UPDATE status = VALUES(status), in_time = VALUES(in_time), out_time = VALUES(out_time)";
+=======
+        String sql = "INSERT INTO Attendance (employee_id, date, shift, status) " +
+                "VALUES (?, ?, ?, ?) " +
+                "ON DUPLICATE KEY UPDATE status = VALUES(status)";
+>>>>>>> 0374aef23ba0afa5e5cdf12288b3cbd0ed0f4805
 
         return CrudUtil.<Boolean>execute(
                 sql,
                 dto.getEmployeeId(),
                 Date.valueOf(dto.getDate()),
                 dto.getShift(),
+<<<<<<< HEAD
                 dto.getStatus(),
                 dto.getInTime() != null ? Time.valueOf(dto.getInTime()) : null,
                 dto.getOutTime() != null ? Time.valueOf(dto.getOutTime()) : null
+=======
+                dto.getStatus()
+>>>>>>> 0374aef23ba0afa5e5cdf12288b3cbd0ed0f4805
         );
     }
 
     public boolean isDuplicateAttendance(String empId, String date, String shift) throws SQLException, ClassNotFoundException {
+<<<<<<< HEAD
         String sql = "SELECT COUNT(*) FROM Attendance WHERE employee_id = ? AND date = ? AND shift = ?";
         ResultSet rs = CrudUtil.execute(
                 sql,
+=======
+        String checkSql = "SELECT COUNT(*) FROM Attendance WHERE employee_id = ? AND date = ? AND shift = ?";
+        ResultSet resultSet = CrudUtil.execute(
+                checkSql,
+>>>>>>> 0374aef23ba0afa5e5cdf12288b3cbd0ed0f4805
                 empId,
                 Date.valueOf(date),
                 shift
         );
 
+<<<<<<< HEAD
         if (rs.next()) {
             return rs.getInt(1) > 0;
         }
@@ -96,4 +119,11 @@ public class AttendanceModel {
 
         return list;
     }
+=======
+        if (resultSet.next()) {
+            return resultSet.getInt(1) > 0;
+        }
+        return false;
+    }
+>>>>>>> 0374aef23ba0afa5e5cdf12288b3cbd0ed0f4805
 }

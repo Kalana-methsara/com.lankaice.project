@@ -1,5 +1,6 @@
 package com.lankaice.project.controller;
 
+<<<<<<< HEAD
 import com.lankaice.project.dto.tm.ProductTM;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,10 +16,20 @@ import java.net.URL;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
+=======
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Tooltip;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+>>>>>>> 0374aef23ba0afa5e5cdf12288b3cbd0ed0f4805
 
 public class ProductPageController implements Initializable {
 
     @FXML
+<<<<<<< HEAD
     private Label Name1;
 
     @FXML
@@ -288,4 +299,13 @@ public void clearField(){
         alert.show();
     }
 
+=======
+    private ChoiceBox<String> choiceBox;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+      choiceBox.setTooltip(new Tooltip("SELECT CREDITOR"));
+
+    }
+>>>>>>> 0374aef23ba0afa5e5cdf12288b3cbd0ed0f4805
 }

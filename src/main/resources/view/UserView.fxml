@@ -49,7 +49,11 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
+<<<<<<< HEAD
                   <Button fx:id="btnRegister" layoutX="3.0" layoutY="330.0" mnemonicParsing="false" onAction="#onRegister" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: #023c73; -fx-border-color: #023c73;" text="  REGISTER" textFill="WHITE">
+=======
+                  <Button fx:id="btnRejister" layoutX="3.0" layoutY="330.0" mnemonicParsing="false" onAction="#onRejister" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: #023c73; -fx-border-color: #023c73;" text="  REJISTER" textFill="WHITE">
+>>>>>>> 0374aef23ba0afa5e5cdf12288b3cbd0ed0f4805
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -105,7 +109,11 @@
                         <Image url="@../images/salary.png" />
                      </image>
                   </ImageView>
+<<<<<<< HEAD
                   <ImageView fx:id="pngRegister" fitHeight="20.0" fitWidth="20.0" layoutX="38.0" layoutY="336.0" pickOnBounds="true" preserveRatio="true">
+=======
+                  <ImageView fx:id="pngRejister" fitHeight="20.0" fitWidth="20.0" layoutX="38.0" layoutY="336.0" pickOnBounds="true" preserveRatio="true">
+>>>>>>> 0374aef23ba0afa5e5cdf12288b3cbd0ed0f4805
                      <image>
                         <Image url="@../images/key.png" />
                      </image>

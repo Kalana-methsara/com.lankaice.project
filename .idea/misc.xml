@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="EntryPointsManager">
     <writeAnnotations>
       <writeAnnotation name="javafx.fxml.FXML" />
     </writeAnnotations>
   </component>
+=======
+>>>>>>> 0374aef23ba0afa5e5cdf12288b3cbd0ed0f4805
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">
