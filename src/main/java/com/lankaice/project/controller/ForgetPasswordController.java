@@ -136,13 +136,8 @@ public class ForgetPasswordController implements Initializable {
 
         } catch (Exception e) {
             Logger.getLogger(ForgetPasswordController.class.getName()).log(Level.SEVERE, null, e);
-            Alert errorAlert = new Alert(Alert.AlertType.ERROR, "An error occurred while sending OTP. Please try again later.", ButtonType.OK);
-            errorAlert.initStyle(StageStyle.UNDECORATED);
+            showAlert(Alert.AlertType.ERROR,"An error occurred while sending OTP. Please try again later.");
 
-            DialogPane errorDialogPane = errorAlert.getDialogPane();
-            errorDialogPane.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
-
-            errorAlert.show();
             return;
         }
     }
@@ -157,13 +152,8 @@ public class ForgetPasswordController implements Initializable {
         String email = txtEmail.getText().trim();
 
         if (enteredOTP.isEmpty()) {
-            Alert warningAlert = new Alert(Alert.AlertType.WARNING, "Please enter the OTP!", ButtonType.OK);
-            warningAlert.initStyle(StageStyle.UNDECORATED);
+            showAlert(Alert.AlertType.WARNING, "Please enter the OTP!");
 
-            DialogPane warningDialogPane = warningAlert.getDialogPane();
-            warningDialogPane.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
-
-            warningAlert.show();
             return;
         }
 
@@ -201,23 +191,13 @@ public class ForgetPasswordController implements Initializable {
 
             } catch (Exception e) {
                 Logger.getLogger(ForgetPasswordController.class.getName()).log(Level.SEVERE, null, e);
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR, "Failed to send email. Try again.", ButtonType.OK);
-                errorAlert.initStyle(StageStyle.UNDECORATED);
+                showAlert(Alert.AlertType.ERROR,   "Failed to send email. Try again.");
 
-                DialogPane errorDialogPane = errorAlert.getDialogPane();
-                errorDialogPane.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
-
-                errorAlert.show();
             }
 
         } else {
-            Alert otpErrorAlert = new Alert(Alert.AlertType.ERROR, "Invalid OTP. Please try again!", ButtonType.OK);
-            otpErrorAlert.initStyle(StageStyle.UNDECORATED);
+            showAlert(Alert.AlertType.ERROR,   "Invalid OTP. Please try again!");
 
-            DialogPane otpErrorDialogPane = otpErrorAlert.getDialogPane();
-            otpErrorDialogPane.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
-
-            otpErrorAlert.show();
         }
     }
 
@@ -230,13 +210,8 @@ public class ForgetPasswordController implements Initializable {
             ancFoget.getChildren().add(anchorPane);
         } catch (Exception e) {
             Logger.getLogger(ForgetPasswordController.class.getName()).log(Level.SEVERE, null, e);
-            Alert loadErrorAlert = new Alert(Alert.AlertType.ERROR, "Unable to load login page!", ButtonType.OK);
-            loadErrorAlert.initStyle(StageStyle.UNDECORATED); // Remove window decorations
+            showAlert(Alert.AlertType.ERROR,   "Unable to load login page!");
 
-            DialogPane loadErrorDialogPane = loadErrorAlert.getDialogPane();
-            loadErrorDialogPane.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
-
-            loadErrorAlert.show();
         }
     }
 
@@ -326,13 +301,8 @@ public class ForgetPasswordController implements Initializable {
                 SendMail.outMail(message, email, "Password Reset OTP");
             } catch (MessagingException e) {
                 Platform.runLater(() -> {
-                    Alert errorAlert = new Alert(Alert.AlertType.ERROR, "Failed to send login credentials. Please try again!", ButtonType.OK);
-                    errorAlert.initStyle(javafx.stage.StageStyle.UNDECORATED);
+                    showAlert(Alert.AlertType.ERROR,"Failed to send login credentials. Please try again!");
 
-                    DialogPane errorDialogPane = errorAlert.getDialogPane();
-                    errorDialogPane.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
-
-                    errorAlert.show();
                 });
             }
         }
@@ -353,13 +323,8 @@ public class ForgetPasswordController implements Initializable {
                 SendMail.outMail(message, email, "Login Credentials - Dry Ice Management System");
             } catch (MessagingException e) {
                 Platform.runLater(() -> {
-                    Alert errorAlert = new Alert(Alert.AlertType.ERROR, "Failed to send login credentials. Please try again!", ButtonType.OK);
-                    errorAlert.initStyle(javafx.stage.StageStyle.UNDECORATED);
+                    showAlert(Alert.AlertType.ERROR,"Failed to send login credentials. Please try again!");
 
-                    DialogPane errorDialogPane = errorAlert.getDialogPane();
-                    errorDialogPane.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
-
-                    errorAlert.show();
                 });
             }
         }
@@ -375,5 +340,23 @@ public class ForgetPasswordController implements Initializable {
             }
         }
 
+    }
+    private void showAlert(Alert.AlertType alertType, String message) {
+        Alert alert = new Alert(alertType, message, ButtonType.OK);
+        alert.initStyle(StageStyle.UNDECORATED);
+
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
+
+        alert.show();
+    }
+    private void showAlert1(Alert.AlertType alertType, String message) {
+        Alert alert = new Alert(alertType, message, ButtonType.OK);
+        alert.initStyle(StageStyle.UNDECORATED);
+
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.setStyle("-fx-border-color: blue; -fx-border-width: 2px;");
+
+        alert.show();
     }
 }

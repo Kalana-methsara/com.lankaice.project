@@ -20,6 +20,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import com.lankaice.project.db.DBConnection;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -100,7 +101,7 @@ public class LoginPageController {
             anchorPane.prefHeightProperty().bind(ancLogin.heightProperty());
             ancLogin.getChildren().add(anchorPane);
         } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR, "Page not found", ButtonType.OK).show();
+            showAlert(Alert.AlertType.ERROR,  "Page not found");
             e.printStackTrace();
         }
 
@@ -170,6 +171,14 @@ public class LoginPageController {
             }
         }
     }
+    private void showAlert(Alert.AlertType alertType, String message) {
+        Alert alert = new Alert(alertType, message, ButtonType.OK);
+        alert.initStyle(StageStyle.UNDECORATED);
 
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
+
+        alert.show();
+    }
 
 }

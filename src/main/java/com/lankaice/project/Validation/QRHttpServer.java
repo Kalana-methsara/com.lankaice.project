@@ -55,16 +55,49 @@ public class QRHttpServer {
                 String shift = shiftInfo.getShift();
 
                 try {
-                    if (attendanceModel.isDuplicateAttendance(empId, date, shift)) {
-                        response = "⚠️ Attendance already marked for empId " + empId + " (" + shift + " shift)";
-                        sendResponse(exchange, 400, response);
-                        return;
+                    AttendanceDto existing = attendanceModel.getAttendance(empId, date, shift);
+                    if (existing != null) {
+ // -----------------------------------------------------------------------------------------------------------------------------------
+                       /* if (existing.getOutTime() == null) {
+                            // Mark out_time
+                            boolean result = attendanceModel.updateOutTime(empId, date, shift, LocalTime.now());
+                            response = result
+                                    ? "✅ Out-time marked for " + empId + " (" + shift + " shift)"
+                                    : "❌ Failed to mark out-time.";
+                            sendResponse(exchange, 200, response);
+                            return;
+                        }*/
+// -----------------------------------------------------------------------------------------------------------------------------------
+                        if (existing.getOutTime() == null) {
+                            LocalTime now = LocalTime.now();
+                            LocalTime inTime = existing.getInTime();
+
+                            if (inTime != null && java.time.Duration.between(inTime, now).toHours() >= 4) {
+                                boolean result = attendanceModel.updateOutTime(empId, date, shift, now);
+                                response = result
+                                        ? "✅ Out-time marked for " + empId + " (" + shift + " shift)"
+                                        : "❌ Failed to mark out-time.";
+                                sendResponse(exchange, 200, response);
+                            } else {
+                                response = "⚠️ Minimum 4 hours must pass from in-time to mark out-time. Try again later.";
+                                sendResponse(exchange, 400, response);
+                            }
+                            return;
+                        }
+ // -----------------------------------------------------------------------------------------------------------------------------------
+                        else {
+                            // Already has in_time and out_time
+                            response = "⚠️ Attendance already fully marked for empId " + empId + " (" + shift + " shift)";
+                            sendResponse(exchange, 400, response);
+                            return;
+                        }
                     }
                 } catch (SQLException | ClassNotFoundException e) {
                     response = "❌ DB Error: " + e.getMessage();
                     sendResponse(exchange, 500, response);
                     return;
                 }
+
 
                 if (empId != null && !empId.isEmpty()) {
                     AttendanceDto dto = new AttendanceDto(
@@ -143,81 +176,3 @@ public class QRHttpServer {
     }
 }
 
-
-/*
-package com.lankaice.project.Validation;
-
-import com.sun.net.httpserver.HttpServer;
-import com.lankaice.project.model.AttendanceModel;
-import com.lankaice.project.dto.AttendanceDto;
-
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.InetSocketAddress;
-import java.net.URI;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
-
-public class QRHttpServer {
-
-    public static void startServer() throws IOException {
-        HttpServer server = HttpServer.create(new InetSocketAddress(8081), 0);
-        server.createContext("/scan", exchange -> {
-            if ("GET".equals(exchange.getRequestMethod())) {
-
-                URI requestUri = exchange.getRequestURI();
-                Map<String, String> params = queryToMap(requestUri.getQuery()); // ?id=EMP001&shift=Morning
-
-                String empId = params.get("id");
-                String shift = params.getOrDefault("shift", "Morning"); // default Morning
-
-                String response;
-                if (empId != null && !empId.isEmpty()) {
-                    AttendanceDto dto = new AttendanceDto(empId, LocalDate.now().toString(), shift, "Present");
-                    boolean result = false;
-                    try {
-                        AttendanceModel attendanceModel = new AttendanceModel();
-                        result = attendanceModel.markAttendance(dto);
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    } catch (ClassNotFoundException e) {
-                        throw new RuntimeException(e);
-                    }
-                    response = result
-                            ? "✅ Attendance marked for " + empId + " (" + shift + " shift)"
-                            : "❌ Failed to mark attendance (maybe already marked)";
-                } else {
-                    response = "⚠️ Invalid or missing employee ID";
-                }
-
-                exchange.sendResponseHeaders(200, response.getBytes().length);
-                OutputStream os = exchange.getResponseBody();
-                os.write(response.getBytes());
-                os.close();
-            }
-        });
-
-        server.start();
-        System.out.println("✅ QR Attendance Server started on port 8081");
-    }
-
-    // Helper: Converts query string to Map
-    private static Map<String, String> queryToMap(String query) {
-        Map<String, String> map = new HashMap<>();
-        if (query == null) return map;
-        String[] params = query.split("&");
-        for (String param : params) {
-            String[] pair = param.split("=");
-            if (pair.length > 1) {
-                map.put(pair[0], pair[1]);
-            }
-        }
-        return map;
-    }
-}
-
-
-
-*/

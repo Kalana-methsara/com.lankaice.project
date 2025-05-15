@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.StageStyle;
 
 import java.net.URL;
 import java.util.HashSet;
@@ -117,7 +118,7 @@ public class ProductPageController implements Initializable {
     void onActionAdd(ActionEvent event) {
         String code = lblCode.getText();
         if(code.equals("Code")){
-            new Alert(Alert.AlertType.ERROR, "Please Add item!").show();
+            showAlert(Alert.AlertType.ERROR,"Please Add item!");
 return;
         }
         try {
@@ -141,7 +142,7 @@ return;
             updateSummaryLabels();
 
         } catch (NumberFormatException e) {
-            new Alert(Alert.AlertType.ERROR, "Invalid input!").show();
+            showAlert(Alert.AlertType.ERROR, "Invalid input!");
         }
     }
     private void updateSummaryLabels() {
@@ -276,6 +277,15 @@ public void clearField(){
         } catch (NumberFormatException e) {
             lblBalance.setText("0.00");
         }
+    }
+    private void showAlert(Alert.AlertType alertType, String message) {
+        Alert alert = new Alert(alertType, message, ButtonType.OK);
+        alert.initStyle(StageStyle.UNDECORATED);
+
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
+
+        alert.show();
     }
 
 }

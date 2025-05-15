@@ -40,11 +40,11 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="45.0" prefWidth="548.0" spacing="20.0">
+                  <HBox prefHeight="45.0" prefWidth="548.0" spacing="28.0">
                      <children>
                         <Label prefHeight="18.0" prefWidth="99.0" />
-                        <Button fx:id="btnStartServer" onAction="#onStartServer" prefHeight="35.0" prefWidth="145.0" style="-fx-background-color: #009432FF; -fx-text-fill: white; -fx-padding: 8 16; -fx-font-weight: bold;" text="Start Server" />
-                        <Button fx:id="btnStopServer" onAction="#onStopServer" prefHeight="35.0" prefWidth="145.0" style="-fx-background-color: #D63031FF; -fx-text-fill: white; -fx-padding: 8 16; -fx-font-weight: bold;" text="Stop Server" />
+                        <Button fx:id="btnStartServer" onAction="#onStartServer" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #009432FF; -fx-text-fill: white; -fx-padding: 8 16; -fx-font-weight: bold;" text="Start Server" />
+                        <Button fx:id="btnStopServer" onAction="#onStopServer" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #D63031FF; -fx-text-fill: white; -fx-padding: 8 16; -fx-font-weight: bold;" text="Stop Server" />
                      </children>
                   </HBox>
                   <Label fx:id="serverResponseLabel" prefHeight="21.0" prefWidth="485.0" style="-fx-border-radius: 0; -fx-border-color: #1d4ed8; -fx-border-width: 0 0 0 3;" textFill="GREEN">
@@ -65,7 +65,7 @@
             </Pane>
             <TableView fx:id="tableTodayAttendance" layoutX="630.0" layoutY="72.0" prefHeight="278.0" prefWidth="500.0" style="-fx-border-color: #1d4ed8; -fx-border-radius: 0 0 5 5;" stylesheets="@../style/tableViewStyle.css">
                <columns>
-                  <TableColumn fx:id="colEmpId" prefWidth="95.0" text="Employee Id" />
+                  <TableColumn fx:id="colEmpId" prefWidth="95.0" style="-fx-alignment: CENTER;" text="Employee Id" />
                   <TableColumn fx:id="colName" prefWidth="178.0" text="Name" />
                   <TableColumn fx:id="colStartTime" prefWidth="96.0" style="-fx-alignment: CENTER;" text="Time In" />
                   <TableColumn fx:id="colStartTime1" prefWidth="96.0" style="-fx-alignment: CENTER;" text="Time Out" />
