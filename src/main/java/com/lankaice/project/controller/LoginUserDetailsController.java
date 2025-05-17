@@ -1,7 +1,7 @@
 package com.lankaice.project.controller;
 
 import com.lankaice.project.dto.UserDto;
-import com.lankaice.project.util.Session;
+import com.lankaice.project.dto.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

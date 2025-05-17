@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="ancAttendance" prefHeight="700.0" prefWidth="1209.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lankaice.project.controller.AttendancePageController">
+    <children>
+        <Pane layoutX="20.0" layoutY="20.0" prefHeight="700.0" prefWidth="1209.0" style="-fx-background-color: E9F1F6; -fx-background-radius: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Button layoutX="550.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #2980b9;" text="ADD ADMIN" textFill="WHITE" />
+                <Button layoutX="950.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #c0392b;" text="DELETE ADMIN" textFill="WHITE" />
+                <Label layoutX="100.0" layoutY="132.0" prefHeight="28.0" prefWidth="120.0" text="Employee Id">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="textEmployeeId" layoutX="220.0" layoutY="130.0" onAction="#onSearchEmpoyee" prefWidth="240.0" style="-fx-background-color: E9F1F6; -fx-border-width: 0 0 2 0; -fx-border-color: #2196f3;" />
+                <Label layoutX="100.0" layoutY="172.0" prefHeight="28.0" prefWidth="120.0" text="Employee Name">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="textName" layoutX="220.0" layoutY="170.0" prefWidth="240.0" style="-fx-background-color: E9F1F6; -fx-border-width: 0 0 2 0; -fx-border-color: #2196f3;" />
+                <Label layoutX="510.0" layoutY="133.0" prefHeight="28.0" prefWidth="120.0" text="In Time">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="510.0" layoutY="173.0" prefHeight="28.0" prefWidth="120.0" text="Out Time">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="100.0" layoutY="212.0" prefHeight="28.0" prefWidth="120.0" text="Role">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <ChoiceBox fx:id="textRole" layoutX="220.0" layoutY="210.0" prefHeight="26.0" prefWidth="240.0" style="-fx-background-color: E9F1F6; -fx-border-width: 0 0 2 0; -fx-border-color: #2196f3;" />
+                <Button layoutX="350.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #e67e22;" text="CLEAR" textFill="WHITE" />
+                <Hyperlink fx:id="textError" focusTraversable="false" layoutX="100.0" layoutY="108.0" prefHeight="26.0" prefWidth="320.0" textFill="RED">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Hyperlink>
+            <Label layoutX="903.0" layoutY="133.0" prefHeight="28.0" prefWidth="120.0" text="Working Hours">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="textWorkingHours" layoutX="1023.0" layoutY="131.0" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: E9F1F6; -fx-border-width: 0 0 2 0; -fx-border-color: #2196f3;" />
+            <DatePicker fx:id="textDate" layoutX="1023.0" layoutY="171.0" prefHeight="28.0" prefWidth="107.0" stylesheets="@../style/DatePicker.css" />
+            <Label layoutX="903.0" layoutY="173.0" prefHeight="28.0" prefWidth="120.0" text="Date">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="510.0" layoutY="212.0" prefHeight="28.0" prefWidth="120.0" text="Shift">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="textShift" layoutX="630.0" layoutY="210.0" prefHeight="26.0" prefWidth="240.0" style="-fx-background-color: E9F1F6; -fx-border-width: 0 0 2 0; -fx-border-color: #2196f3;" />
+            <Label layoutX="903.0" layoutY="212.0" prefHeight="28.0" prefWidth="120.0" text="Status">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="textStatus" layoutX="1023.0" layoutY="210.0" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: E9F1F6; -fx-border-width: 0 0 2 0; -fx-border-color: #2196f3;" />
+            <ChoiceBox fx:id="textHours" layoutX="630.0" layoutY="130.0" onKeyReleased="#onKeyHours" prefHeight="24.0" prefWidth="50.0" style="-fx-background-color: E9F1F6; -fx-border-width: 0 0 2 0; -fx-border-color: #2196f3;" />
+            <ChoiceBox fx:id="textMinutes" layoutX="680.0" layoutY="130.0" onKeyReleased="#onKeyMinutes" prefHeight="24.0" prefWidth="50.0" style="-fx-background-color: E9F1F6; -fx-border-width: 0 0 2 0; -fx-border-color: #2196f3;" />
+            <Label fx:id="textInTime" layoutX="770.0" layoutY="132.0" prefHeight="26.0" prefWidth="100.0" style="-fx-background-color: E9F1F6; -fx-border-width: 0 0 2 0; -fx-border-color: #2196f3;" />
+            <ChoiceBox fx:id="textHours1" layoutX="630.0" layoutY="170.0" onKeyReleased="#onKeyHours1" prefHeight="26.0" prefWidth="50.0" style="-fx-background-color: E9F1F6; -fx-border-width: 0 0 2 0; -fx-border-color: #2196f3;" />
+            <ChoiceBox fx:id="textMinutes1" layoutX="680.0" layoutY="170.0" onKeyReleased="#onKeyMinutes1" prefHeight="26.0" prefWidth="50.0" style="-fx-background-color: E9F1F6; -fx-border-width: 0 0 2 0; -fx-border-color: #2196f3;" />
+            <Label fx:id="textOutTime" layoutX="770.0" layoutY="170.0" prefHeight="26.0" prefWidth="100.0" style="-fx-background-color: E9F1F6; -fx-border-width: 0 0 2 0; -fx-border-color: #2196f3;" />
+            </children></Pane>
+        <TableView fx:id="tableView" layoutX="74.0" layoutY="266.0" onMouseClicked="#SetData" prefHeight="305.0" prefWidth="1026.0" stylesheets="@../style/tableViewStyle.css">
+            <columns>
+                <TableColumn fx:id="colEmployeeId" prefWidth="143.0" style="-fx-alignment: CENTER;" text="Employee Id" />
+                <TableColumn fx:id="colName" prefWidth="195.0" style="-fx-alignment: CENTER;" text="Name" />
+            <TableColumn fx:id="colShift" prefWidth="125.0" style="-fx-alignment: CENTER;" text="Shift" />
+                <TableColumn fx:id="colInTime" prefWidth="111.0" style="-fx-alignment: CENTER;" text="In Time" />
+            <TableColumn fx:id="colOutTime" prefWidth="109.0" style="-fx-alignment: CENTER;" text="Out Time" />
+            <TableColumn fx:id="colWorkingHours" prefWidth="120.0" style="-fx-alignment: CENTER;" text="Working Hours" />
+                <TableColumn fx:id="colRole" prefWidth="197.0" style="-fx-alignment: CENTER;" text="Role" />
+            <TableColumn fx:id="colDate" prefWidth="151.0" style="-fx-alignment: CENTER;" text="Date" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+        <Button layoutX="750.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #27ae60;" text="UPDATE ADMIN" textFill="WHITE" />
+        <Label layoutX="74.0" layoutY="56.0" text="ATTENDANCE MANAGE" textFill="#023c73">
+            <font>
+                <Font name="System Bold" size="19.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>

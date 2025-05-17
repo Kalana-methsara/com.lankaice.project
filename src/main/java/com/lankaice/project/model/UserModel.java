@@ -79,7 +79,6 @@ public class UserModel {
         String sql = "DELETE FROM User WHERE userName = ?";
         return CrudUtil.execute(sql, userName);
     }
-<<<<<<< HEAD
     public boolean isOnlyOneUserExists() throws SQLException, ClassNotFoundException {
         String sql = "SELECT COUNT(*) AS count FROM User";
         ResultSet resultSet = CrudUtil.execute(sql);
@@ -91,6 +90,4 @@ public class UserModel {
         return false;
     }
 
-=======
->>>>>>> 0374aef23ba0afa5e5cdf12288b3cbd0ed0f4805
 }

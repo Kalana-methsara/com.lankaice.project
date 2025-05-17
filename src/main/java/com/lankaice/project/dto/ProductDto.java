@@ -8,8 +8,8 @@ import lombok.*;
 @Setter
 @ToString
 public class ProductDto {
-    private int productId;
-    private String productName;
-    private double productWeight;
-    private double productPricePerUnit;
+    private String productId;
+    private String name;
+    private double weight;
+    private double pricePerUnit;
 }

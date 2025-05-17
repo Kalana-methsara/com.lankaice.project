@@ -92,22 +92,25 @@ CREATE TABLE Orders (
 --     Product Table
 -- ========================
 CREATE TABLE Product (
-                         product_id INT PRIMARY KEY,
+                         product_id VARCHAR(4) PRIMARY KEY,
                          name VARCHAR(100) NOT NULL,
                          weight DECIMAL(10,2) NOT NULL CHECK (weight > 0),
                          price_per_unit DECIMAL(10,2) NOT NULL CHECK (price_per_unit > 0)
 );
 
+
 INSERT INTO Product (product_id, name, weight, price_per_unit) VALUES
-                                                                   (5001, 'Block Ice(half)', 25, 280.00),
-                                                                   (5002, 'Block Ice', 50, 560.00);
+                                                                   ('I001', 'Block Ice', 50, 530.00),
+                                                                   ('I002', 'Crushed Ice', 50, 560.00),
+                                                                   ('I003', 'Flake Ice', 25, 280.00),
+                                                                   ('I004', 'Crystal Ice', 10, 480.00);
 
 -- ========================
 --     Stock Table
 -- ========================
 CREATE TABLE Stock (
                        stock_id INT PRIMARY KEY AUTO_INCREMENT,
-                       product_id INT NOT NULL,
+                       product_id VARCHAR(4) NOT NULL,
                        stock_quantity INT NOT NULL CHECK (stock_quantity >= 0),
                        last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                        FOREIGN KEY (product_id) REFERENCES Product(product_id) ON DELETE CASCADE
@@ -119,7 +122,7 @@ CREATE TABLE Stock (
 CREATE TABLE Order_Details (
                                orderDetails_id INT PRIMARY KEY AUTO_INCREMENT,
                                order_id INT NOT NULL,
-                               product_id INT NOT NULL,
+                               product_id VARCHAR(4) NOT NULL,
                                quantity INT NOT NULL CHECK (quantity > 0),
                                price DECIMAL(10,2) NOT NULL CHECK (price > 0),
                                request_time TIME,
@@ -180,11 +183,8 @@ CREATE TABLE Attendance (
                             date DATE NOT NULL,
                             shift ENUM('Morning', 'Night') NOT NULL,
                             status ENUM('Present', 'Absent', 'Leave') NOT NULL,
-<<<<<<< HEAD
                             in_time TIME DEFAULT NULL,
                             out_time TIME DEFAULT NULL,
-=======
->>>>>>> 0374aef23ba0afa5e5cdf12288b3cbd0ed0f4805
                             UNIQUE (employee_id, date, shift),
                             FOREIGN KEY (employee_id) REFERENCES Employee(employee_id) ON DELETE CASCADE
 );
@@ -270,7 +270,7 @@ CREATE TABLE SMS_Email (
 -- ========================
 CREATE TABLE Transport (
                            transport_id INT PRIMARY KEY AUTO_INCREMENT,
-                           product_id INT NOT NULL,
+                           product_id VARCHAR(4) NOT NULL,
                            vehicle_id INT NOT NULL,
                            driver_id VARCHAR(5) NOT NULL,
                            transport_date DATE NOT NULL,
@@ -294,31 +294,31 @@ INSERT INTO Employee (
     address, join_date, date_of_birth, gender,
     bank_account_no, bank_branch, license_number
 ) VALUES
-      ('E001', 'Kalana Methsara', '200112345678', '0712345678', 'kalana@example.com', 'Supervisor',
-       '123/A, Main Street, Colombo', '2023-06-15', '2001-05-22', 'Male',
-       '123456789012', 'BOC - Colombo Branch', 'B1234567'),
+      ('E001', 'Kalana Methsara', '200227703653', '0778373015', 'kalanamethsara53@gmail.com', 'Manager',
+       '140/C, Hapugala, Galle', '2023-06-15', '2002-10-03', 'Male',
+       '123456789012', 'Commercial - Galle Branch', 'B5842235'),
 
-      ('E002', 'Tharu Perera', '199505123456', '0771234567', 'tharu@example.com', 'Worker',
-       '456/B, Second Lane, Kandy', '2022-02-01', '1995-08-15', 'Female',
-       '987654321098', 'HNB - Kandy Branch', 'A8765432'),
+      ('E002', 'Akila Abeyasekara', '199915400598', '0716689089', 'akilaabeysekara99@gmail.com', 'Supervisor',
+       '456/B, Kithulampitiya, Galle', '2022-02-01', '1999-06-02', 'Male',
+       '987654321098', 'BOC - Karapitiya Branch', 'A8765432'),
 
-      ('E003', 'Nadeesha Silva', '199012345678', '0713456789', 'nadeesha@example.com', 'Driver',
-       '789/C, High Road, Galle', '2021-11-30', '1990-03-18', 'Female',
+      ('E003', 'Savindu Navanjana', '199012345678', '0713456789', 'savindunavanjana08@gmail.com', 'Supervisor',
+       '789/C, High Road, Galle', '2021-11-30', '1990-03-18', 'Male',
        '112233445566', 'Sampath Bank - Galle', 'D1234568'),
 
-      ('E004', 'Chandana Jayasinghe', '198704567890', '0729876543', 'chandana@example.com', 'Manager',
+      ('E004', 'Chandana Jayasinghe', '198704567890', '0729876543', 'chandana@example.com', 'Cashier',
        '101/D, Kings Way, Negombo', '2020-08-25', '1987-07-10', 'Male',
        '223344556677', 'Commercial Bank - Negombo', 'M2345671'),
 
-      ('E005', 'Saman Wijesinghe', '198206789012', '0788765432', 'saman@example.com', 'Cashier',
+      ('E005', 'Saman Wijesinghe', '198206789012', '0788765432', 'saman@example.com', 'Driver',
        '321/E, Lakeview Avenue, Anuradhapura', '2021-01-15', '1982-12-25', 'Male',
        '334455667788', 'People’s Bank - Anuradhapura', 'C2345679'),
 
-      ('E006', 'Kavinda Perera', '200103567890', '0701122334', 'kavinda@example.com', 'Supervisor',
+      ('E006', 'Kavinda Perera', '200103567890', '0701122334', 'kavinda@example.com', 'Driver',
        '654/F, Colombo Road, Matara', '2023-03-11', '2001-11-02', 'Male',
        '445566778899', 'BOC - Matara Branch', 'B2345670'),
 
-      ('E007', 'Dinithi Fernando', '199703456789', '0712233445', 'dinithi@example.com', 'Cashier',
+      ('E007', 'Dinithi Fernando', '199703456789', '0712233445', 'dinithi@example.com', 'Worker',
        '987/G, Sunset Boulevard, Jaffna', '2020-07-19', '1997-01-12', 'Female',
        '556677889900', 'HNB - Jaffna Branch', 'C8765431'),
 
@@ -326,16 +326,32 @@ INSERT INTO Employee (
        '345/H, Queens Road, Kurunegala', '2022-05-10', '1999-09-25', 'Male',
        '667788990011', 'Sampath Bank - Kurunegala', 'A2345678'),
 
-      ('E009', 'Shanika Gamage', '199102345678', '0772345678', 'shanika@example.com', 'Driver',
+      ('E009', 'Shanika Gamage', '199102345678', '0772345678', 'shanika@example.com', 'Worker',
        '654/I, Horizon Street, Kegalle', '2021-09-05', '1991-03-20', 'Female',
        '778899001122', 'Commercial Bank - Kegalle', 'D3456789'),
 
-      ('E010', 'Ruwan Tharanga', '199412345678', '0783456789', 'ruwan@example.com', 'Manager',
+      ('E010', 'Ruwan Tharanga', '199412345678', '0783456789', 'ruwan@example.com', 'Worker',
        '321/J, Old Town, Puttalam', '2020-12-01', '1994-07-14', 'Male',
-       '889900112233', 'People’s Bank - Puttalam', 'M5678901');
-<<<<<<< HEAD
+       '889900112233', 'People’s Bank - Puttalam', 'M5678901'),
+
+      ('E011', 'Thilini Perera', '199812345678', '0703344556', 'thilini@example.com', 'Worker',
+       '12/A, Temple Road, Polonnaruwa', '2023-01-10', '1998-04-22', 'Female',
+       '990011223344', 'BOC - Polonnaruwa Branch', 'T1234567'),
+
+      ('E012', 'Isuru Madushan', '199605432189', '0714455667', 'isuru@example.com', 'Worker',
+       '45/B, Park Lane, Gampaha', '2021-06-21', '1996-11-08', 'Male',
+       '100200300400', 'HNB - Gampaha Branch', 'I2345678'),
+
+      ('E013', 'Nimasha Senavirathna', '200003210987', '0725566778', 'nimasha@example.com', 'Worker',
+       '78/C, Station Road, Matale', '2022-11-05', '2000-01-19', 'Female',
+       '200300400500', 'Commercial Bank - Matale', 'N3456789'),
+
+      ('E014', 'Kasun Jayalath', '199403219876', '0756677889', 'kasun@example.com', 'Worker',
+       '89/D, Riverside, Badulla', '2020-04-18', '1994-06-27', 'Male',
+       '300400500600', 'People’s Bank - Badulla', 'K4567890'),
+
+      ('E015', 'Udari Rathnayake', '199703456123', '0767788990', 'udari@example.com', 'Worker',
+       '90/E, Palm Grove, Nuwara Eliya', '2023-09-09', '1997-08-14', 'Female',
+       '400500600700', 'Sampath Bank - Nuwara Eliya', 'U5678901');
 
 
-
-=======
->>>>>>> 0374aef23ba0afa5e5cdf12288b3cbd0ed0f4805

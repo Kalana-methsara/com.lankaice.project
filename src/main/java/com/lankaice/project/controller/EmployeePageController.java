@@ -3,7 +3,7 @@ package com.lankaice.project.controller;
 import com.lankaice.project.dto.EmployeeDto;
 import com.lankaice.project.dto.UserDto;
 import com.lankaice.project.model.EmployeeModel;
-import com.lankaice.project.util.Session;
+import com.lankaice.project.dto.Session;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
