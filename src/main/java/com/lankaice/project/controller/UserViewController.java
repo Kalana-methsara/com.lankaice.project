@@ -31,14 +31,14 @@ public class UserViewController implements Initializable {
 
     @FXML
     private Button btnAdminManage, btnBooking, btnDashboard, btnEmployee, btnPayment,
-            btnProduct, btnRegister, btnReport, btnSalary, btnTransport;
+            btnProduct, btnRegister, btnReport, btnSalary, btnTransport,btnInventory,btnStock,btnLogout;
 
     @FXML
     private Label lblDate;
 
     @FXML
     private ImageView pngAdminManage, pngBooking, pngEmployee, pngPayment, pngProduct,
-            pngRegister, pngReport, pngSalary, pngTransport, pnsDashbord;
+            pngRegister, pngReport, pngSalary, pngTransport, pnsDashbord,pngInventory,pngStock,pngLogout;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -106,10 +106,10 @@ public class UserViewController implements Initializable {
     }
 
     @FXML
-    void onPayment(ActionEvent event) {
+    void onStock(ActionEvent event) {
         resetOtherPages();
-        changePage1(btnPayment, "/images/payment(1).png", pngPayment);
-        navigateTo("/view/PaymentPage.fxml");
+        changePage1(btnStock, "/images/stock(1).png", pngStock);
+        navigateTo("/view/StockPage.fxml");
     }
 
     @FXML
@@ -133,6 +133,18 @@ public class UserViewController implements Initializable {
         navigateTo("/view/VerifySuperAdmin.fxml");
     }
 
+    public void onPayment(ActionEvent actionEvent) {
+        resetOtherPages();
+        changePage1(btnPayment, "/images/payment(1).png", pngPayment);
+        navigateTo("/view/PaymentPage.fxml");
+    }
+
+    public void onInventory(ActionEvent actionEvent) {
+        resetOtherPages();
+        changePage1(btnInventory, "/images/inventory(1).png", pngInventory);
+        navigateTo("/view/InventoryPage.fxml");
+    }
+
     @FXML
     void onRegister(ActionEvent event) {
         resetOtherPages();
@@ -148,6 +160,8 @@ public class UserViewController implements Initializable {
         resetButtonStyle(btnBooking);
         resetButtonStyle(btnPayment);
         resetButtonStyle(btnSalary);
+        resetButtonStyle(btnStock);
+        resetButtonStyle(btnInventory);
         resetButtonStyle(btnRegister);
         resetButtonStyle(btnAdminManage);
         resetButtonStyle(btnReport);
@@ -159,6 +173,8 @@ public class UserViewController implements Initializable {
         changePage(btnBooking, "/images/booking.png", pngBooking);
         changePage(btnPayment, "/images/payment.png", pngPayment);
         changePage(btnSalary, "/images/salary.png", pngSalary);
+        changePage(btnStock, "/images/stock.png", pngStock);
+        changePage(btnInventory, "/images/inventory.png", pngInventory);
         changePage(btnRegister, "/images/key.png", pngRegister);
         changePage(btnAdminManage, "/images/admin.png", pngAdminManage);
         changePage(btnReport, "/images/report.png", pngReport);
@@ -230,5 +246,4 @@ public class UserViewController implements Initializable {
             }
         });
     }
-
 }

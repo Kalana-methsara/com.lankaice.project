@@ -48,5 +48,4 @@ public class AddAdminController implements Initializable {
         txtEmail.setText(email);
         txtRole.setValue(role);
     }
-
 }

@@ -3,6 +3,8 @@ package com.lankaice.project.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -14,8 +16,19 @@ public class OpenPageController {
     private AnchorPane ancOpenPage;
 
     public void onLoadLogin(MouseEvent mouseEvent) throws IOException {
-        ancOpenPage.getChildren().clear();
-        Parent parent = FXMLLoader.load(getClass().getResource("/view/LoginPage.fxml"));
-        ancOpenPage.getChildren().add(parent);
+       navigateTo("/view/LoginPage.fxml");
     }
+    public void navigateTo(String path) {
+        try {
+            ancOpenPage.getChildren().clear();
+            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource(path));
+            anchorPane.prefWidthProperty().bind(ancOpenPage.widthProperty());
+            anchorPane.prefHeightProperty().bind(ancOpenPage.heightProperty());
+            ancOpenPage.getChildren().add(anchorPane);
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, "Page not found", ButtonType.OK).show();
+            e.printStackTrace();
+        }
+    }
+
 }

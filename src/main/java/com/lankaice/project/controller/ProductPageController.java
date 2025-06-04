@@ -1,10 +1,8 @@
 package com.lankaice.project.controller;
 
-import com.lankaice.project.dto.ProductDto;
-import com.lankaice.project.dto.Session;
-import com.lankaice.project.dto.UserDto;
+import com.lankaice.project.dto.*;
 import com.lankaice.project.dto.tm.ProductTM;
-import com.lankaice.project.model.ProductModel;
+import com.lankaice.project.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,59 +17,89 @@ import javafx.stage.StageStyle;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 public class ProductPageController implements Initializable {
 
-    @FXML private ImageView editPrice1;
-    @FXML private ImageView editPrice2;
-    @FXML private ImageView editPrice3;
-    @FXML private ImageView editPrice4;
-    @FXML private Label Name1, Name2, Name3, Name4;
-    @FXML private Label Price1, Price2, Price3, Price4;
-    @FXML private Button btnAdd, btnClear, btnConfirm;
-    @FXML private ChoiceBox<String> choiceBox1, choiceBoxPay;
-    @FXML private TableColumn<ProductTM, String> colProduct;
-    @FXML private TableColumn<ProductTM, Double> colPrice;
-    @FXML private TableColumn<ProductTM, Integer> colQty;
-    @FXML private TableColumn<ProductTM, Double> colDiscount;
-    @FXML private Label discountLabel, itemsCountLabel, lblBalance, lblCode, lblProduct, subtotalLabel, totalLabel;
-    @FXML private TextField txtDiscount, txtDiscription, txtPaid, txtQty, txtVehicleNo,lblPrice;
-    @FXML private TableView<ProductTM> tableProduct;
+    @FXML
+    private ImageView editPrice1, editPrice2, editPrice3, editPrice4;
+    @FXML
+    private Label Name1, Name2, Name3, Name4;
+    @FXML
+    private Label Price1, Price2, Price3, Price4;
+    @FXML
+    private Button btnAdd, btnClear, btnConfirm;
+    @FXML
+    private ChoiceBox<String> textCustomer, choiceBoxPay, txtVehicleNo;
+    @FXML
+    private TableColumn<ProductTM, String> colProduct;
+    @FXML
+    private TableColumn<ProductTM, Double> colPrice;
+    @FXML
+    private TableColumn<ProductTM, Integer> colQty;
+    @FXML
+    private TableColumn<ProductTM, Double> colDiscount;
+    @FXML
+    private Label discountLabel, itemsCountLabel, lblBalance, lblCode, lblProduct, subtotalLabel, totalLabel;
+    @FXML
+    private TextField txtDiscount, txtDiscription, txtPaid, txtQty, lblPrice;
+    @FXML
+    private TableView<ProductTM> tableProduct;
+    @FXML
+    private Label lblOrderId;
 
     private final ObservableList<ProductTM> productList = FXCollections.observableArrayList();
+    private final CustomerModel customerModel = new CustomerModel();
+    private final OrdersModel ordersModel = new OrdersModel();
+    private final VehicleModel vehicleModel = new VehicleModel();
+    private final ProductModel productModel = new ProductModel();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         UserDto user = Session.getCurrentUser();
-        String role = user.getRole();
-        boolean isAdmin = role.equalsIgnoreCase("admin");
+        boolean isAdmin = user.getRole().equalsIgnoreCase("admin");
 
         editPrice1.setVisible(isAdmin);
         editPrice2.setVisible(isAdmin);
         editPrice3.setVisible(isAdmin);
         editPrice4.setVisible(isAdmin);
-        lblPrice.setEditable(isAdmin);
+        lblPrice.setEditable(false);
 
-
+        resetPage();
         initChoiceBoxes();
         setupTableColumns();
-        addLable();
+        loadProductLabels();
     }
 
     private void initChoiceBoxes() {
         choiceBoxPay.setItems(FXCollections.observableArrayList("Cash", "Card", "Check"));
         choiceBoxPay.getSelectionModel().select("Cash");
-        choiceBoxPay.setTooltip(new Tooltip("Select Payment Mode"));
 
-        choiceBox1.setItems(FXCollections.observableArrayList("%001 New Customer", "%002 Kalana Methsara", "%003 Savindu Navanjana", "%004 Akila Abesekara"));
-        choiceBox1.getSelectionModel().select("%001 New Customer");
-        choiceBox1.setTooltip(new Tooltip("Select Customer"));
+        try {
+            List<CustomerDto> customers = customerModel.getAllCustomers();
+            List<String> customerNames = new ArrayList<>();
+            for (CustomerDto c : customers) {
+                customerNames.add(c.toString()); // "C001 Kalana Methsara"
+            }
+
+            List<String> vehicles = vehicleModel.getActiveVehicle();
+
+            textCustomer.setItems(FXCollections.observableArrayList(customerNames));
+            if (!customerNames.isEmpty()) {
+                textCustomer.getSelectionModel().selectFirst();
+            }
+
+            txtVehicleNo.setItems(FXCollections.observableArrayList(vehicles));
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Failed to load customers or vehicles!");
+        }
     }
 
     private void setupTableColumns() {
-        colProduct.setCellValueFactory(new PropertyValueFactory<>("product"));
+        colProduct.setCellValueFactory(new PropertyValueFactory<>("productName"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
         colDiscount.setCellValueFactory(new PropertyValueFactory<>("discount"));
@@ -79,47 +107,58 @@ public class ProductPageController implements Initializable {
 
     @FXML
     void onActionAdd(ActionEvent event) {
-        String code = lblCode.getText();
-        if (code.equals("Code")) {
-            showAlert(Alert.AlertType.ERROR, "Please add an item first!");
+        if (lblCode.getText().equals("Code")) {
+            showAlert(Alert.AlertType.WARNING, "Please select a product.");
             return;
         }
+
         try {
+            String productId = lblCode.getText();  // ✅ Correct!
             String product = lblProduct.getText();
             double price = Double.parseDouble(lblPrice.getText());
             int qty = Integer.parseInt(txtQty.getText());
             double discount = txtDiscount.getText().isEmpty() ? 0 : Double.parseDouble(txtDiscount.getText());
 
-            ProductTM item = new ProductTM(product, price, qty, discount);
+            // Check if item is already in the cart
+            for (ProductTM productTM : productList) {
+                if (productTM.getProductId().equals(productId)) {
+                    int newQty = productTM.getQty() + qty;
+
+                  /*  if (newQty > itemStockQty) {
+                        new Alert(Alert.AlertType.ERROR, "Not Enough Item Quantity", ButtonType.OK).show();
+                        return;
+                    }*/
+                    double discount1 = productTM.getDiscount() + discount;
+
+                    productTM.setQty(newQty);
+                    productTM.setDiscount(discount1);
+                    tableProduct.refresh(); // Refresh the table after updating
+                    txtQty.clear();
+                    txtDiscount.clear();
+                    clearFields();
+                    updateSummaryLabels();
+                    return;
+                }
+            }
+
+
+            ProductTM item = new ProductTM(productId,product, price, qty, discount);
             productList.add(item);
             tableProduct.setItems(productList);
 
-            clearField();
+            clearFields();
             updateSummaryLabels();
         } catch (NumberFormatException e) {
-            showAlert(Alert.AlertType.ERROR, "Invalid input! Check quantity or discount fields.");
+            showAlert(Alert.AlertType.ERROR, "Invalid quantity or discount format.");
         }
     }
 
     @FXML
     void onActionClear(ActionEvent event) {
-        clearField();
-        productList.clear();
-        tableProduct.getItems().clear();
-        txtDiscription.clear();
-        txtVehicleNo.clear();
-        txtPaid.clear();
-        lblBalance.setText("");
-
-        initChoiceBoxes();
-
-        itemsCountLabel.setText("0");
-        subtotalLabel.setText("0.00");
-        totalLabel.setText("0.00");
-        discountLabel.setText("0.00");
+        resetPage();
     }
 
-    public void clearField() {
+    private void clearFields() {
         lblCode.setText("Code");
         lblProduct.setText("Product");
         lblPrice.setText("0.00");
@@ -129,48 +168,29 @@ public class ProductPageController implements Initializable {
 
     private void updateSummaryLabels() {
         Set<String> uniqueProducts = new HashSet<>();
-        double subtotal = 0, totalDiscount = 0;
+        double subtotal = 0, discount = 0;
 
         for (ProductTM item : productList) {
-            uniqueProducts.add(item.getProduct());
+            uniqueProducts.add(item.getProductName());
             subtotal += item.getPrice() * item.getQty();
-            totalDiscount += item.getDiscount();
+            discount += item.getDiscount();
         }
-
-        double total = subtotal - totalDiscount;
 
         itemsCountLabel.setText(String.valueOf(uniqueProducts.size()));
         subtotalLabel.setText(String.format("%.2f", subtotal));
-        discountLabel.setText(String.format("%.2f", totalDiscount));
-        totalLabel.setText(String.format("%.2f", total));
+        discountLabel.setText(String.format("%.2f", discount));
+        totalLabel.setText(String.format("%.2f", subtotal - discount));
     }
 
     @FXML
-    public void onKeyBalance(KeyEvent keyEvent) {
+    void onKeyBalance(KeyEvent keyEvent) {
         try {
             double paid = txtPaid.getText().isEmpty() ? 0 : Double.parseDouble(txtPaid.getText());
             double total = Double.parseDouble(totalLabel.getText());
-            double balance = paid - total;
-            lblBalance.setText(String.format("%.2f", balance));
+            lblBalance.setText(String.format("%.2f", paid - total));
         } catch (NumberFormatException e) {
             lblBalance.setText("0.00");
         }
-    }
-
-    @FXML
-    void onActionConfirm(ActionEvent event) {
-        // TODO: Implement billing confirmation logic
-        showAlert(Alert.AlertType.INFORMATION, "Order confirmed!");
-    }
-
-    @FXML
-    void onActionExtra(ActionEvent event) {
-        // Optional extra logic
-    }
-
-    @FXML
-    void onActionMode(ActionEvent event) {
-        // Optional mode switch logic
     }
 
     @FXML
@@ -196,19 +216,117 @@ public class ProductPageController implements Initializable {
     private void setProductDetails(String code, String name, String priceText) {
         lblCode.setText(code);
         lblProduct.setText(name);
-        lblPrice.setText(priceText.replace("Rs ", "").trim());
+        lblPrice.setText(priceText.replace("Rs", "").trim());
     }
 
-    private void showAlert(Alert.AlertType alertType, String message) {
-        Alert alert = new Alert(alertType, message, ButtonType.OK);
+    private void showAlert(Alert.AlertType type, String message) {
+        Alert alert = new Alert(type, message, ButtonType.OK);
         alert.initStyle(StageStyle.UNDECORATED);
         alert.getDialogPane().setStyle("-fx-border-color: red; -fx-border-width: 2px;");
         alert.show();
     }
 
+    private void loadProductLabels() {
+        try {
+            List<ProductDto> products = productModel.getAllProducts();
+            if (products.size() >= 4) {
+                Name1.setText(products.get(0).getName());
+                Price1.setText(String.valueOf(products.get(0).getPricePerUnit()));
+                Name2.setText(products.get(1).getName());
+                Price2.setText(String.valueOf(products.get(1).getPricePerUnit()));
+                Name3.setText(products.get(2).getName());
+                Price3.setText(String.valueOf(products.get(2).getPricePerUnit()));
+                Name4.setText(products.get(3).getName());
+                Price4.setText(String.valueOf(products.get(3).getPricePerUnit()));
+            }
+        } catch (Exception e) {
+            showAlert(Alert.AlertType.ERROR, "Failed to load product labels!");
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void onActionComfirm(ActionEvent actionEvent) {
+        if (productList.isEmpty()) {
+            showAlert(Alert.AlertType.WARNING, "Add items to cart before placing order.");
+            return;
+        }
+
+        if (textCustomer.getValue() == null || textCustomer.getValue().isEmpty()) {
+            showAlert(Alert.AlertType.WARNING, "Please select a customer.");
+            return;
+        }
+
+        try {
+
+            int orderId = Integer.parseInt(lblOrderId.getText());
+            String selectedCustomer = textCustomer.getValue();
+            String customerId = selectedCustomer.substring(0, 4);
+            String description = txtDiscription.getText();
+            String vehicleNumber = txtVehicleNo.getValue();
+            String paymentMethod = choiceBoxPay.getValue();
+            String date = LocalDate.now().toString();
+            String time = LocalTime.now().toString();
+            double total = Double.parseDouble(totalLabel.getText());
+
+            ArrayList<OrderDetailsDto> cartList = new ArrayList<>();
+            for (ProductTM item : productList) {
+                cartList.add(new OrderDetailsDto(orderId, item.getProductId(), item.getQty(), item.getPrice(), item.getDiscount()));
+            }
+            OrdersDto ordersDto = new OrdersDto(orderId, customerId, date, time, description, vehicleNumber, total, cartList);
+            boolean isPlaced = ordersModel.placeOrder(ordersDto);
+
+            if (isPlaced) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Order Placed Successfully!");
+                alert.initStyle(StageStyle.UNDECORATED);
+                alert.getDialogPane().setStyle("-fx-border-color: blue; -fx-border-width: 2px;");
+                alert.show();
+                resetPage();
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Order placement failed.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Error placing order.");
+        }
+    }
+
+    private void resetPage() {
+        clearFields();
+        productList.clear();
+        tableProduct.getItems().clear();
+        txtDiscription.clear();
+        txtPaid.clear();
+        lblBalance.setText("");
+
+        itemsCountLabel.setText("0");
+        subtotalLabel.setText("0.00");
+        discountLabel.setText("0.00");
+        totalLabel.setText("0.00");
+
+        loadNextOrderId();
+        initChoiceBoxes();
+    }
+
+    private void loadNextOrderId() {
+        try {
+            int nextId = ordersModel.getLastOrderId() + 1;
+            lblOrderId.setText(String.valueOf(nextId));
+        } catch (Exception e) {
+            lblOrderId.setText("1001");
+        }
+    }
+
+    public void onActionMode(ActionEvent actionEvent) {
+    }
+
+    public void onActionExtra(ActionEvent actionEvent) {
+    }
+
     public void addLable() {
         try {
-            List<ProductDto> products = ProductModel.getAllProducts();
+            List<ProductDto> products = productModel.getAllProducts();
             if (products.size() >= 4) {
                 lblCode.setText("Code"); // Reset label
 
@@ -230,25 +348,9 @@ public class ProductPageController implements Initializable {
         }
     }
 
-    public void onActionComfirm(ActionEvent actionEvent) {
-    }
-
-    public void onEditPrice1(MouseEvent mouseEvent) {
-        setProductDetails("I001", Name1.getText(), Price1.getText());
-    }
-    public void onEditPrice2(MouseEvent mouseEvent) {
-        setProductDetails("I002", Name2.getText(), Price2.getText());
-    }
-    public void onEditPrice3(MouseEvent mouseEvent) {
-        setProductDetails("I003", Name3.getText(), Price3.getText());
-    }
-    public void onEditPrice4(MouseEvent mouseEvent) {
-        setProductDetails("I004", Name4.getText(), Price4.getText());
-    }
     @FXML
     void onSetPrice(ActionEvent event) {
-            setPrice();
-
+        setPrice();
     }
 
     private void setPrice() {
@@ -260,28 +362,49 @@ public class ProductPageController implements Initializable {
 
         try {
             double newPrice = Double.parseDouble(lblPrice.getText());
-            boolean updated = ProductModel.updateProductPrice(code, newPrice);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to change the price?", ButtonType.YES, ButtonType.NO);
+            alert.initStyle(StageStyle.UNDECORATED);
 
-            if (updated) {
-                switch (code) {
-                    case "I001" -> Price1.setText(String.format("%.2f", newPrice));
-                    case "I002" -> Price2.setText(String.format("%.2f", newPrice));
-                    case "I003" -> Price3.setText(String.format("%.2f", newPrice));
-                    case "I004" -> Price4.setText(String.format("%.2f", newPrice));
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.setStyle("-fx-border-color: orange; -fx-border-width: 2px;");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.YES) {
+                boolean isUpdated = productModel.updateProductPrice(code, newPrice);
+                if (isUpdated) {
+                    lblPrice.setEditable(false);
+                    addLable(); // Refresh product labels
+                } else {
+                    showAlert(Alert.AlertType.ERROR, "Failed to update product price.");
                 }
-                showAlert(Alert.AlertType.INFORMATION, "Price updated successfully!");
-            } else {
-                showAlert(Alert.AlertType.ERROR, "Failed to update price in the database.");
             }
-
         } catch (NumberFormatException e) {
-            showAlert(Alert.AlertType.ERROR, "Invalid price format!");
-        } catch (SQLException | ClassNotFoundException e) {
+            showAlert(Alert.AlertType.ERROR, "Invalid price value!");
+        } catch (Exception e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Database error while updating price!");
+            showAlert(Alert.AlertType.ERROR, "Error occurred while updating price.");
         }
     }
 
 
+    public void onEditPrice1(MouseEvent mouseEvent) {
+        lblPrice.setEditable(true);
+        setProductDetails("I001", Name1.getText(), Price1.getText());
+    }
+
+    public void onEditPrice2(MouseEvent mouseEvent) {
+        lblPrice.setEditable(true);
+        setProductDetails("I002", Name2.getText(), Price2.getText());
+    }
+
+    public void onEditPrice3(MouseEvent mouseEvent) {
+        lblPrice.setEditable(true);
+        setProductDetails("I003", Name3.getText(), Price3.getText());
+    }
+
+    public void onEditPrice4(MouseEvent mouseEvent) {
+        lblPrice.setEditable(true);
+        setProductDetails("I004", Name4.getText(), Price4.getText());
+    }
 
 }

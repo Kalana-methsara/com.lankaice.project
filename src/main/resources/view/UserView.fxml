@@ -18,45 +18,45 @@
                     <children>
 
                         <!-- Menu Buttons -->
-                        <Button fx:id="btnDashboard" layoutX="3.0" layoutY="50.0" onAction="#onDashboard" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: #023c73; -fx-border-color: #e9c90e;" text="         DASHBOARD" textFill="#e9c90e">
+                        <Button fx:id="btnDashboard" layoutX="3.0" layoutY="20.0" onAction="#onDashboard" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: #023c73; -fx-border-color: #e9c90e;" text="         DASHBOARD" textFill="#e9c90e">
                             <font><Font name="System Bold" size="14.0" /></font>
                         </Button>
 
-                        <Button fx:id="btnProduct" layoutX="3.0" layoutY="90.0" onAction="#onProduct" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: #023c73; -fx-border-color: #023c73;" text="    PRODUCT" textFill="WHITE">
+                        <Button fx:id="btnProduct" layoutX="3.0" layoutY="60.0" onAction="#onProduct" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: #023c73; -fx-border-color: #023c73;" text="    PRODUCT" textFill="WHITE">
                             <font><Font name="System Bold" size="14.0" /></font>
                         </Button>
 
-                        <Button fx:id="btnEmployee" layoutX="3.0" layoutY="130.0" onAction="#onEmployee" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: #023c73; -fx-border-color: #023c73;" text="     EMPLOYEE" textFill="WHITE">
+                        <Button fx:id="btnEmployee" layoutX="3.0" layoutY="100.0" onAction="#onEmployee" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: #023c73; -fx-border-color: #023c73;" text="     EMPLOYEE" textFill="WHITE">
                             <font><Font name="System Bold" size="14.0" /></font>
                         </Button>
 
-                        <Button fx:id="btnTransport" layoutX="3.0" layoutY="170.0" onAction="#onTransport" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: #023c73; -fx-border-color: #023c73;" text="        TRANSPORT" textFill="WHITE">
+                        <Button fx:id="btnTransport" layoutX="3.0" layoutY="140.0" onAction="#onTransport" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: #023c73; -fx-border-color: #023c73;" text="        TRANSPORT" textFill="WHITE">
                             <font><Font name="System Bold" size="14.0" /></font>
                         </Button>
 
-                        <Button fx:id="btnBooking" layoutX="3.0" layoutY="210.0" onAction="#onBooking" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: #023c73; -fx-border-color: #023c73;" text="    BOOKING" textFill="WHITE">
+                        <Button fx:id="btnBooking" layoutX="3.0" layoutY="180.0" onAction="#onBooking" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: #023c73; -fx-border-color: #023c73;" text="    BOOKING" textFill="WHITE">
                             <font><Font name="System Bold" size="14.0" /></font>
                         </Button>
 
-                        <Button fx:id="btnPayment" layoutX="3.0" layoutY="250.0" onAction="#onPayment" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: #023c73; -fx-border-color: #023c73;" text="    PAYMENT" textFill="WHITE">
+                        <Button fx:id="btnPayment" layoutX="3.0" layoutY="220.0" onAction="#onPayment" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: #023c73; -fx-border-color: #023c73;" text="    PAYMENT" textFill="WHITE">
                             <font><Font name="System Bold" size="14.0" /></font>
                         </Button>
 
-                        <Button fx:id="btnSalary" layoutX="3.0" layoutY="290.0" onAction="#onSalary" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: #023c73; -fx-border-color: #023c73;" text="SALARY" textFill="WHITE">
+                        <Button fx:id="btnSalary" layoutX="3.0" layoutY="260.0" onAction="#onSalary" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: #023c73; -fx-border-color: #023c73;" text="SALARY" textFill="WHITE">
                             <font><Font name="System Bold" size="14.0" /></font>
                         </Button>
 
-                        <Button fx:id="btnRegister" layoutX="3.0" layoutY="330.0" onAction="#onRegister" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: #023c73; -fx-border-color: #023c73;" text="  REGISTER" textFill="WHITE">
+                        <Button fx:id="btnRegister" layoutX="3.0" layoutY="380.0" onAction="#onRegister" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: #023c73; -fx-border-color: #023c73;" text="  REGISTER" textFill="WHITE">
                             <font><Font name="System Bold" size="14.0" /></font>
                         </Button>
 
-                        <Button fx:id="btnAdminManage" layoutX="3.0" layoutY="370.0" onAction="#onAdminManage" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: #023c73; -fx-border-color: #023c73;" text="                ADMIN MANAGE" textFill="WHITE">
+                        <Button fx:id="btnAdminManage" layoutX="3.0" layoutY="420.0" onAction="#onAdminManage" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: #023c73; -fx-border-color: #023c73;" text="                ADMIN MANAGE" textFill="WHITE">
                             <font><Font name="System Bold" size="14.0" /></font>
                         </Button>
 
-                        <Pane layoutX="3.0" layoutY="410.0" opacity="0.19" prefHeight="3.0" prefWidth="195.0" style="-fx-background-color: f5f1f8;" />
+                        <Pane layoutX="3.0" layoutY="460.0" opacity="0.19" prefHeight="3.0" prefWidth="195.0" style="-fx-background-color: f5f1f8;" />
 
-                        <Button fx:id="btnReport" layoutX="3.0" layoutY="430.0" onAction="#onReport" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: #023c73; -fx-border-color: #023c73;" text="REPORT" textFill="WHITE">
+                        <Button fx:id="btnReport" layoutX="3.0" layoutY="470.0" onAction="#onReport" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: #023c73; -fx-border-color: #023c73;" text="REPORT" textFill="WHITE">
                             <font><Font name="System Bold" size="14.0" /></font>
                         </Button>
 
@@ -65,39 +65,59 @@
                         </Button>
 
                         <!-- Icons -->
-                        <ImageView fx:id="pnsDashbord" fitHeight="20.0" fitWidth="20.0" layoutX="38.0" layoutY="55.0" preserveRatio="true">
+                        <ImageView fx:id="pnsDashbord" fitHeight="20.0" fitWidth="20.0" layoutX="38.0" layoutY="25.0" preserveRatio="true">
                             <image><Image url="@../images/dashboard(1).png" /></image>
                         </ImageView>
-                        <ImageView fx:id="pngProduct" fitHeight="20.0" fitWidth="20.0" layoutX="38.0" layoutY="96.0" preserveRatio="true">
+                        <ImageView fx:id="pngProduct" fitHeight="20.0" fitWidth="20.0" layoutX="38.0" layoutY="66.0" preserveRatio="true">
                             <image><Image url="@../images/product.png" /></image>
                         </ImageView>
-                        <ImageView fx:id="pngEmployee" fitHeight="20.0" fitWidth="20.0" layoutX="38.0" layoutY="136.0" preserveRatio="true">
+                        <ImageView fx:id="pngEmployee" fitHeight="20.0" fitWidth="20.0" layoutX="38.0" layoutY="106.0" preserveRatio="true">
                             <image><Image url="@../images/employee.png" /></image>
                         </ImageView>
-                        <ImageView fx:id="pngTransport" fitHeight="20.0" fitWidth="20.0" layoutX="38.0" layoutY="176.0" preserveRatio="true">
+                        <ImageView fx:id="pngTransport" fitHeight="20.0" fitWidth="20.0" layoutX="38.0" layoutY="146.0" preserveRatio="true">
                             <image><Image url="@../images/deliver.png" /></image>
                         </ImageView>
-                        <ImageView fx:id="pngBooking" fitHeight="20.0" fitWidth="20.0" layoutX="38.0" layoutY="216.0" preserveRatio="true">
+                        <ImageView fx:id="pngBooking" fitHeight="20.0" fitWidth="20.0" layoutX="38.0" layoutY="186.0" preserveRatio="true">
                             <image><Image url="@../images/booking.png" /></image>
                         </ImageView>
-                        <ImageView fx:id="pngPayment" fitHeight="20.0" fitWidth="20.0" layoutX="38.0" layoutY="256.0" preserveRatio="true">
+                        <ImageView fx:id="pngPayment" fitHeight="20.0" fitWidth="20.0" layoutX="38.0" layoutY="226.0" preserveRatio="true">
                             <image><Image url="@../images/payment.png" /></image>
                         </ImageView>
-                        <ImageView fx:id="pngSalary" fitHeight="20.0" fitWidth="20.0" layoutX="38.0" layoutY="296.0" preserveRatio="true">
+                        <ImageView fx:id="pngSalary" fitHeight="20.0" fitWidth="20.0" layoutX="38.0" layoutY="266.0" preserveRatio="true">
                             <image><Image url="@../images/salary.png" /></image>
                         </ImageView>
-                        <ImageView fx:id="pngRegister" fitHeight="20.0" fitWidth="20.0" layoutX="38.0" layoutY="336.0" preserveRatio="true">
+                        <ImageView fx:id="pngRegister" fitHeight="20.0" fitWidth="20.0" layoutX="38.0" layoutY="386.0" preserveRatio="true">
                             <image><Image url="@../images/key.png" /></image>
                         </ImageView>
-                        <ImageView fx:id="pngAdminManage" fitHeight="20.0" fitWidth="20.0" layoutX="38.0" layoutY="376.0" preserveRatio="true">
+                        <ImageView fx:id="pngAdminManage" fitHeight="20.0" fitWidth="20.0" layoutX="38.0" layoutY="426.0" preserveRatio="true">
                             <image><Image url="@../images/admin.png" /></image>
                         </ImageView>
-                        <ImageView fx:id="pngReport" fitHeight="20.0" fitWidth="20.0" layoutX="38.0" layoutY="436.0" preserveRatio="true">
+                        <ImageView fx:id="pngReport" fitHeight="20.0" fitWidth="20.0" layoutX="38.0" layoutY="476.0" preserveRatio="true">
                             <image><Image url="@../images/report.png" /></image>
                         </ImageView>
                         <ImageView fx:id="pngLogout" fitHeight="20.0" fitWidth="20.0" layoutX="38.0" layoutY="546.0" preserveRatio="true">
                             <image><Image url="@../images/logout.png" /></image>
                         </ImageView>
+                  <Button fx:id="btnStock" layoutX="3.0" layoutY="300.0" onAction="#onStock" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: #023c73; -fx-border-color: #023c73;" text="STOCK " textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <ImageView fx:id="pngStock" fitHeight="25.0" fitWidth="25.0" layoutX="37.0" layoutY="304.0" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/stock.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="btnInventory" layoutX="3.0" layoutY="340.0" onAction="#onInventory" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: #023c73; -fx-border-color: #023c73;" text="         INVENTORY" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <ImageView fx:id="pngInventory" fitHeight="22.0" fitWidth="25.0" layoutX="39.0" layoutY="346.0" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/inventory.png" />
+                     </image>
+                  </ImageView>
 
                     </children>
                 </Pane>

@@ -64,26 +64,38 @@ INSERT INTO Vehicle (vehicle_number, status, capacity, model) VALUES
 --     Customer Table
 -- ========================
 CREATE TABLE Customer (
-                          customer_id INT PRIMARY KEY AUTO_INCREMENT,
+                          customer_id VARCHAR(5) PRIMARY KEY,
                           name VARCHAR(100) NOT NULL,
                           nic VARCHAR(12) UNIQUE,
                           email VARCHAR(50) UNIQUE NOT NULL,
                           contact VARCHAR(20) UNIQUE NOT NULL,
-                          address TEXT NOT NULL
+                          address VARCHAR(100) NOT NULL,
+                          description VARCHAR(100)
 );
 
-INSERT INTO Customer (name, nic, email, contact, address) VALUES
-    ('Customer', 'customer3015', 'customer@gmail.com', '0778373015', 'Galle');
+INSERT INTO Customer (customer_id, name, nic, email, contact, address, description) VALUES
+                                                                                        ('C001', 'New Customer', '123456789112', 'customer@gmail.com', '0766631215', 'Galle', 'Regular buyer'),
+                                                                                        ('C002', 'Nimal Perera', '901234567V', 'nimalp@gmail.com', '0771234567', 'Colombo', 'Wholesale customer'),
+                                                                                        ('C003', 'Kamal Silva', '911234568V', 'kamals@gmail.com', '0719876543', 'Kandy', 'Retail order'),
+                                                                                        ('C004', 'Tharindu Wijesinghe', '921234569V', 'tharinduw@gmail.com', '0751122334', 'Matara', 'Buys weekly'),
+                                                                                        ('C005', 'Saman Kumara', '931234570V', 'samank@gmail.com', '0782233445', 'Anuradhapura', 'Bulk orders'),
+                                                                                        ('C006', 'Dilani Fernando', '941234571V', 'dilanif@gmail.com', '0723344556', 'Negombo', 'Monthly customer'),
+                                                                                        ('C007', 'Ishara Jayasuriya', '951234572V', 'isharaj@gmail.com', '0764455667', 'Kurunegala', 'Prefers evening delivery'),
+                                                                                        ('C008', 'Ruwan Hettiarachchi', '961234573V', 'ruwanh@gmail.com', '0705566778', 'Badulla', 'Cash payments'),
+                                                                                        ('C009', 'Harsha Rajapaksha', '971234574V', 'harshar@gmail.com', '0746677889', 'Nuwara Eliya', 'Occasional orders'),
+                                                                                        ('C010', 'Thisara Madushanka', '981234575V', 'thisaram@gmail.com', '0737788990', 'Ratnapura', 'Follows up often');
+
 
 -- ========================
 --     Orders Table
 -- ========================
 CREATE TABLE Orders (
-                        order_id INT PRIMARY KEY AUTO_INCREMENT,
-                        customer_id INT NOT NULL,
-                        order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        order_id INT PRIMARY KEY,
+                        customer_id VARCHAR(5) NOT NULL,
+                        order_date DATE NOT NULL,
                         order_time TIME,
-                        status ENUM('Pending', 'Completed', 'Cancelled') NOT NULL,
+                        description VARCHAR(100),
+                        vehicle_number VARCHAR(50),
                         total_amount DECIMAL(10,2) NOT NULL,
                         FOREIGN KEY (customer_id) REFERENCES Customer(customer_id) ON DELETE CASCADE
 );
@@ -111,21 +123,23 @@ INSERT INTO Product (product_id, name, weight, price_per_unit) VALUES
 CREATE TABLE Stock (
                        stock_id INT PRIMARY KEY AUTO_INCREMENT,
                        product_id VARCHAR(4) NOT NULL,
+                       product_name VARCHAR(100) NOT NULL,
                        stock_quantity INT NOT NULL CHECK (stock_quantity >= 0),
-                       last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                       stock_date DATE NOT NULL,
+                       stock_time TIME NOT NULL,
                        FOREIGN KEY (product_id) REFERENCES Product(product_id) ON DELETE CASCADE
 );
+
 
 -- ========================
 --     Order Details Table
 -- ========================
 CREATE TABLE Order_Details (
-                               orderDetails_id INT PRIMARY KEY AUTO_INCREMENT,
                                order_id INT NOT NULL,
                                product_id VARCHAR(4) NOT NULL,
                                quantity INT NOT NULL CHECK (quantity > 0),
-                               price DECIMAL(10,2) NOT NULL CHECK (price > 0),
-                               request_time TIME,
+                               unit_price DECIMAL(10,2) NOT NULL CHECK (unit_price > 0),
+                               discount DECIMAL(10,2),
                                FOREIGN KEY (order_id) REFERENCES Orders(order_id) ON DELETE CASCADE,
                                FOREIGN KEY (product_id) REFERENCES Product(product_id) ON DELETE CASCADE
 );
@@ -167,10 +181,8 @@ CREATE TABLE Delivery (
                           delivery_time TIME NOT NULL,
                           delivery_address TEXT NOT NULL,
                           delivery_status ENUM('Pending', 'Completed', 'Failed') NOT NULL,
-                          driver_id VARCHAR(5) NOT NULL,
                           vehicle_id INT NOT NULL,
                           FOREIGN KEY (order_id) REFERENCES Orders(order_id) ON DELETE CASCADE,
-                          FOREIGN KEY (driver_id) REFERENCES Employee(employee_id) ON DELETE CASCADE,
                           FOREIGN KEY (vehicle_id) REFERENCES Vehicle(vehicle_id) ON DELETE CASCADE
 );
 
@@ -201,6 +213,7 @@ CREATE TABLE Salary (
                         net_amount DECIMAL(10,2) NOT NULL CHECK (net_amount >= 0),
                         pay_month INT NOT NULL CHECK (pay_month BETWEEN 1 AND 12),
                         pay_year INT NOT NULL CHECK (pay_year >= 2000),
+                        status ENUM('PENDING','COMPLETED','CANCELLED') DEFAULT 'PENDING',
                         FOREIGN KEY (employee_id) REFERENCES Employee(employee_id) ON DELETE CASCADE
 );
 
@@ -220,31 +233,76 @@ CREATE TABLE Salary_Payment (
 --     Supplier Table
 -- ========================
 CREATE TABLE Supplier (
-                          supplier_id INT PRIMARY KEY AUTO_INCREMENT,
+                          supplier_id VARCHAR(5) PRIMARY KEY,
                           name VARCHAR(100) NOT NULL,
                           nic VARCHAR(12) UNIQUE,
                           contact VARCHAR(20) UNIQUE NOT NULL,
                           email VARCHAR(50) UNIQUE NOT NULL,
-                          address TEXT NOT NULL
+                          address VARCHAR(100) NOT NULL
 );
 
 -- ========================
 --     Raw Materials Table
 -- ========================
 CREATE TABLE Raw_Materials (
-                               material_id INT PRIMARY KEY AUTO_INCREMENT,
+                               material_id INT PRIMARY KEY,
+                               supplier_id VARCHAR(5) NOT NULL ,
                                name VARCHAR(100) NOT NULL,
                                unit_type ENUM('Kg', 'Litre', 'Unit') NOT NULL,
                                unit_cost DECIMAL(10,2) NOT NULL CHECK (unit_cost > 0),
-                               quantity_available INT NOT NULL CHECK (quantity_available >= 0)
+                               lastUpdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                               quantity_available INT NOT NULL CHECK (quantity_available >= 0),
+                               FOREIGN KEY (supplier_id) REFERENCES Supplier(supplier_id) ON DELETE CASCADE
+
 );
+CREATE TABLE Inventory_Cart (
+                                cart_id INT AUTO_INCREMENT PRIMARY KEY,
+                                supplier_id VARCHAR(10) NOT NULL,
+                                material_id INT NOT NULL,
+                                name VARCHAR(100) NOT NULL,
+                                unit_type ENUM('Kg', 'Litre', 'Unit') NOT NULL,
+                                unit_price DECIMAL(10, 2) NOT NULL,
+                                quantity INT NOT NULL,
+                                total DECIMAL(10, 2) GENERATED ALWAYS AS (unit_price * quantity) STORED,
+
+                                FOREIGN KEY (supplier_id) REFERENCES Supplier(supplier_id)ON DELETE CASCADE,
+                                FOREIGN KEY (material_id) REFERENCES Raw_Materials(material_id)ON DELETE CASCADE
+);
+
+
+INSERT INTO Supplier (supplier_id, name, nic, contact, email, address) VALUES
+                                                                           ('S001', 'ABC Traders', '123456789V', '0771234567', 'abc@traders.com', 'Colombo'),
+                                                                           ('S002', 'XYZ Supplies', '987654321V', '0779876543', 'xyz@supplies.com', 'Kandy'),
+                                                                           ('S003', 'Global Distributors', '456123789V', '0761234567', 'global@distributors.com', 'Galle'),
+                                                                           ('S004', 'Mega Mart', '321654987V', '0714567890', 'mega@mart.com', 'Negombo'),
+                                                                           ('S005', 'Industrial Hub', '741852963V', '0756547891', 'hub@industrial.com', 'Matara');
+
+
+INSERT INTO Raw_Materials (material_id, supplier_id, name, unit_type, unit_cost, quantity_available) VALUES
+                                                                                                         (1, 'S001', 'Glouse', 'Unit', 40.00, 20),
+                                                                                                         (2, 'S001', 'Boat', 'Unit', 240.00, 4),
+                                                                                                         (3, 'S002', 'Jacket', 'Unit', 240.00, 10),
+                                                                                                         (4, 'S003', 'Paper Roll', 'Unit', 50.00, 8),
+                                                                                                         (5, 'S002', 'Medicine', 'Unit', 5000.00, 1),
+                                                                                                         (6, 'S003', 'Welfare Kit', 'Unit', 20000.00, 1),
+                                                                                                         (7, 'S003', 'Document Pack', 'Unit', 5000.00, 1),
+                                                                                                         (8, 'S004', 'Electricity Bill', 'Unit', 4000000.00, 1),
+                                                                                                         (9, 'S004', 'Water Bill', 'Unit', 20000.00, 1),
+                                                                                                         (10, 'S001', 'Salt', 'Kg', 50.00, 100),
+                                                                                                         (11, 'S005', 'Oil', 'Litre', 300.00, 20),
+                                                                                                         (12, 'S005', 'Ammonia Cylinder', 'Unit', 15000.00, 1),
+                                                                                                         (13, 'S001', 'Grease', 'Kg', 800.00, 5),
+                                                                                                         (14, 'S002', 'Vehicle Diesel', 'Litre', 350.00, 50000),
+                                                                                                         (15, 'S005', 'Vehicle Service', 'Unit', 90000.00, 3);
+
+
 
 -- ========================
 --     Purchase Table
 -- ========================
 CREATE TABLE Purchase (
                           purchase_id INT PRIMARY KEY AUTO_INCREMENT,
-                          supplier_id INT NOT NULL,
+                          supplier_id VARCHAR(5) NOT NULL ,
                           material_id INT NOT NULL,
                           purchase_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                           quantity INT NOT NULL CHECK (quantity > 0),
@@ -252,12 +310,30 @@ CREATE TABLE Purchase (
                           FOREIGN KEY (material_id) REFERENCES Raw_Materials(material_id) ON DELETE CASCADE
 );
 
+-- ========================
+--     Booking Table
+-- ========================
+CREATE TABLE Booking (
+                         booking_id INT PRIMARY KEY AUTO_INCREMENT,
+                         customer_id VARCHAR(5) NOT NULL,
+                         product_id VARCHAR(4) NOT NULL,
+                         request_date DATE NOT NULL,
+                         request_time TIME NOT NULL,
+                         quantity INT NOT NULL CHECK (quantity > 0),
+                         status ENUM('Pending', 'Confirmed', 'Cancelled') DEFAULT 'Pending',
+
+                         FOREIGN KEY (customer_id) REFERENCES Customer(customer_id) ON DELETE CASCADE,
+                         FOREIGN KEY (product_id) REFERENCES Product(product_id) ON DELETE CASCADE
+);
+
+
+
 -- ===============================
 --     SMS & Email Notifications
 -- ===============================
 CREATE TABLE SMS_Email (
                            notification_id INT PRIMARY KEY AUTO_INCREMENT,
-                           customer_id INT(5) NOT NULL,
+                           customer_id VARCHAR(5) NOT NULL,
                            order_id INT NOT NULL,
                            type ENUM('SMS', 'Email') NOT NULL,
                            sent_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -284,6 +360,24 @@ CREATE TABLE Transport (
                            FOREIGN KEY (vehicle_id) REFERENCES Vehicle(vehicle_id) ON DELETE CASCADE,
                            FOREIGN KEY (driver_id) REFERENCES Employee(employee_id) ON DELETE CASCADE
 );
+
+-- ========================
+--     PendingOrder Table
+-- ========================
+CREATE TABLE PendingOrder (
+                              pending_order_id INT AUTO_INCREMENT PRIMARY KEY,
+                              order_id INT NOT NULL,
+                              customer_id VARCHAR(5) NOT NULL,
+                              product_id VARCHAR(4) NOT NULL,
+                              quantity INT NOT NULL CHECK (quantity > 0),
+                              request_time DATETIME NOT NULL,
+                              status ENUM('PENDING','COMPLETED','CANCELLED') DEFAULT 'PENDING',
+                              FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+                              FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
+                              FOREIGN KEY (product_id) REFERENCES Product(product_id)
+);
+
+
 -- -----------------------------------------------------------------------------------------------------------------
 
 USE Dry_Ice_Management_System;
@@ -355,3 +449,31 @@ INSERT INTO Employee (
        '400500600700', 'Sampath Bank - Nuwara Eliya', 'U5678901');
 
 
+INSERT INTO Booking (customer_id, product_id, request_date, request_time, quantity, status) VALUES
+                                                                                                      ('C001', 'I001', '2025-05-01', '09:30:00', 50, 'Pending'),
+                                                                                                      ('C002', 'I002', '2025-05-02', '10:15:00', 30, 'Confirmed'),
+                                                                                                      ('C003', 'I003', '2025-06-03', '14:00:00', 40, 'Cancelled'),
+                                                                                                      ('C004', 'I004', '2025-05-04', '08:45:00', 20, 'Pending'),
+                                                                                                      ('C005', 'I004', '2025-07-15', '13:20:00', 60, 'Confirmed'),
+                                                                                                      ('C006', 'I001', '2025-05-06', '11:10:00', 25, 'Pending'),
+                                                                                                      ('C007', 'I002', '2025-04-07', '15:00:00', 35, 'Pending'),
+                                                                                                      ('C008', 'I003', '2025-05-08', '09:00:00', 45, 'Confirmed'),
+                                                                                                      ('C009', 'I004', '2025-07-09', '16:30:00', 70, 'Pending'),
+                                                                                                      ('C010', 'I001', '2025-05-20', '07:30:00', 15, 'Cancelled');
+
+
+-- Sample insert statements for the Stock table
+
+-- Insert sample salary data
+INSERT INTO Salary (employee_id, basic_amount, bonus, deduction, net_amount, pay_month, pay_year)
+VALUES
+    ('E001', 50000.00, 5000.00, 2000.00, 53000.00, 5, 2025),
+    ('E002', 45000.00, 3000.00, 1500.00, 46500.00, 5, 2025),
+    ('E003', 60000.00, 7000.00, 2500.00, 64500.00, 5, 2025),
+    ('E004', 40000.00, 2000.00, 1000.00, 41000.00, 5, 2025),
+    ('E005', 55000.00, 4500.00, 3000.00, 56500.00, 5, 2025),
+    ('E006', 52000.00, 4000.00, 2000.00, 54000.00, 5, 2025),
+    ('E007', 48000.00, 3500.00, 1800.00, 49700.00, 5, 2025),
+    ('E008', 47000.00, 2000.00, 1200.00, 47800.00, 5, 2025),
+    ('E009', 49000.00, 1000.00, 900.00, 49100.00, 5, 2025),
+    ('E010', 51000.00, 3000.00, 1700.00, 52300.00, 5, 2025);

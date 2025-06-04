@@ -24,5 +24,6 @@ public class AppInitializer extends Application {
         stage.setMinWidth(1300);
         stage.setMinHeight(600);
         stage.show();
+
     }
 }

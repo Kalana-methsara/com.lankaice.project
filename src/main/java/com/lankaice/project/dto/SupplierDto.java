@@ -8,11 +8,20 @@ import lombok.*;
 @Setter
 @ToString
 public class SupplierDto {
-    private int supplierId;
+    private String supplierId;
     private String name;
     private String nic;
     private String contact;
     private String email;
     private String address;
 
+    public SupplierDto(String supplierId, String name,String email) {
+        this.supplierId = supplierId;
+        this.name = name;
+        this.email=email;
+    }
+    @Override
+    public String toString() {
+        return supplierId;
+    }
 }

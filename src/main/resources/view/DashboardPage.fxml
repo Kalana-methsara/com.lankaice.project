@@ -138,11 +138,12 @@
                 <!-- Orders Table -->
                 <TableView fx:id="tableOrder" layoutX="58.0" layoutY="400.0" prefHeight="240.0" prefWidth="770.0" style="-fx-border-color: #1d4ed8;" stylesheets="@../style/tableViewStyle.css">
                     <columns>
-                        <TableColumn fx:id="colOrderNo" prefWidth="106.0" text="ORDER ID" />
-                        <TableColumn fx:id="colCustomerName" prefWidth="213.0" text="CUSTOMER NAME" />
-                        <TableColumn fx:id="colProcuctName" prefWidth="207.0" text="PRODUCT NAME" />
-                        <TableColumn fx:id="colQty" prefWidth="101.0" text="QTY" />
-                        <TableColumn fx:id="colTime" prefWidth="142.0" text="REQUEST TIME" />
+                        <TableColumn fx:id="colOrderNo" text="ORDER ID" />
+                        <TableColumn fx:id="colCustomerName" prefWidth="176.0" text="CUSTOMER NAME" />
+                        <TableColumn fx:id="colProcuctName" prefWidth="119.0" text="PRODUCT NAME" />
+                        <TableColumn fx:id="colQty" prefWidth="71.0" text="QTY" />
+                  <TableColumn fx:id="colStatus" prefWidth="112.0" text="STATUS" />
+                        <TableColumn fx:id="colAction" prefWidth="239.0" text="REQUEST TIME" />
                     </columns>
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

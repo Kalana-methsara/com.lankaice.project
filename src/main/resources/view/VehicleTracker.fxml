@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.web.WebView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="ancVehicalTracker" xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx/8.0.171"
+            fx:controller="com.lankaice.project.controller.VehicleTrackerController"
+            prefWidth="800.0" prefHeight="600.0" style="-fx-background-color: E9F1F6; -fx-background-radius: 10;" >
+
+    <!-- Title Label -->
+    <Label layoutX="270.0" layoutY="20.0" text="Vehicle GPS Tracker">
+        <font>
+            <Font name="System Bold" size="24.0"/>
+        </font>
+    </Label>
+
+    <!-- Latitude -->
+    <Label layoutX="80.0" layoutY="80.0" text="Latitude:"/>
+    <Label fx:id="lblLat" layoutX="150.0" layoutY="80.0" text="--"
+           style="-fx-font-size: 14px;"/>
+
+    <!-- Longitude -->
+    <Label layoutX="400.0" layoutY="80.0" text="Longitude:"/>
+    <Label fx:id="lblLon" layoutX="490.0" layoutY="80.0" text="--"
+           style="-fx-font-size: 14px;"/>
+
+    <!-- WebView for Google Maps -->
+    <WebView fx:id="webView" layoutX="80.0" layoutY="130.0" prefWidth="640.0" prefHeight="400.0"/>
+
+</AnchorPane>

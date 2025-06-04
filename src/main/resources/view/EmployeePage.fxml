@@ -136,9 +136,14 @@
                   <Font name="System Bold" size="36.0" />
                </font>
             </Label>
+            <ImageView fitHeight="29.0" fitWidth="40.0" layoutX="410.0" layoutY="67.0" onMouseClicked="#onSendMail" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/email.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
-      <TableView fx:id="tableView" layoutX="20.0" layoutY="370.0" onMouseClicked="#SetData" prefHeight="191.0" prefWidth="1150.0" stylesheets="@../style/tableViewStyle.css">
+      <TableView fx:id="tableView" layoutX="20.0" layoutY="370.0" onMouseClicked="#SetData" prefHeight="191.0" prefWidth="1150.0" style="-fx-border-color: #1d4ed8;" stylesheets="@../style/tableViewStyle.css">
          <columns>
             <TableColumn fx:id="colEmployeeId" prefWidth="143.0" style="-fx-alignment: CENTER;" text="Employee Id" />
             <TableColumn fx:id="colNIC" prefWidth="152.0" style="-fx-alignment: CENTER;" text="NIC" />

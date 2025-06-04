@@ -8,10 +8,9 @@ import lombok.*;
 @Setter
 @ToString
 public class OrderDetailsDto {
-   private int orderDetailsId;
    private int orderId;
-   private int productId;
+   private String productId;
    private int quantity;
-   private double price;
-   private String request_time;
+   private double unitPrice;
+   private double discount;
 }

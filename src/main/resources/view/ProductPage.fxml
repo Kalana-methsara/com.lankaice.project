@@ -59,7 +59,7 @@
                         </HBox>
                     </children>
                 </Pane>
-                <Label alignment="CENTER" layoutX="37.0" layoutY="82.0" prefHeight="32.0" prefWidth="122.0" style="-fx-border-color: Blue; -fx-border-radius: 10;" text="Product">
+                <Label fx:id="lblOrderId" alignment="CENTER" layoutX="37.0" layoutY="82.0" prefHeight="32.0" prefWidth="122.0" style="-fx-border-color: Blue; -fx-border-radius: 10;" text="1001">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>
@@ -150,7 +150,7 @@
                 <HBox layoutX="23.0" layoutY="454.0" prefHeight="25.0" prefWidth="790.0" spacing="30.0">
                     <children>
                         <TextField fx:id="txtDiscription" alignment="CENTER" prefHeight="22.0" prefWidth="256.0" style="-fx-border-color: Blue; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: E9F1F6;" />
-                        <TextField fx:id="txtVehicleNo" alignment="CENTER" prefHeight="25.0" prefWidth="192.0" style="-fx-border-color: Blue; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: E9F1F6;" />
+                  <ChoiceBox fx:id="txtVehicleNo" prefHeight="25.0" prefWidth="192.0" style="-fx-border-radius: 5; -fx-border-color: Blue; -fx-background-radius: 5; -fx-background-color: E9F1F6;" />
                         <ChoiceBox fx:id="choiceBoxPay" prefHeight="25.0" prefWidth="120.0" style="-fx-border-radius: 5; -fx-border-color: Blue; -fx-background-radius: 5; -fx-background-color: E9F1F6;" />
                         <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#onActionAdd" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: Blue;" text="ADD" textFill="WHITE">
                             <font>
@@ -172,7 +172,7 @@
                 <Label layoutX="312.0" layoutY="436.0" text="VEHICLE NO" />
                 <Label layoutX="24.0" layoutY="436.0" text="DESCRIPTION" />
                 <Label layoutX="532.0" layoutY="436.0" text="PAY" />
-                <ChoiceBox fx:id="choiceBox1" layoutX="200.0" layoutY="82.0" prefHeight="32.0" prefWidth="300.0" style="-fx-border-radius: 5; -fx-border-color: Blue; -fx-background-radius: 5; -fx-background-color: E9F1F6;" />
+                <ChoiceBox fx:id="textCustomer" layoutX="200.0" layoutY="82.0" prefHeight="32.0" prefWidth="300.0" style="-fx-border-radius: 5; -fx-border-color: Blue; -fx-background-radius: 5; -fx-background-color: E9F1F6;" />
             </children>
         </Pane>
       <HBox layoutX="25.0" layoutY="130.0" spacing="5.0">

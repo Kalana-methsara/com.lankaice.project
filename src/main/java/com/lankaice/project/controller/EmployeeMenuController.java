@@ -143,7 +143,7 @@ public class EmployeeMenuController implements Initializable {
             for (AttendanceDto dto : attendanceList) {
                 if ("Morning".equals(dto.getShift()) && dto.getOutTime() == null) {
 
-                    LocalTime defaultOutTime = LocalTime.of(16, 59);
+                    LocalTime defaultOutTime = LocalTime.of(17, 00);
                     attendanceModel.updateOutTime(dto.getEmployeeId(), today.toString(), "Morning", defaultOutTime);
 
                     AttendanceDto nightShiftAttendance = new AttendanceDto();
@@ -152,7 +152,7 @@ public class EmployeeMenuController implements Initializable {
                     nightShiftAttendance.setDate(today);
                     nightShiftAttendance.setShift("Night");
                     nightShiftAttendance.setStatus("Present");
-                    nightShiftAttendance.setInTime(LocalTime.of(17, 1));
+                    nightShiftAttendance.setInTime(LocalTime.of(17, 00));
                     nightShiftAttendance.setOutTime(null);
 
                     attendanceModel.markAttendance(nightShiftAttendance);

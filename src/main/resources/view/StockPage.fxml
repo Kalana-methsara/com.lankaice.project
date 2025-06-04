@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1209.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lankaice.project.controller.StockPageController">
+    <children>
+        <Pane layoutX="184.0" layoutY="30.0" prefHeight="612.0" prefWidth="858.0" style="-fx-background-color: E9F1F6; -fx-background-radius: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label layoutX="58.0" layoutY="46.0" text="STOCK" textFill="#023c73">
+                    <font>
+                        <Font name="System Bold" size="19.0" />
+                    </font>
+                </Label>
+                <TableView fx:id="tableView" layoutX="24.0" layoutY="163.0" onMouseClicked="#setData" prefHeight="414.0" prefWidth="1100.0" style="-fx-border-color: #1d4ed8;" stylesheets="@../style/tableViewStyle.css">
+                    <columns>
+                        <TableColumn fx:id="colStockId" prefWidth="143.0" style="-fx-alignment: CENTER;" text="ID" />
+                        <TableColumn fx:id="colProductId" prefWidth="166.0" style="-fx-alignment: CENTER;" text="Product Id" />
+                        <TableColumn fx:id="colProductName" prefWidth="288.0" text="Product Name" />
+                        <TableColumn fx:id="colQty" prefWidth="160.0" style="-fx-alignment: CENTER;" text="Qty" />
+                        <TableColumn fx:id="colDate" prefWidth="176.0" style="-fx-alignment: CENTER;" text="Date" />
+                        <TableColumn fx:id="colTime" prefWidth="148.0" style="-fx-alignment: CENTER;" text="Time" />
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                </TableView>
+                <TextField fx:id="txtSearch" layoutX="200.0" layoutY="45.0" onAction="#txtSearchOnAction" prefHeight="28.0" prefWidth="293.0" promptText="Search" style="-fx-background-color: E9F1F6; -fx-background-radius: 5; -fx-border-color: #1d4ed8; -fx-border-radius: 5;" />
+                <Button layoutX="37.0" layoutY="128.0" mnemonicParsing="false" onAction="#btnReportOnAction" prefHeight="28.0" prefWidth="113.0" style="-fx-background-color: E9F1F6; -fx-border-color: #1d4ed8; -fx-border-radius: 5; -fx-background-radius: 5;" text="Report" textFill="#1d4ed8">
+                    <font>
+                        <Font name="System Bold" size="11.0" />
+                    </font>
+                </Button>
+                <Button layoutX="1030.0" layoutY="46.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #c0392b;" text="DELETE STOCK" textFill="WHITE" />
+                <Button layoutX="610.0" layoutY="46.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #e67e22;" text="CLEAR" textFill="WHITE" />
+                <Button layoutX="890.0" layoutY="46.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #27ae60;" text="UPDATE STOCK" textFill="WHITE" />
+                <ChoiceBox fx:id="textMonth" layoutX="230.0" layoutY="127.0" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: E9F1F6; -fx-border-color: #1D4ED8FF; -fx-background-radius: 5; -fx-border-radius: 5;" />
+                <Label fx:id="txtYear" alignment="CENTER" layoutX="351.0" layoutY="127.0" prefHeight="28.0" prefWidth="100.0" style="-fx-border-color: #1D4ED8FF; -fx-background-radius: 5; -fx-border-radius: 5;" textFill="#1d4ed8">
+                    <font>
+                        <Font name="System Bold" size="17.0" />
+                    </font>
+                </Label>
+                <Label layoutX="467.0" layoutY="125.0" prefHeight="28.0" prefWidth="100.0" text="Product Id">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="677.0" layoutY="125.0" prefHeight="28.0" prefWidth="113.0" text="Product Name">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="textProductName" layoutX="799.0" layoutY="120.0" prefHeight="28.0" prefWidth="132.0" style="-fx-background-color: E9F1F6; -fx-border-width: 0 0 2 0; -fx-border-color: #2196f3;" />
+                <TextField fx:id="textQty" layoutX="1011.0" layoutY="120.0" prefHeight="26.0" prefWidth="100.0" style="-fx-background-color: E9F1F6; -fx-border-width: 0 0 2 0; -fx-border-color: #2196f3;" />
+                <Label layoutX="969.0" layoutY="125.0" prefHeight="28.0" prefWidth="28.0" text="Qty">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+            <ComboBox fx:id="txtProductId" layoutX="558.0" layoutY="120.0" onAction="#onProductId" prefHeight="28.0" prefWidth="80.0" style="-fx-background-color: E9F1F6; -fx-border-color: #2196f3; -fx-border-width: 0 0 2 0;" />
+            <Label fx:id="txtId" alignment="CENTER" layoutX="170.0" layoutY="128.0" prefHeight="28.0" prefWidth="42.0" style="-fx-border-color: #1D4ED8FF; -fx-background-radius: 5; -fx-border-radius: 5;" textFill="#1d4ed8">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            </children>
+        </Pane>
+      <Button layoutX="750.0" layoutY="46.0" mnemonicParsing="false" onAction="#btnAddEmployeeOnAction" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #2980b9;" text="ADD STOCK" textFill="WHITE" />
+    </children>
+</AnchorPane>

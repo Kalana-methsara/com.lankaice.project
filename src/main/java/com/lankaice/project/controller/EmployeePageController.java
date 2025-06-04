@@ -97,6 +97,7 @@ public class EmployeePageController implements Initializable {
     private ChoiceBox<String> txtRole;
     @FXML
     private ChoiceBox<String> txtGender;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         txtRole.setItems(FXCollections.observableArrayList("Worker", "Supervisor", "Cashier", "Driver", "Manager"));
@@ -265,14 +266,16 @@ public class EmployeePageController implements Initializable {
             textLicenseNo.setText(employeeDto.getLicenseNumber());
         }
     }
-private void setNoOfEmployee(){
-    try {
-        int count = new EmployeeModel().getEmployeeCount();
-        noOfEmployee.setText(String.valueOf(count));
-    } catch (SQLException | ClassNotFoundException e) {
-        e.printStackTrace();
+
+    private void setNoOfEmployee() {
+        try {
+            int count = new EmployeeModel().getEmployeeCount();
+            noOfEmployee.setText(String.valueOf(count));
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
-}
+
     private void setServicePeriod() {
         if (textJoinDate.getValue() == null) return;
 
@@ -297,8 +300,6 @@ private void setNoOfEmployee(){
 
         textAge.setText(" " + years);
     }
-
-
 
 
     private void setGeneratedEmployeeId() {
@@ -393,9 +394,9 @@ private void setNoOfEmployee(){
             showErrorMessage("Invalid bank account number!");
             return false;
         }
-       if(!validateLicenseField() && !isLicenseDuplicate()){
-           return false;
-       }
+        if (!validateLicenseField() && !isLicenseDuplicate()) {
+            return false;
+        }
         return true;
     }
 
@@ -420,29 +421,30 @@ private void setNoOfEmployee(){
         return account != null && account.matches("^\\d{10,12}$");
     }
 
-   private boolean validateLicenseField() {
-       String selectedRole = txtRole.getValue();
-       String licenseText = textLicenseNo.getText();
+    private boolean validateLicenseField() {
+        String selectedRole = txtRole.getValue();
+        String licenseText = textLicenseNo.getText();
 
-       if ("Driver".equals(selectedRole)) {
-           if (licenseText.isEmpty()) {
-               showErrorMessage("License number is required for Drivers!");
-               return false;
-           }
-           if (!isValidLicense(licenseText)) {
-               showErrorMessage("Invalid license number format!");
-               return false;
-           }
-       }
+        if ("Driver".equals(selectedRole)) {
+            if (licenseText.isEmpty()) {
+                showErrorMessage("License number is required for Drivers!");
+                return false;
+            }
+            if (!isValidLicense(licenseText)) {
+                showErrorMessage("Invalid license number format!");
+                return false;
+            }
+        }
         if (!licenseText.isEmpty()) {
             if (!isValidLicense(licenseText)) {
                 showErrorMessage("Invalid license number format!");
                 return false;
             }
-       }
+        }
 
-       return true;
-   }
+        return true;
+    }
+
     private boolean isLicenseDuplicate() {
         String licenseText = textLicenseNo.getText();
 
@@ -490,6 +492,7 @@ private void setNoOfEmployee(){
     void btnSearchOnAction(ActionEvent event) {
         searchOnAction();
     }
+
     private void searchOnAction() {
         String searchText = textSearchEmployee.getText().trim().toLowerCase();
 
@@ -500,7 +503,7 @@ private void setNoOfEmployee(){
 
         try {
             EmployeeModel employeeModel = new EmployeeModel();
-            ArrayList<EmployeeDto> employees = employeeModel.searchEmployee(searchText,searchText,searchText,searchText,searchText,searchText,searchText,searchText,searchText,searchText,searchText,searchText,searchText);
+            ArrayList<EmployeeDto> employees = employeeModel.searchEmployee(searchText, searchText, searchText, searchText, searchText, searchText, searchText, searchText, searchText, searchText, searchText, searchText, searchText);
             ObservableList<EmployeeDto> filteredList = FXCollections.observableArrayList();
 
             for (EmployeeDto emp : employees) {
@@ -542,5 +545,33 @@ private void setNoOfEmployee(){
             e.printStackTrace();
             showErrorWithTimeout();
         }
+    }
+
+    public void onSendMail(MouseEvent mouseEvent) throws IOException {
+        String mail = textEmail.getText();
+        if (mail.isEmpty()) {
+            showErrorMessage("Email is required!");
+            return;
+        }
+
+        // Get current user (if you need it later)
+        UserDto user = Session.getCurrentUser();
+
+        // Load FXML and get the controller
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/SendMailPage.fxml"));
+        Parent rootNode = fxmlLoader.load();
+        SendMailPageController controller = fxmlLoader.getController();
+
+        // Pass email to the next controller
+        controller.setMail(mail);
+
+        // Create and show new stage
+        Scene scene = new Scene(rootNode);
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
     }
 }

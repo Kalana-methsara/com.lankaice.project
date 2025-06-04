@@ -9,7 +9,11 @@ import lombok.*;
 @ToString
 public class StockDto {
     private int stockId;
-    private int productId;
-    private int stockQuantity;
-    private String lastUpdate;
+    private String productId;
+    private String productName;
+    private Integer qty;
+    private String date;
+    private String time;
+
 }
+

@@ -3,6 +3,8 @@ package com.lankaice.project.dto;
 import com.mysql.cj.x.protobuf.MysqlxCrud;
 import lombok.*;
 
+import java.util.ArrayList;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -10,15 +12,13 @@ import lombok.*;
 @ToString
 public class OrdersDto {
     private int orderId;
-    private int customerId;
+    private String customerId;
     private String orderDate;
     private String orderTime;
-    private String status;
+    private String description;
+    private String vehicle_number;
     private double totalAmount;
+    private ArrayList<OrderDetailsDto> cartList;
 
-    public OrdersDto(int customerId,String status, double totalAmount) {
-        this.customerId = customerId;
-        this.status = status;
-        this.totalAmount = totalAmount;
-    }
+
 }

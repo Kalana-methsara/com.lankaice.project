@@ -14,7 +14,6 @@ public class DeliveryDto {
     private String deliveryTime;
     private String deliveryAddress;
     private String deliveryState;
-    private int driverId;
-    private int employeeId;
+    private int vehicleId;
 
 }

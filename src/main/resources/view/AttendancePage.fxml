@@ -16,8 +16,8 @@
     <children>
         <Pane layoutX="20.0" layoutY="20.0" prefHeight="700.0" prefWidth="1209.0" style="-fx-background-color: E9F1F6; -fx-background-radius: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Button layoutX="550.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #2980b9;" text="ADD ADMIN" textFill="WHITE" />
-                <Button layoutX="950.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #c0392b;" text="DELETE ADMIN" textFill="WHITE" />
+                <Button layoutX="550.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #2980b9;" text="ADD ATTENDANCE" textFill="WHITE" />
+                <Button layoutX="950.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #c0392b;" text="DELETE ATTENDANCE" textFill="WHITE" />
                 <Label layoutX="100.0" layoutY="132.0" prefHeight="28.0" prefWidth="120.0" text="Employee Id">
                     <font>
                         <Font size="15.0" />
@@ -83,7 +83,7 @@
             <ChoiceBox fx:id="textMinutes1" layoutX="680.0" layoutY="170.0" onKeyReleased="#onKeyMinutes1" prefHeight="26.0" prefWidth="50.0" style="-fx-background-color: E9F1F6; -fx-border-width: 0 0 2 0; -fx-border-color: #2196f3;" />
             <Label fx:id="textOutTime" layoutX="770.0" layoutY="170.0" prefHeight="26.0" prefWidth="100.0" style="-fx-background-color: E9F1F6; -fx-border-width: 0 0 2 0; -fx-border-color: #2196f3;" />
             </children></Pane>
-        <TableView fx:id="tableView" layoutX="74.0" layoutY="266.0" onMouseClicked="#SetData" prefHeight="305.0" prefWidth="1026.0" stylesheets="@../style/tableViewStyle.css">
+        <TableView fx:id="tableView" layoutX="74.0" layoutY="266.0" onMouseClicked="#SetData" prefHeight="305.0" prefWidth="1026.0" style="-fx-border-color: #1d4ed8;" stylesheets="@../style/tableViewStyle.css">
             <columns>
                 <TableColumn fx:id="colEmployeeId" prefWidth="143.0" style="-fx-alignment: CENTER;" text="Employee Id" />
                 <TableColumn fx:id="colName" prefWidth="195.0" style="-fx-alignment: CENTER;" text="Name" />
@@ -98,7 +98,7 @@
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
         </TableView>
-        <Button layoutX="750.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #27ae60;" text="UPDATE ADMIN" textFill="WHITE" />
+        <Button layoutX="750.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #27ae60;" text="UPDATE ATTENDANCE" textFill="WHITE" />
         <Label layoutX="74.0" layoutY="56.0" text="ATTENDANCE MANAGE" textFill="#023c73">
             <font>
                 <Font name="System Bold" size="19.0" />
