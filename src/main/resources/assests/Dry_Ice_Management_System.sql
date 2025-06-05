@@ -160,15 +160,16 @@ CREATE TABLE Billing (
 --     Order Payment Table
 -- ========================
 CREATE TABLE Order_Payment (
-                               payment_id VARCHAR(5) PRIMARY KEY ,
+                               payment_id VARCHAR(6) PRIMARY KEY ,
                                order_id INT NOT NULL,
-                               bill_id INT NOT NULL,
                                payment_method ENUM('Cash', 'Card', 'Online') NOT NULL,
-                               amount DECIMAL(10,2) NOT NULL CHECK (amount > 0),
+                               items_count INT,
+                               subtotal DECIMAL(10,2) NOT NULL CHECK (subtotal > 0),
+                               discount DECIMAL(10,2) ,
+                               net_total DECIMAL(10,2) NOT NULL CHECK (net_total > 0),
                                payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                                status ENUM('Success', 'Failed', 'Pending') NOT NULL,
-                               FOREIGN KEY (order_id) REFERENCES Orders(order_id) ON DELETE CASCADE,
-                               FOREIGN KEY (bill_id) REFERENCES Billing(bill_id) ON DELETE CASCADE
+                               FOREIGN KEY (order_id) REFERENCES Orders(order_id) ON DELETE CASCADE
 );
 
 -- ========================
@@ -297,18 +298,6 @@ INSERT INTO Raw_Materials (material_id, supplier_id, name, unit_type, unit_cost,
 
 
 
--- ========================
---     Purchase Table
--- ========================
-CREATE TABLE Purchase (
-                          purchase_id INT PRIMARY KEY AUTO_INCREMENT,
-                          supplier_id VARCHAR(5) NOT NULL ,
-                          material_id INT NOT NULL,
-                          purchase_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                          quantity INT NOT NULL CHECK (quantity > 0),
-                          FOREIGN KEY (supplier_id) REFERENCES Supplier(supplier_id) ON DELETE CASCADE,
-                          FOREIGN KEY (material_id) REFERENCES Raw_Materials(material_id) ON DELETE CASCADE
-);
 
 -- ========================
 --     Booking Table

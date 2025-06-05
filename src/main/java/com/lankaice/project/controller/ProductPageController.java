@@ -7,14 +7,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -55,6 +60,8 @@ public class ProductPageController implements Initializable {
     private final OrdersModel ordersModel = new OrdersModel();
     private final VehicleModel vehicleModel = new VehicleModel();
     private final ProductModel productModel = new ProductModel();
+    private final OrderPaymentModel orderPaymentModel = new OrderPaymentModel();
+    private final BillPageController billPageController = new BillPageController();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -142,7 +149,7 @@ public class ProductPageController implements Initializable {
             }
 
 
-            ProductTM item = new ProductTM(productId,product, price, qty, discount);
+            ProductTM item = new ProductTM(productId, product, price, qty, discount);
             productList.add(item);
             tableProduct.setItems(productList);
 
@@ -246,7 +253,7 @@ public class ProductPageController implements Initializable {
     }
 
     @FXML
-    public void onActionComfirm(ActionEvent actionEvent) {
+    public void onActionComfirm(ActionEvent actionEvent) throws IOException {
         if (productList.isEmpty()) {
             showAlert(Alert.AlertType.WARNING, "Add items to cart before placing order.");
             return;
@@ -267,24 +274,60 @@ public class ProductPageController implements Initializable {
             String paymentMethod = choiceBoxPay.getValue();
             String date = LocalDate.now().toString();
             String time = LocalTime.now().toString();
+            int itemsCount = Integer.parseInt(itemsCountLabel.getText());
+            double subtotal = Double.parseDouble(subtotalLabel.getText());
+            double discount = Double.parseDouble(discountLabel.getText());
             double total = Double.parseDouble(totalLabel.getText());
+            String nextPaymentId = orderPaymentModel.getNextPaymentId();
+            String customerName = customerModel.findNameById(customerId);
+
+            OrderPaymentDto ordersPaymentDto = new OrderPaymentDto(nextPaymentId, orderId, paymentMethod, itemsCount, subtotal, discount, total, LocalDate.now().toString(), "Success");
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BillPage.fxml"));
+            Parent rootNode = loader.load();
+
+            BillPageController controller = loader.getController();
+            controller.setlabel(ordersPaymentDto, customerName);
+
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(rootNode));
+            stage.showAndWait();
+
+
+            if (!controller.isSave()) {
+                showAlert(Alert.AlertType.ERROR, "Order payment canceled.");
+                resetPage();
+                return;
+            }
+
+            boolean save = controller.isSave();
 
             ArrayList<OrderDetailsDto> cartList = new ArrayList<>();
             for (ProductTM item : productList) {
                 cartList.add(new OrderDetailsDto(orderId, item.getProductId(), item.getQty(), item.getPrice(), item.getDiscount()));
             }
             OrdersDto ordersDto = new OrdersDto(orderId, customerId, date, time, description, vehicleNumber, total, cartList);
-            boolean isPlaced = ordersModel.placeOrder(ordersDto);
+                boolean isPlaced = ordersModel.placeOrder(ordersDto);
 
-            if (isPlaced) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Order Placed Successfully!");
-                alert.initStyle(StageStyle.UNDECORATED);
-                alert.getDialogPane().setStyle("-fx-border-color: blue; -fx-border-width: 2px;");
-                alert.show();
-                resetPage();
-            } else {
-                showAlert(Alert.AlertType.ERROR, "Order placement failed.");
-            }
+                if (isPlaced) {
+                    orderPaymentModel.savePayment(ordersPaymentDto);
+                    if (orderPaymentModel.isPaymentCompleted(orderId)) {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Order Placed Successfully!");
+                        alert.initStyle(StageStyle.UNDECORATED);
+                        alert.getDialogPane().setStyle("-fx-border-color: blue; -fx-border-width: 2px;");
+                        alert.show();
+                        resetPage();
+                        billPageController.setSave(false);
+                    } else {
+                        showAlert(Alert.AlertType.ERROR, "Order payment failed.");
+                    }
+
+                } else {
+                    showAlert(Alert.AlertType.ERROR, "Order placement failed.");
+                }
+
+
 
         } catch (Exception e) {
             e.printStackTrace();

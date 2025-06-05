@@ -8,11 +8,15 @@ import lombok.*;
 @Setter
 @ToString
 public class OrderPaymentDto {
-    private int paymentId;
+    private String paymentId;
     private int orderId;
-    private int billingId;
     private String paymentMethod;
-    private double amount;
-    private String date;
+    private int itemCount;
+    private double subtotal;
+    private double discount;
+    private double netTotal;
+    private String paymentDate;
     private String status;
+
+
 }

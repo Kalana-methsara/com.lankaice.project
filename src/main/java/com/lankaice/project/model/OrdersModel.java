@@ -99,7 +99,7 @@ public class OrdersModel {
                         detail.getQuantity(), detail.getProductId());
 
                 if (!isStockUpdated) {
-                        connection.rollback();
+                    connection.rollback();
                     return false;
                 }
                 boolean isPendingOrderSaved = CrudUtil.execute(

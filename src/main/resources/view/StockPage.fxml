@@ -71,8 +71,8 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
+            <Button layoutX="750.0" layoutY="46.0" mnemonicParsing="false" onAction="#btnAddEmployeeOnAction" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #2980b9;" text="ADD STOCK" textFill="WHITE" />
             </children>
         </Pane>
-      <Button layoutX="750.0" layoutY="46.0" mnemonicParsing="false" onAction="#btnAddEmployeeOnAction" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #2980b9;" text="ADD STOCK" textFill="WHITE" />
     </children>
 </AnchorPane>
