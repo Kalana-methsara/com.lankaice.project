@@ -1,0 +1,60 @@
+.chart {
+    -fx-background-color: transparent;
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+}
+
+.chart-title {
+    -fx-text-fill: #333333;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+    -fx-text-fill: #444444;
+    -fx-font-size: 12px;
+}
+
+.axis {
+    -fx-tick-label-fill: #333333;
+    -fx-tick-label-font-size: 12px;
+    -fx-axis-line-visible: true;
+    -fx-tick-mark-visible: true;
+}
+
+.axis-label {
+    -fx-text-fill: #333333;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.chart-series-line {
+    -fx-stroke-width: 3px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 2, 2);
+}
+
+.default-color0.chart-series-line {
+    -fx-stroke: #1f77b4;
+}
+
+.default-color1.chart-series-line {
+    -fx-stroke: #ff7f0e;
+}
+
+.default-color2.chart-series-line {
+    -fx-stroke: #2ca02c;
+}
+
+.chart-line-symbol {
+    -fx-background-radius: 5px;
+    -fx-background-color: #ffffff, inherit;
+    -fx-padding: 3px;
+    -fx-border-color: #888888;
+    -fx-border-width: 1px;
+}

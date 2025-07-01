@@ -6,6 +6,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -13,6 +15,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 // DTO classes (You need to create these)
@@ -22,6 +25,7 @@ import javafx.stage.StageStyle;
 
 public class DashboardPageController implements Initializable {
 
+    public LineChart salesChart;
     @FXML
     private TableColumn<VehicleDto, String> colStatus;
 
@@ -77,11 +81,29 @@ public class DashboardPageController implements Initializable {
             loadVehicleTable();
             loadDashboardStats();
             pendingOrderToday();
+            salesChart.setLegendVisible(false);  // hide legend completely
+            loadSalesChart();
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
     }
+    private void loadSalesChart() {
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+
+        try {
+            Map<LocalDate, Integer> salesData = orderDetailsModel.getSalesForLast7Days();
+            for (Map.Entry<LocalDate, Integer> entry : salesData.entrySet()) {
+                series.getData().add(new XYChart.Data<>(entry.getKey().toString(), entry.getValue()));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        salesChart.getData().clear();
+        salesChart.getData().add(series);
+    }
+
  /*   public void openAddAdminWindow() throws IOException {
         UserDto user = Session.getCurrentUser();
         Parent rootNode = FXMLLoader.load(getClass().getResource("/view/AddAdmin.fxml"));

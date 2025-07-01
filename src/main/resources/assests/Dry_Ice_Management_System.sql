@@ -150,7 +150,7 @@ CREATE TABLE Order_Details (
 CREATE TABLE Billing (
                          bill_id INT PRIMARY KEY AUTO_INCREMENT,
                          order_id INT NOT NULL,
-                         billing_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                         billing_date DATETIME NOT NULL,
                          payment_status ENUM('Paid', 'Unpaid', 'Refunded') NOT NULL,
                          amount DECIMAL(10,2) NOT NULL CHECK (amount > 0),
                          FOREIGN KEY (order_id) REFERENCES Orders(order_id) ON DELETE CASCADE
@@ -167,7 +167,7 @@ CREATE TABLE Order_Payment (
                                subtotal DECIMAL(10,2) NOT NULL CHECK (subtotal > 0),
                                discount DECIMAL(10,2) ,
                                net_total DECIMAL(10,2) NOT NULL CHECK (net_total > 0),
-                               payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                               payment_date DATETIME NOT NULL,
                                status ENUM('Success', 'Failed', 'Pending') NOT NULL,
                                FOREIGN KEY (order_id) REFERENCES Orders(order_id) ON DELETE CASCADE
 );
@@ -207,8 +207,8 @@ CREATE TABLE Attendance (
 -- ========================
 CREATE TABLE Salary (
                         salary_id INT PRIMARY KEY AUTO_INCREMENT,
-                        employee_id  VARCHAR(5) NOT NULL,
-                        basic_amount DECIMAL(10,2) NOT NULL CHECK (basic_amount > 0),
+                        employee_id VARCHAR(5) NOT NULL,
+                        basic_amount DECIMAL(10,2) NOT NULL CHECK (basic_amount >= 0),
                         bonus DECIMAL(10,2) DEFAULT 0 CHECK (bonus >= 0),
                         deduction DECIMAL(10,2) DEFAULT 0 CHECK (deduction >= 0),
                         net_amount DECIMAL(10,2) NOT NULL CHECK (net_amount >= 0),
@@ -217,6 +217,7 @@ CREATE TABLE Salary (
                         status ENUM('PENDING','COMPLETED','CANCELLED') DEFAULT 'PENDING',
                         FOREIGN KEY (employee_id) REFERENCES Employee(employee_id) ON DELETE CASCADE
 );
+
 
 -- ========================
 --     Salary Payment Table
@@ -334,20 +335,17 @@ CREATE TABLE SMS_Email (
 --     Transport Table
 -- ========================
 CREATE TABLE Transport (
-                           transport_id INT PRIMARY KEY AUTO_INCREMENT,
+                           transport_id VARCHAR(5) PRIMARY KEY,
                            product_id VARCHAR(4) NOT NULL,
-                           vehicle_id INT NOT NULL,
-                           driver_id VARCHAR(5) NOT NULL,
+                           vehicle_number VARCHAR(50) NOT NULL,
                            transport_date DATE NOT NULL,
-                           start_time TIME NOT NULL,
-                           end_time TIME NOT NULL,
+                           start_time TIME DEFAULT NULL,
+                           end_time TIME DEFAULT NULL,
                            quantity INT NOT NULL CHECK (quantity > 0),
-                           from_location VARCHAR(255) NOT NULL,
-                           to_location VARCHAR(255) NOT NULL,
-                           status ENUM('Scheduled', 'In Transit', 'Delivered', 'Cancelled') NOT NULL,
+                           location VARCHAR(255) NOT NULL,
+                           status VARCHAR(50)  NOT NULL,
                            FOREIGN KEY (product_id) REFERENCES Product(product_id) ON DELETE CASCADE,
-                           FOREIGN KEY (vehicle_id) REFERENCES Vehicle(vehicle_id) ON DELETE CASCADE,
-                           FOREIGN KEY (driver_id) REFERENCES Employee(employee_id) ON DELETE CASCADE
+                           FOREIGN KEY (vehicle_number) REFERENCES Vehicle(vehicle_number) ON DELETE CASCADE
 );
 
 -- ========================
@@ -454,15 +452,16 @@ INSERT INTO Booking (customer_id, product_id, request_date, request_time, quanti
 -- Sample insert statements for the Stock table
 
 -- Insert sample salary data
-INSERT INTO Salary (employee_id, basic_amount, bonus, deduction, net_amount, pay_month, pay_year)
-VALUES
-    ('E001', 50000.00, 5000.00, 2000.00, 53000.00, 5, 2025),
-    ('E002', 45000.00, 3000.00, 1500.00, 46500.00, 5, 2025),
-    ('E003', 60000.00, 7000.00, 2500.00, 64500.00, 5, 2025),
-    ('E004', 40000.00, 2000.00, 1000.00, 41000.00, 5, 2025),
-    ('E005', 55000.00, 4500.00, 3000.00, 56500.00, 5, 2025),
-    ('E006', 52000.00, 4000.00, 2000.00, 54000.00, 5, 2025),
-    ('E007', 48000.00, 3500.00, 1800.00, 49700.00, 5, 2025),
-    ('E008', 47000.00, 2000.00, 1200.00, 47800.00, 5, 2025),
-    ('E009', 49000.00, 1000.00, 900.00, 49100.00, 5, 2025),
-    ('E010', 51000.00, 3000.00, 1700.00, 52300.00, 5, 2025);
+# INSERT INTO Salary (employee_id, basic_amount, bonus, deduction, net_amount, pay_month, pay_year)
+# VALUES
+#     ('E001', 50000.00, 5000.00, 2000.00, 53000.00, 5, 2025),
+#     ('E002', 45000.00, 3000.00, 1500.00, 46500.00, 5, 2025),
+#     ('E003', 60000.00, 7000.00, 2500.00, 64500.00, 5, 2025),
+#     ('E004', 40000.00, 2000.00, 1000.00, 41000.00, 5, 2025),
+#     ('E005', 55000.00, 4500.00, 3000.00, 56500.00, 5, 2025),
+#     ('E006', 52000.00, 4000.00, 2000.00, 54000.00, 5, 2025),
+#     ('E007', 48000.00, 3500.00, 1800.00, 49700.00, 5, 2025),
+#     ('E008', 47000.00, 2000.00, 1200.00, 47800.00, 5, 2025),
+#     ('E009', 49000.00, 1000.00, 900.00, 49100.00, 5, 2025),
+#     ('E010', 51000.00, 3000.00, 1700.00, 52300.00, 5, 2025);
+

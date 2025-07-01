@@ -15,16 +15,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: E9F1F6;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lankaice.project.controller.BillPageController">
+<AnchorPane prefHeight="556.0" prefWidth="500.0" style="-fx-background-color: E9F1F6;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lankaice.project.controller.BillPageController">
 
-    <VBox spacing="10" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10">
+    <VBox prefWidth="500.0" spacing="10" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10">
       <Label />
-      <HBox prefHeight="22.0" prefWidth="780.0">
+      <HBox prefHeight="57.0" prefWidth="500.0">
          <children>
             <Label prefHeight="18.0" prefWidth="45.0" />
       
               <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Invoice" />
-            <Label prefHeight="18.0" prefWidth="255.0" />
+            <Label prefHeight="18.0" prefWidth="139.0" />
             <ImageView fitHeight="56.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/cube.png" />
@@ -44,11 +44,11 @@
       </HBox>
       <Label />
 
-        <GridPane hgap="10" vgap="10">
+        <GridPane hgap="10" prefHeight="120.0" prefWidth="538.0" vgap="10">
             <columnConstraints>
                 <ColumnConstraints />
                 <ColumnConstraints maxWidth="100.0" minWidth="50.0" percentWidth="19.0" prefWidth="100.0" />
-                <ColumnConstraints maxWidth="280.0" minWidth="150.0" percentWidth="25.0" prefWidth="150.0" />
+                <ColumnConstraints percentWidth="25.0" />
                 <ColumnConstraints percentWidth="20.0" />
             <ColumnConstraints percentWidth="25.0" />
             </columnConstraints>
@@ -59,7 +59,7 @@
             <DatePicker fx:id="datePicker" style="-fx-border-width: 2; -fx-border-color: #2196f3;" GridPane.columnIndex="4" />
 
             <Label text="Customer Name:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         <Label prefHeight="18.0" prefWidth="28.0" />
+         <Label prefHeight="18.0" prefWidth="14.0" />
          <Label fx:id="txtInvoiceNo" prefHeight="24.0" prefWidth="183.0" style="-fx-border-color: #2196f3; -fx-border-width: 0 0 2 0;" GridPane.columnIndex="2" />
          <Label text="Order Id" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="76.0" text="Payment Id" GridPane.columnIndex="3" GridPane.rowIndex="1" />
@@ -83,7 +83,7 @@
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
             <Label prefHeight="18.0" prefWidth="44.0" />
-            <VBox prefHeight="152.0" prefWidth="541.0" spacing="10" style="-fx-background-color: #dbeafe; -fx-border-color: #1e40af; -fx-border-width: 1; -fx-border-radius: 3; -fx-padding: 15 15 10 15;">
+            <VBox prefHeight="152.0" prefWidth="435.0" spacing="10" style="-fx-background-color: #dbeafe; -fx-border-color: #1e40af; -fx-border-width: 1; -fx-border-radius: 3; -fx-padding: 15 15 10 15;">
                <children>
                   <HBox alignment="CENTER_RIGHT">
                      <children>

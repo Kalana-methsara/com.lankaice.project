@@ -308,6 +308,11 @@
             <Button layoutX="548.0" layoutY="37.0" mnemonicParsing="false" onAction="#btnActiveOnAction" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #2980b9;" text="ACTIVE" textFill="WHITE" />
             <Button layoutX="719.0" layoutY="37.0" mnemonicParsing="false" onAction="#btnUnderRepairOnAction" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #e67e22;" text="UNDER REPAIR" textFill="WHITE" />
             <Label fx:id="txtVehicle" layoutX="419.0" layoutY="37.0" prefHeight="28.0" prefWidth="100.0" style="-fx-background-color: E9F1F6; -fx-border-width: 2; -fx-border-color: #2196f3; -fx-border-radius: 5;" />
+            <Button layoutX="955.0" layoutY="51.0" mnemonicParsing="false" onAction="#onActionDistribution" prefHeight="32.0" prefWidth="180.0" style="-fx-background-color: #009432;" text="Distribution" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
          </children></Pane>
       <Label layoutX="54.0" layoutY="47.0" text="TRANSPORT" textFill="#023c73">
          <font>

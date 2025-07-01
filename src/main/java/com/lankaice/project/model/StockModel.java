@@ -23,6 +23,12 @@ public class StockModel {
                 orderDetailsDto.getProductId()
         );
     }
+    public boolean reduceQty(String productId,int quantity) throws SQLException, ClassNotFoundException {
+        return CrudUtil.execute(
+                "UPDATE Stock SET stock_quantity = stock_quantity - ? WHERE product_id = ?",
+              quantity,productId
+        );
+    }
 
     public int currentStock() throws SQLException, ClassNotFoundException {
         String sql = "SELECT COALESCE(SUM(stock_quantity), 0) AS total FROM Stock";

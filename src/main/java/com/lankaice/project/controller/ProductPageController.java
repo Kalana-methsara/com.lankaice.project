@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 
@@ -281,7 +282,7 @@ public class ProductPageController implements Initializable {
             String nextPaymentId = orderPaymentModel.getNextPaymentId();
             String customerName = customerModel.findNameById(customerId);
 
-            OrderPaymentDto ordersPaymentDto = new OrderPaymentDto(nextPaymentId, orderId, paymentMethod, itemsCount, subtotal, discount, total, LocalDate.now().toString(), "Success");
+            OrderPaymentDto ordersPaymentDto = new OrderPaymentDto(nextPaymentId, orderId, paymentMethod, itemsCount, subtotal, discount, total, LocalDateTime.now().toString(), "Success");
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BillPage.fxml"));
             Parent rootNode = loader.load();

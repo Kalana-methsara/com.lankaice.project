@@ -39,9 +39,9 @@
                   <Font name="System Bold" size="11.0" />
                </font>
             </Button>
-            <Button layoutX="1004.0" layoutY="46.0" mnemonicParsing="false" onAction="#btnDeleteEmployeeOnAction" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #c0392b;" text="DELETE EMPLOYEE" textFill="WHITE" />
+            <Button layoutX="1004.0" layoutY="46.0" mnemonicParsing="false" onAction="#btnDeleteEmployeeOnAction" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #c0392b;" text="DELETE SALARY" textFill="WHITE" />
             <Button layoutX="658.0" layoutY="46.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #e67e22;" text="CLEAR" textFill="WHITE" />
-            <Button layoutX="833.0" layoutY="46.0" mnemonicParsing="false" onAction="#btnUpdateEmployeeOnAction" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #27ae60;" text="UPDATE EMPLOYEE" textFill="WHITE" />
+            <Button layoutX="833.0" layoutY="46.0" mnemonicParsing="false" onAction="#btnUpdateEmployeeOnAction" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #27ae60;" text="UPDATE SALARY" textFill="WHITE" />
             <ChoiceBox fx:id="textMonth" layoutX="230.0" layoutY="127.0" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: E9F1F6; -fx-border-color: #1D4ED8FF; -fx-background-radius: 5; -fx-border-radius: 5;" />
             <Label fx:id="txtYear" alignment="CENTER" layoutX="351.0" layoutY="127.0" prefHeight="28.0" prefWidth="100.0" style="-fx-border-color: #1D4ED8FF; -fx-background-radius: 5; -fx-border-radius: 5;" textFill="#1d4ed8">
                <font>

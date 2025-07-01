@@ -248,4 +248,20 @@ public class TransportPageController implements Initializable {
     }
 
 
+    public void onActionDistribution(ActionEvent actionEvent) {
+        navigateTo("/view/Distribution.fxml");
+    }
+    public void navigateTo(String path) {
+        try {
+            ancTransport.getChildren().clear();
+            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource(path));
+            anchorPane.prefWidthProperty().bind(ancTransport.widthProperty());
+            anchorPane.prefHeightProperty().bind(ancTransport.heightProperty());
+            ancTransport.getChildren().add(anchorPane);
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, "Page not found", ButtonType.OK).show();
+            e.printStackTrace();
+        }
+    }
+
 }

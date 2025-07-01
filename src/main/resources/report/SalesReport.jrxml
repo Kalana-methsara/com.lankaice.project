@@ -1,5 +1,5 @@
-<!-- Created with Jaspersoft Studio version 7.0.0.final using JasperReports Library version 7.0.0-b478feaa9aab4375eba71de77b4ca138ad2f62aa  -->
-<jasperReport name="CustomerReport" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9d9923a2-651f-4f63-b9eb-a6f1c622b5fb">
+<!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
+<jasperReport name="SalesReport" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9d9923a2-651f-4f63-b9eb-a6f1c622b5fb">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="LankaIceDBConnection"/>
 	<parameter name="p_date" class="java.lang.String"/>
@@ -56,7 +56,11 @@
 			<expression><![CDATA[$P{p_date}]]></expression>
 		</element>
 	</pageHeader>
-	<columnHeader height="35" splitType="Stretch">
+	<columnHeader height="31" splitType="Stretch">
+		<element kind="staticText" uuid="7a9f48a0-2425-4d21-94ad-d0865e5054d8" x="80" y="0" width="51" height="30" markup="rtf" fontSize="16.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[ID]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fd34b0f4-ab23-4406-8f38-f9d2155f43a3"/>
+		</element>
 		<element kind="staticText" uuid="e21aecb2-92a9-4fd7-84aa-f1c314183136" x="46" y="0" width="111" height="30" fontSize="18.0" bold="true" hTextAlign="Center">
 			<text><![CDATA[name]]></text>
 			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8a06cc75-f36b-4bd8-889c-d86395b64529"/>
@@ -77,10 +81,6 @@
 			<text><![CDATA[address]]></text>
 			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="da60c3e8-f896-4946-b493-3aece6977813"/>
 		</element>
-		<element kind="staticText" uuid="d24501b7-efc4-4b66-a523-c280bd805452" x="-20" y="0" width="81" height="30" fontSize="18.0" bold="true" hTextAlign="Center">
-			<text><![CDATA[id]]></text>
-			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8a06cc75-f36b-4bd8-889c-d86395b64529"/>
-		</element>
 	</columnHeader>
 	<detail>
 		<band height="31" splitType="Stretch">
@@ -92,7 +92,7 @@
 				<expression><![CDATA[$F{name}]]></expression>
 				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8a06cc75-f36b-4bd8-889c-d86395b64529"/>
 			</element>
-			<element kind="textField" uuid="de763448-9b9e-4eb0-9af9-825d913078eb" x="160" y="0" width="111" height="30" fontSize="11.0" hTextAlign="Center">
+			<element kind="textField" uuid="de763448-9b9e-4eb0-9af9-825d913078eb" x="160" y="0" width="111" height="30" fontSize="11.0" hTextAlign="Center" >
 				<expression><![CDATA[$F{nic}]]></expression>
 				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3138b3b2-5b27-48fd-9b11-799fdbfd2087"/>
 			</element>

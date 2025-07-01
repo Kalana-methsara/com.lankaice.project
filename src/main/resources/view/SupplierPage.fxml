@@ -107,5 +107,10 @@
             <Image url="@../images/email.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="27.0" fitWidth="35.0" layoutX="362.0" layoutY="69.0" onMouseClicked="#onReport" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+         <image>
+            <Image url="@../images/production.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

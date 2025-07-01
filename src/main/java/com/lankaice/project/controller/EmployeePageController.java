@@ -1,5 +1,6 @@
 package com.lankaice.project.controller;
 
+import com.lankaice.project.db.DBConnection;
 import com.lankaice.project.dto.EmployeeDto;
 import com.lankaice.project.dto.UserDto;
 import com.lankaice.project.model.EmployeeModel;
@@ -21,16 +22,20 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class EmployeePageController implements Initializable {
     @FXML
@@ -573,5 +578,30 @@ public class EmployeePageController implements Initializable {
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
+    }
+
+    public void onReport(MouseEvent mouseEvent) {
+        try {
+            JasperReport jasperReport = JasperCompileManager.compileReport(
+                    getClass().getResourceAsStream("/report/EmployeeReport.jrxml")
+            );
+
+            Connection connection = DBConnection.getInstance().getConnection();
+
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("p_date", LocalDate.now().toString());
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(
+                    jasperReport,
+                    parameters, // null
+                    connection
+            );
+
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

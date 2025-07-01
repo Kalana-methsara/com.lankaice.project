@@ -143,7 +143,7 @@ public class ViewSalaryController implements Initializable {
         obListSal.clear();
         SalaryModel model = new SalaryModel();
         try {
-            List<SalaryDto> dtoList = model.getAllSalarys();
+            List<SalaryDto> dtoList = model.getAllSalaries();
             obListSal.addAll(dtoList);
         } catch (Exception e) {
             e.printStackTrace();

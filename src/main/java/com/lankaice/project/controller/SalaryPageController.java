@@ -55,9 +55,42 @@ public class SalaryPageController implements Initializable {
         txtYear.setText(String.valueOf(LocalDate.now().getYear()));
         textMonth.getSelectionModel().select(LocalDate.now().getMonthValue() - 1);
 
-        loadAllSalary();
         clearFields();
+        clearFields();
+        try {
+            boolean isDeleted = new SalaryModel().deleteAllSalary();
+            if (isDeleted) {
+                showAlert(Alert.AlertType.INFORMATION, "All salary records deleted successfully.");
+            } else {
+                showAlert(Alert.AlertType.WARNING, "No salary records found to delete.");
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        btnGenerateSalaryOnAction();
+
+
     }
+
+    public void btnGenerateSalaryOnAction() {
+        int selectedMonth = textMonth.getSelectionModel().getSelectedIndex() + 1;
+        int year = Integer.parseInt(txtYear.getText());
+
+        try {
+            boolean isGenerated = new SalaryModel().generateMonthlySalaries(selectedMonth, year);
+            if (isGenerated) {
+                showAlert(Alert.AlertType.INFORMATION, "Salary records generated successfully.");
+            } else {
+                showAlert(Alert.AlertType.WARNING, "Salary records already exist or no employees found.");
+            }
+            loadAllSalary();
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Error generating salary records.");
+        }
+    }
+
 
     private void loadAllSalary() {
         colEmId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
@@ -70,7 +103,7 @@ public class SalaryPageController implements Initializable {
 
         try {
             SalaryModel salaryModel = new SalaryModel();
-            ArrayList<SalaryDto> salaryDtos = salaryModel.getAllSalarys(); // fixed method name
+            ArrayList<SalaryDto> salaryDtos = salaryModel.getAllSalaries(); // fixed method name
             ObservableList<SalaryDto> list = FXCollections.observableArrayList(salaryDtos);
             tableView.setItems(list);
         } catch (SQLException | ClassNotFoundException e) {

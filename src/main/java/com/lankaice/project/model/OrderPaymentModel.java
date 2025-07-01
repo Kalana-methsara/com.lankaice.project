@@ -29,7 +29,7 @@ public class OrderPaymentModel {
     }
 
     public boolean updatePayment(OrderPaymentDto dto) throws SQLException, ClassNotFoundException {
-        String sql = "UPDATE Order_Payment SET order_id = ?, payment_method = ?, item_count = ?, subtotal = ?, discount = ?, net_total = ?, payment_date = ?, status = ? " +
+        String sql = "UPDATE Order_Payment SET order_id = ?, payment_method = ?, items_count = ?, subtotal = ?, discount = ?, net_total = ?, payment_date = ?, status = ? " +
                 "WHERE payment_id = ?";
         return CrudUtil.execute(
                 sql,
@@ -45,6 +45,39 @@ public class OrderPaymentModel {
         );
     }
 
+    public List<OrderPaymentDto> searchPayments(String keyword) {
+        List<OrderPaymentDto> list = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM Order_Payment WHERE " +
+                    "payment_id LIKE ? OR " +
+                    "order_id LIKE ? OR " +
+                    "payment_method LIKE ? OR " +
+                    "status LIKE ?";
+            ResultSet rs = CrudUtil.execute(sql,
+                    "%" + keyword + "%",
+                    "%" + keyword + "%",
+                    "%" + keyword + "%",
+                    "%" + keyword + "%");
+
+            while (rs.next()) {
+                OrderPaymentDto dto = new OrderPaymentDto(
+                        rs.getString("payment_id"),
+                        rs.getInt("order_id"),
+                        rs.getString("payment_method"),
+                        rs.getInt("items_count"),
+                        rs.getDouble("subtotal"),
+                        rs.getDouble("discount"),
+                        rs.getDouble("net_total"),
+                        rs.getString("payment_date"),
+                        rs.getString("status")
+                );
+                list.add(dto);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
     public boolean deletePayment(String paymentId) throws SQLException, ClassNotFoundException {
         String sql = "DELETE FROM Order_Payment WHERE payment_id = ?";
         return CrudUtil.execute(sql, paymentId);
@@ -61,7 +94,7 @@ public class OrderPaymentModel {
                     resultSet.getString("payment_id"),
                     resultSet.getInt("order_id"),
                     resultSet.getString("payment_method"),
-                    resultSet.getInt("item_count"),
+                    resultSet.getInt("items_count"),
                     resultSet.getDouble("subtotal"),
                     resultSet.getDouble("discount"),
                     resultSet.getDouble("net_total"),

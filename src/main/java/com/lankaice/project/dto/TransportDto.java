@@ -2,21 +2,22 @@ package com.lankaice.project.dto;
 
 import lombok.*;
 
+import java.time.LocalTime;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
 public class TransportDto {
-    private int transportId;
-    private int productId;
-    private int vehicleId;
-    private int driverId;
+    private String transportId;
+    private String productId;
+    private String vehicleNumber;
     private String transportDate;
-    private String deliveryBeginTime;
-    private String deliveryEndTime;
+    private LocalTime deliveryBeginTime;
+    private LocalTime deliveryEndTime;
     private int quantity;
-    private String fromLocation;
-    private String toLocation;
+    private String location;
     private String status;
+
 }

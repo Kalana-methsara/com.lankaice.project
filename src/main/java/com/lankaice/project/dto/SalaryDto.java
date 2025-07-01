@@ -21,4 +21,15 @@ public class SalaryDto {
     private String status;
 
 
+    public SalaryDto(String employeeId, Object employeeName, double basicSalary, double bonus, double deduction, double netSalary, int month, int year, String pending) {
+        this.employeeId = employeeId;
+        this.employeeName = employeeName.toString();
+        this.basicSalary = basicSalary;
+        this.bonus = bonus;
+        this.deduction = deduction;
+        this.netSalary = netSalary;
+        this.payMonth = month;
+        this.payYear = year;
+        this.status = pending;
+    }
 }

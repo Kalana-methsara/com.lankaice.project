@@ -13,6 +13,7 @@ import lombok.Setter;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 public class BillPageController implements Initializable {
@@ -91,7 +92,7 @@ public class BillPageController implements Initializable {
         itemsCountLabel.setText(String.valueOf(ordersPaymentDto.getItemCount()));
         subtotalLabel.setText(String.valueOf(ordersPaymentDto.getSubtotal()));
         totalLabel.setText(String.valueOf(ordersPaymentDto.getNetTotal()));
-        datePicker.setValue(LocalDate.parse(ordersPaymentDto.getPaymentDate()));
+        datePicker.setValue(LocalDateTime.parse(ordersPaymentDto.getPaymentDate()).toLocalDate());
 
 
     }
